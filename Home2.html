@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>EcoRefill – Home 2 | Modern Marketplace</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <!-- Tailwind CSS + Fonts + Font Awesome + AOS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#2D6A4F',
+            secondary: '#40916C',
+            accent: '#95D5B2',
+            dark: '#081C15',
+            background: '#F6FFF8',
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    /* Fluid Typography & Layouts */
+    :root {
+      --primary: #2D6A4F;
+      --secondary: #40916C;
+      --accent: #95D5B2;
+      --background: #F6FFF8;
+      --dark: #081C15;
+      --fluid-spacing: clamp(1rem, 5vw, 2rem);
+    }
+    
+    html, body {
+      max-width: 100vw;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    * { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, h4, .heading-font { font-family: 'Poppins', sans-serif; }
+    
+    /* Responsive Headings */
+    h1 { font-size: clamp(2.25rem, 8vw, 4.5rem) !important; line-height: 1.1 !important; }
+    h2 { font-size: clamp(1.85rem, 5vw, 3rem) !important; line-height: 1.2 !important; }
+    h3 { font-size: clamp(1.25rem, 3vw, 1.75rem) !important; }
+
+    /* Flexible Container */
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: var(--fluid-spacing);
+      padding-right: var(--fluid-spacing);
+    }
+
+    body { background-color: var(--background); color: var(--dark); display: flex; flex-direction: column; min-height: 100vh; }
+    
+    /* Navbar Styles */
+    .glass-nav { 
+      background: rgba(246, 255, 248, 0.7); 
+      backdrop-filter: blur(20px); 
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(45, 106, 79, 0.1); 
+      width: 100%;
+    }
+    .glass-nav-scrolled { background: rgba(246, 255, 248, 0.95); box-shadow: 0 10px 40px rgba(0,0,0,0.05); }
+    
+    /* Buttons */
+    .btn-primary { background: var(--primary); color: white; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); white-space: nowrap; }
+    .btn-primary:hover { background: var(--secondary); transform: translateY(-3px); box-shadow: 0 10px 25px rgba(45, 106, 79, 0.3); }
+    .btn-accent { background: var(--accent); color: var(--dark); font-weight: 700; }
+    
+    .btn-gradient { background: linear-gradient(135deg, #2D6A4F 0%, #40916C 100%); transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1); box-shadow: 0 8px 20px rgba(45, 106, 79, 0.2); white-space: nowrap; }
+    .btn-gradient:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(45, 106, 79, 0.3); }
+    
+    /* Cards & Glassmorphism */
+    .glass-card { background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.6); }
+    .bento-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border: 1px solid rgba(45, 106, 79, 0.05); }
+    .bento-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px -12px rgba(0,0,0,0.1); border-color: var(--accent); }
+    
+    /* Animations */
+    .floating-card { animation: floating 4s infinite ease-in-out; }
+    @keyframes floating { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+    
+    .leaf-animation { position: absolute; pointer-events: none; z-index: 1; opacity: 0.15; animation: leafFall 10s infinite linear; }
+    @keyframes leafFall { 
+      0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.15; }
+      90% { opacity: 0.15; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* Product Slider */
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    
+    /* Curved Sections */
+    .curved-top { border-top-left-radius: 5rem; border-top-right-radius: 5rem; }
+    .curved-bottom { border-bottom-left-radius: 5rem; border-bottom-right-radius: 5rem; }
+    
+    /* Standardized Global Styles & Dark Mode */
+    .dark body { background-color: #081C15 !important; color: #e5e5e5 !important; }
+    .dark .bg-white { background-color: #0d1712 !important; color: #ffffff !important; }
+    .dark .bg-gray-50 { background-color: #1a2a24 !important; }
+    .dark .glass-nav { background: rgba(8, 28, 21, 0.85) !important; border-bottom-color: rgba(255,255,255,0.15) !important; }
+    .dark .glass-card { background: rgba(255, 255, 255, 0.03) !important; border-color: rgba(149, 213, 178, 0.3) !important; }
+    
+    /* Border Visibility */
+    .border, .border-t, .border-b, .border-l, .border-r { border-color: rgba(45, 106, 79, 0.1) !important; }
+    .dark .border, .dark .border-t, .dark .border-b, .dark .border-l, .dark .border-r, .dark hr { border-color: rgba(149, 213, 178, 0.3) !important; }
+    
+    /* Typography Visibility */
+    .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 { color: #ffffff !important; }
+    .dark .text-primary { color: var(--accent) !important; }
+    .dark .text-gray-600, .dark .text-gray-500, .dark .text-gray-400 { color: #a1a1aa !important; }
+    
+    /* Hover & Shadows */
+    .bento-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px -12px rgba(45, 106, 79, 0.2); border-color: var(--accent) !important; }
+    .dark .bento-card:hover { box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.6); }
+    
+    /* Active Menu */
+    .active-menu {
+        color: var(--primary) !important;
+        font-weight: 800 !important;
+    }
+    .dark .active-menu {
+        color: var(--accent) !important;
+    }
+    .active-menu.hover-underline::after {
+        width: 100% !important;
+    }
+    
+    .truck-move { animation: truckMove 15s infinite linear; }
+    @keyframes truckMove { 0% { transform: translateX(-100%); } 100% { transform: translateX(200vw); } }
+
+    /* Navbar & UI Overrides */
+    .dark .glass-nav { background: rgba(8, 28, 21, 0.85) !important; border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important; }
+    .dark .glass-nav-scrolled { background: rgba(8, 28, 21, 0.98) !important; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important; }
+    .dark #mobileMenu { background: rgba(8, 28, 21, 0.98) !important; border-left: 1px solid rgba(149, 213, 178, 0.3); }
+    .dark #mobileMenu button, .dark #mobileMenu a, .dark #mobileMenu span, .dark #mobileMenu p, .dark #mobileMenu i { color: #ffffff !important; }
+    .dark .active-menu { color: #95D5B2 !important; }
+    .dark .text-\[\#1B4332\] { color: #ffffff !important; }
+    .dark .hover-underline::after { background: #95D5B2 !important; }
+
+    /* TABLET & MOBILE (up to iPad Pro 12.9 Landscape/Nest Hub Max): hide desktop controls, show burger */
+    @media (max-width: 1366px) {
+        .desktop-controls-group, .desktop-nav-links {
+            display: none !important;
+        }
+        .burger-button-white {
+            background-color: white !important;
+            border-radius: 9999px !important;
+            padding: 8px 12px !important;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05) !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+        .dark .burger-button-white {
+            background-color: #1e2f28 !important;
+            color: white !important;
+        }
+    }
+    
+    @media (min-width: 1367px) {
+        .burger-button-white {
+            display: none !important;
+        }
+        .desktop-controls-group, .desktop-nav-links {
+            display: flex !important;
+        }
+    }
+  </style>
+</head>
+<body class="transition-colors duration-500">
+
+<!-- ========== NAVBAR ========== -->
+<header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 glass-nav py-3 md:py-4">
+
+
+
+        <div class="container mx-auto px-5 md:px-8 flex justify-between items-center">
+            <a href="Index.html" class="flex items-center gap-2.5">
+                
+                <img src="favicon.png" alt="EcoRefill Logo" class="w-10 h-10 object-contain">
+                <span class="text-xl font-bold heading-font text-[#1B4332] tracking-tight">EcoRefill</span>
+            </a>
+
+            <div class="desktop-nav-links items-center space-x-7 text-[#1B4332] font-medium flex-nowrap">
+                <div class="relative group py-2">
+                    <a href="Index.html" class="nav-link flex items-center gap-1 active-menu">Home <i
+                            class="fas fa-chevron-down text-xs ml-1"></i></a>
+                    <div class="absolute top-full left-0 w-48 pt-2 hidden group-hover:block z-50">
+                        <div class="bg-white rounded-2xl shadow-2xl p-2 border border-gray-100">
+                            <a href="Index.html"
+                                class="block px-4 py-2 hover:bg-[#D8F3DC] rounded-xl transition font-bold text-[#1B4332]">Home
+                                1</a>
+                            <a href="Home2.html"
+                                class="block px-4 py-2 hover:bg-[#D8F3DC] rounded-xl transition font-bold text-primary active-menu">Home
+                                2</a>
+                        </div>
+                    </div>
+                </div>
+                <a href="About.html" class="nav-link hover-underline">About</a>
+                <a href="Products.html" class="nav-link hover-underline">Products</a>
+                <a href="Locations.html" class="nav-link hover-underline">Truck Locations</a>
+                <a href="Membership.html" class="nav-link hover-underline">Membership</a>
+                <a href="Sustainability.html" class="nav-link hover-underline">Sustainability</a>
+                <a href="Blog.html" class="nav-link hover-underline">Blog</a>
+                <a href="Contact.html" class="nav-link hover-underline">Contact</a>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <div class="desktop-controls-group items-center gap-3">
+                    <button id="darkModeToggle" class="text-[#1B4332] text-xl hover:scale-110 transition"><i
+                            class="fas fa-moon"></i></button>
+                    <button id="rtlToggle"
+                        class="text-[#1B4332] text-sm font-semibold border border-[#2D6A4F] px-3 py-1.5 rounded-full hover:bg-[#D8F3DC] transition">RTL</button>
+                    <a href="Login.html" class="btn-gradient text-white px-6 py-2 rounded-full font-bold text-sm">Login</a>
+                </div>
+                <button id="menuToggle" class="burger-button-white text-2xl text-[#1B4332] ml-2 shadow-md transition"><i
+                        class="fas fa-bars"></i></button>
+            </div>
+        </div>
+
+
+
+    </header>
+
+    <!-- ========== MOBILE HAMBURGER MENU ========== -->
+    <div id="mobileMenu"
+        class="fixed top-0 right-0 h-full w-80 bg-white/98 backdrop-blur-xl z-50 shadow-2xl transform translate-x-full transition-transform duration-400 p-6 flex flex-col gap-4 overflow-y-auto">
+        <div class="flex justify-between items-center border-b border-[#95D5B2] pb-3">
+            <span class="font-bold text-2xl heading-font text-[#1B4332]">EcoRefill</span>
+            <button id="closeMenu" class="text-2xl text-[#1B4332]"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="flex flex-col gap-3 text-lg font-medium">
+            <div>
+                <button class="w-full text-left py-2 hover:text-[#2D6A4F] transition flex items-center justify-between"
+                    onclick="document.getElementById('mobileHomeDrop').classList.toggle('hidden')">
+                    <span class="flex items-center gap-2"><i class="fas fa-home w-6"></i> Home</span>
+                    <i class="fas fa-chevron-down text-sm"></i>
+                </button>
+                <div id="mobileHomeDrop" class="hidden pl-8 flex flex-col gap-2 pt-2">
+                    <a href="Index.html" class="mobile-nav-link hover:text-[#2D6A4F] transition">Home 1</a>
+                    <a href="Home2.html" class="mobile-nav-link active-menu hover:text-[#2D6A4F] transition">Home 2</a>
+                </div>
+            </div>
+            <a href="About.html" class="mobile-nav-link py-2 hover:text-[#2D6A4F] transition flex items-center gap-2"><i
+                    class="fas fa-info-circle w-6"></i> About</a>
+            <a href="Products.html"
+                class="mobile-nav-link py-2 hover:text-[#2D6A4F] transition flex items-center gap-2"><i
+                    class="fas fa-box w-6"></i> Products</a>
+            <a href="Locations.html"
+                class="mobile-nav-link py-2 hover:text-[#2D6A4F] transition flex items-center gap-2"><i
+                    class="fas fa-truck w-6"></i> Truck Locations</a>
+            <a href="Membership.html"
+                class="mobile-nav-link py-2 hover:text-[#2D6A4F] transition flex items-center gap-2"><i
+                    class="fas fa-crown w-6"></i> Membership</a>
+            <a href="Sustainability.html"
+                class="mobile-nav-link py-2 hover:text-[#2D6A4F] transition flex items-center gap-2"><i
+                    class="fas fa-leaf w-6"></i> Sustainability</a>
+            <a href="Blog.html" class="mobile-nav-link py-2 hover:text-[#2D6A4F] transition flex items-center gap-2"><i
+                    class="fas fa-blog w-6"></i> Blog</a>
+            <a href="Contact.html"
+                class="mobile-nav-link py-2 hover:text-[#2D6A4F] transition flex items-center gap-2"><i
+                    class="fas fa-envelope w-6"></i> Contact</a>
+            <hr class="my-2 border-gray-200">
+            <button id="mobileDarkToggle" class="text-left py-2 flex items-center gap-2"><i class="fas fa-moon w-6"></i>
+                Dark Mode</button>
+            <button id="mobileRtlToggle" class="text-left py-2 flex items-center gap-2"><i
+                    class="fas fa-exchange-alt w-6"></i> RTL/LTR</button>
+            <div class="border-t pt-3 mt-2">
+                <a href="Login.html" class="mobile-nav-link py-2 flex items-center gap-2 font-bold text-[#2D6A4F]"><i class="fas fa-sign-in-alt w-6"></i> Login</a>
+            </div>
+        </div>
+    </div>
+    <div id="overlay" class="fixed inset-0 bg-black/40 z-40 hidden backdrop-blur-sm"></div>
+
+<main>
+    <!-- ========== HERO SECTION ========== -->
+    <section class="relative min-h-screen pt-32 pb-20 flex items-center justify-center overflow-hidden">
+      <!-- Background Shapes -->
+      <div class="absolute -top-24 -left-24 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+      <div class="absolute -bottom-24 -right-24 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[100px]"></div>
+      
+      <div class="container mx-auto px-5 text-center relative z-10">
+        <div class="relative inline-block mb-12" data-aos="zoom-in">
+           <!-- Truck Image (Simulated with Placeholder/Icon for clean look) -->
+           <div class="relative mx-auto w-64 md:w-96 aspect-video bg-gradient-to-br from-primary to-accent rounded-[3rem] shadow-2xl flex items-center justify-center overflow-hidden">
+              <i class="fas fa-truck text-[8rem] text-white opacity-20 absolute rotate-12 -right-8"></i>
+              <img src="./image/home 2 hero.jpg" class="w-full h-full object-cover mix-blend-overlay" alt="Refill Truck">
+           </div>
+           
+           <!-- Floating Cards -->
+           <div class="absolute -top-10 -left-10 md:-left-20 floating-card">
+              <div class="glass-card px-6 py-4 rounded-2xl shadow-xl flex items-center gap-3">
+                 <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-primary"><i class="fas fa-recycle"></i></div>
+                 <div class="text-left">
+                    <p class="text-xs font-black text-primary uppercase">Impact</p>
+                    <p class="text-sm font-bold text-gray-800">50K+ Bottles Saved</p>
+                 </div>
+              </div>
+           </div>
+           
+           <div class="absolute -bottom-10 -right-10 md:-right-20 floating-card" style="animation-delay: -2s;">
+              <div class="glass-card px-6 py-4 rounded-2xl shadow-xl flex items-center gap-3">
+                 <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600"><i class="fas fa-map-marker-alt"></i></div>
+                 <div class="text-left">
+                    <p class="text-xs font-black text-blue-600 uppercase">Status</p>
+                    <p class="text-sm font-bold text-gray-800">Live Truck Near You</p>
+                 </div>
+              </div>
+           </div>
+        </div>
+
+        <div class="max-w-4xl mx-auto" data-aos="fade-up">
+           <h1 class="font-black heading-font leading-tight mb-6">Sustainable Grocery <br><span class="text-primary">At Your Doorstep.</span></h1>
+           <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">Join the movement of zero-waste grocery shopping. We bring the store to you, refill your jars, and eliminate plastic waste together.</p>
+           
+           <!-- Search Bar -->
+           <div class="max-w-2xl mx-auto relative mb-12">
+              <div class="bg-white dark:bg-zinc-800 p-2 rounded-full shadow-2xl flex items-center border border-gray-100 dark:border-white/10">
+                 <i class="fas fa-search text-gray-400 ml-6 mr-3"></i>
+                 <input type="text" placeholder="Search for organic rice, oils, or spices..." class="w-full bg-transparent focus:outline-none py-3 text-sm md:text-base dark:text-white">
+                 <button class="btn-primary px-8 py-3 rounded-full font-bold ml-2">Find Stops</button>
+              </div>
+           </div>
+           
+           <div class="flex flex-wrap justify-center gap-6">
+              <a href="Products.html" class="btn-primary px-12 py-5 rounded-full font-bold text-lg shadow-2xl">Shop Now</a>
+              <a href="Locations.html" class="bg-white dark:bg-zinc-800 text-primary border border-primary/20 px-10 py-5 rounded-full font-bold text-lg hover:bg-gray-50 transition">Track Truck</a>
+           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 1 — SMART SERVICES (BENTO GRID) ========== -->
+    <section class="py-24 bg-white dark:bg-[#081C15] curved-top">
+      <div class="container mx-auto px-5 md:px-8">
+        <div class="text-center mb-16" data-aos="fade-up">
+           <span class="text-primary font-bold uppercase tracking-widest text-sm">How We Work</span>
+           <h2 class="text-3xl md:text-5xl font-bold heading-font mt-4">Smart Refill Services</h2>
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+           <!-- 1. Mobile Grocery -->
+           <div class="sm:col-span-2 bg-white dark:bg-zinc-800/50 backdrop-blur-xl p-8 md:p-10 rounded-3xl flex flex-col justify-end relative overflow-hidden group border border-gray-100 dark:border-white/10" data-aos="fade-up">
+              <div class="absolute top-10 right-10 text-7xl text-primary opacity-10 group-hover:scale-110 transition duration-500"><i class="fas fa-truck-moving"></i></div>
+              <h3 class="text-2xl md:text-3xl font-bold mb-3">Mobile Grocery</h3>
+              <p class="text-sm md:text-base text-gray-600 dark:text-gray-400">Our state-of-the-art trucks travel across neighborhoods bringing bulk essentials to you.</p>
+           </div>
+           
+           <!-- 2. Smart Refill -->
+           <div class="bento-card bg-primary p-10 rounded-3xl flex flex-col justify-between text-white" data-aos="fade-up" data-aos-delay="100">
+              <div class="text-4xl"><i class="fas fa-fill-drip"></i></div>
+              <div>
+                 <h3 class="text-xl font-bold mb-2">Smart Refill</h3>
+                 <p class="text-xs opacity-70">Precise, spill-free dispensing system for all liquids.</p>
+              </div>
+           </div>
+           
+           <!-- 3. Eco Delivery -->
+           <div class="bento-card glass-card p-10 rounded-3xl flex flex-col items-center justify-center text-center" data-aos="fade-up" data-aos-delay="200">
+              <div class="text-4xl text-primary mb-4"><i class="fas fa-bicycle"></i></div>
+              <h3 class="text-xl font-bold mb-2">Eco Delivery</h3>
+              <p class="text-xs text-gray-500">Zero-emission doorstep delivery in select areas.</p>
+           </div>
+           
+           <!-- 4. Organic Products -->
+           <div class="bento-card glass-card p-10 rounded-3xl flex flex-col justify-between" data-aos="fade-up" data-aos-delay="300">
+              <div class="text-4xl text-accent"><i class="fas fa-apple-alt"></i></div>
+              <h3 class="text-xl font-bold">Organic Products</h3>
+           </div>
+           
+           <!-- 5. Community Rewards -->
+           <div class="sm:col-span-2 bg-accent/20 p-8 md:p-10 rounded-3xl flex flex-col justify-center" data-aos="fade-up" data-aos-delay="400">
+              <h3 class="text-xl md:text-2xl font-bold text-primary mb-3">Community Rewards</h3>
+              <p class="text-sm md:text-base text-gray-600">Earn eco-points for every liter you refill. Redeem for free products and local tree planting.</p>
+           </div>
+           
+           <!-- 6. Membership Plans -->
+           <div class="bento-card bg-[#081C15] p-10 rounded-3xl flex flex-col justify-end text-white relative group" data-aos="fade-up" data-aos-delay="500">
+              <div class="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
+              <h3 class="text-xl font-bold relative z-10">Membership Plans</h3>
+              <p class="text-xs opacity-60 relative z-10 mt-2">Elite benefits starting at $9/mo.</p>
+           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 2 — FEATURED PRODUCT SHOWCASE ========== -->
+    <section class="py-24 overflow-hidden bg-[#F6FFF8] dark:bg-zinc-900">
+      <div class="container mx-auto px-5 md:px-8">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-16" data-aos="fade-up">
+           <div>
+              <h2 class="text-4xl md:text-5xl font-bold heading-font text-primary">Best Sellers</h2>
+              <p class="text-gray-500 mt-2">Curated selection of our community's favorites.</p>
+           </div>
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-10">
+           <!-- Product Card 1 -->
+           <div class="bg-white dark:bg-[#081C15] p-6 rounded-[2.5rem] shadow-xl group hover:scale-[1.02] transition-transform duration-500" data-aos="fade-right">
+              <div class="relative h-56 rounded-[2rem] overflow-hidden mb-6">
+                 <img src="./image/Organic Basmati Rice.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Rice">
+                 <span class="absolute top-4 left-4 bg-accent text-primary text-[10px] font-black uppercase px-3 py-1 rounded-full">Top Rated</span>
+                 <button class="absolute top-4 right-4 w-10 h-10 bg-white/80 backdrop-blur-md rounded-full flex items-center justify-center text-gray-400 hover:text-red-500 transition"><i class="far fa-heart"></i></button>
+              </div>
+              <h4 class="text-xl font-bold mb-1">Organic Basmati Rice</h4>
+              <p class="text-xs text-gray-500 mb-6">Long-grain, aromatic, triple-cleaned.</p>
+              <div class="flex justify-between items-center">
+                 <div>
+                    <p class="text-2xl font-black text-primary">$4.20<span class="text-xs font-normal text-gray-400">/lb</span></p>
+                 </div>
+                 <button class="w-12 h-12 bg-primary text-white rounded-2xl flex items-center justify-center shadow-lg hover:bg-secondary transition"><i class="fas fa-plus"></i></button>
+              </div>
+           </div>
+
+           <!-- Product Card 2 -->
+           <div class="bg-white dark:bg-[#081C15] p-6 rounded-[2.5rem] shadow-xl group hover:scale-[1.02] transition-transform duration-500" data-aos="fade-right" data-aos-delay="100">
+              <div class="relative h-56 rounded-[2rem] overflow-hidden mb-6">
+                 <img src="./image/Red Split Lentils.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Lentils">
+                 <span class="absolute top-4 left-4 bg-accent text-primary text-[10px] font-black uppercase px-3 py-1 rounded-full">Organic</span>
+              </div>
+              <h4 class="text-xl font-bold mb-1">Red Split Lentils</h4>
+              <p class="text-xs text-gray-500 mb-6">Quick-cooking, high protein.</p>
+              <div class="flex justify-between items-center">
+                 <p class="text-2xl font-black text-primary">$3.50<span class="text-xs font-normal text-gray-400">/lb</span></p>
+                 <button class="w-12 h-12 bg-primary text-white rounded-2xl flex items-center justify-center shadow-lg hover:bg-secondary transition"><i class="fas fa-plus"></i></button>
+              </div>
+           </div>
+
+           <!-- Product Card 3 -->
+           <div class="bg-white dark:bg-[#081C15] p-6 rounded-[2.5rem] shadow-xl group hover:scale-[1.02] transition-transform duration-500" data-aos="fade-right" data-aos-delay="200">
+              <div class="relative h-56 rounded-[2rem] overflow-hidden mb-6">
+                 <img src="./image/Virgin Olive Oil.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Oil">
+                 <span class="absolute top-4 left-4 bg-accent text-primary text-[10px] font-black uppercase px-3 py-1 rounded-full">Cold Pressed</span>
+              </div>
+              <h4 class="text-xl font-bold mb-1">Virgin Olive Oil</h4>
+              <p class="text-xs text-gray-500 mb-6">Premium extraction, first-press.</p>
+              <div class="flex justify-between items-center">
+                 <p class="text-2xl font-black text-primary">$15.00<span class="text-xs font-normal text-gray-400">/refill</span></p>
+                 <button class="w-12 h-12 bg-primary text-white rounded-2xl flex items-center justify-center shadow-lg hover:bg-secondary transition"><i class="fas fa-plus"></i></button>
+              </div>
+           </div>
+
+           <!-- Product Card 4 -->
+           <div class="bg-white dark:bg-[#081C15] p-6 rounded-[2.5rem] shadow-xl group hover:scale-[1.02] transition-transform duration-500" data-aos="fade-right" data-aos-delay="300">
+              <div class="relative h-56 rounded-[2rem] overflow-hidden mb-6">
+                 <img src="./image/Natural Spice Mix.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Spice">
+                 <span class="absolute top-4 left-4 bg-accent text-primary text-[10px] font-black uppercase px-3 py-1 rounded-full">Eco Home</span>
+              </div>
+              <h4 class="text-xl font-bold mb-1">Natural Spice Mix</h4>
+              <p class="text-xs text-gray-500 mb-6">Custom blend, no preservatives.</p>
+              <div class="flex justify-between items-center">
+                 <p class="text-2xl font-black text-primary">$5.50<span class="text-xs font-normal text-gray-400">/100g</span></p>
+                 <button class="w-12 h-12 bg-primary text-white rounded-2xl flex items-center justify-center shadow-lg hover:bg-secondary transition"><i class="fas fa-plus"></i></button>
+              </div>
+           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 3 — LIVE TRUCK TRACKER ========== -->
+    <section class="py-24 bg-white dark:bg-[#081C15]">
+      <div class="container mx-auto px-5 md:px-8">
+        <div class="flex flex-col lg:flex-row items-stretch gap-12">
+          <!-- Left: Map -->
+          <div class="w-full lg:w-3/5 relative h-[500px] rounded-[3rem] overflow-hidden shadow-2xl" data-aos="fade-right">
+             <!-- Simulated Map Background -->
+             <div class="absolute inset-0 bg-zinc-900">
+                <div class="absolute inset-0 opacity-20 bg-[url('./image/1.webp')] bg-cover"></div>
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                   <div class="relative">
+                      <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center shadow-[0_0_30px_#95D5B2] animate-pulse">
+                         <i class="fas fa-truck text-white text-xl"></i>
+                      </div>
+                      <div class="absolute top-0 left-0 w-12 h-12 rounded-full border-2 border-accent animate-ping opacity-50"></div>
+                   </div>
+                </div>
+             </div>
+             <!-- Map Overlay UI -->
+             <div class="absolute top-8 left-8 glass-card px-4 py-2 rounded-xl text-xs font-bold text-primary flex items-center gap-2">
+                <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                LIVE TRACKING ACTIVE
+             </div>
+          </div>
+          
+          <!-- Right: Details -->
+          <div class="w-full lg:w-2/5 flex flex-col justify-center" data-aos="fade-left">
+             <span class="text-primary font-black uppercase tracking-widest text-sm mb-4">Don't Miss Out</span>
+             <h2 class="text-4xl md:text-5xl font-bold heading-font mb-8">Truck Live Tracker</h2>
+             
+             <div class="space-y-8">
+                <div class="flex items-start gap-5 group">
+                   <div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary text-xl group-hover:bg-primary group-hover:text-white transition duration-500">
+                      <i class="fas fa-map-marked-alt"></i>
+                   </div>
+                   <div>
+                      <h4 class="text-xl font-bold mb-1">Current Stop</h4>
+                      <p class="text-gray-500">Oakwood Heights — 45th Street Plaza</p>
+                   </div>
+                </div>
+
+                <div class="flex items-start gap-5 group">
+                   <div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary text-xl group-hover:bg-primary group-hover:text-white transition duration-500">
+                      <i class="fas fa-clock"></i>
+                   </div>
+                   <div>
+                      <h4 class="text-xl font-bold mb-1">Estimated Arrival</h4>
+                      <p class="text-gray-500">Green Valley Station in <span class="text-primary font-bold">18 Mins</span></p>
+                   </div>
+                </div>
+
+                <div class="flex items-start gap-5 group">
+                   <div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary text-xl group-hover:bg-primary group-hover:text-white transition duration-500">
+                      <i class="fas fa-route"></i>
+                   </div>
+                   <div>
+                      <h4 class="text-xl font-bold mb-1">Next Route</h4>
+                      <p class="text-gray-500">Riverside Drive → Downtown Central</p>
+                   </div>
+                </div>
+             </div>
+             
+             <button class="mt-12 btn-primary px-10 py-5 rounded-full font-bold shadow-xl self-start">Get Directions</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 4 — ECO IMPACT DASHBOARD ========== -->
+    <section class="py-24 bg-[#081C15] text-white">
+      <div class="container mx-auto px-5 md:px-8">
+        <div class="text-center mb-20" data-aos="fade-up">
+           <h2 class="text-4xl md:text-6xl font-bold heading-font mb-6">Real-Time Impact</h2>
+           <p class="text-gray-400 max-w-2xl mx-auto">Track the collective difference our community is making every single day.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+           <!-- Card 1 -->
+           <div class="glass-card p-10 rounded-[3rem] text-center border-white/5" data-aos="zoom-in">
+              <div class="relative w-32 h-32 mx-auto mb-8">
+                 <svg class="w-full h-full transform -rotate-90">
+                    <circle cx="64" cy="64" r="60" stroke="currentColor" stroke-width="8" fill="transparent" class="text-white/10" />
+                    <circle cx="64" cy="64" r="60" stroke="currentColor" stroke-width="8" fill="transparent" class="text-accent" stroke-dasharray="376.8" stroke-dashoffset="100" />
+                 </svg>
+                 <div class="absolute inset-0 flex items-center justify-center text-2xl font-black text-accent">85%</div>
+              </div>
+              <h3 class="text-4xl font-black mb-2 counter-number" data-target="58240">0</h3>
+              <p class="text-gray-400 text-xs uppercase tracking-widest font-bold">Plastic Saved (kg)</p>
+           </div>
+           
+           <!-- Card 2 -->
+           <div class="glass-card p-10 rounded-[3rem] text-center border-white/5" data-aos="zoom-in" data-aos-delay="100">
+              <div class="relative w-32 h-32 mx-auto mb-8">
+                 <svg class="w-full h-full transform -rotate-90">
+                    <circle cx="64" cy="64" r="60" stroke="currentColor" stroke-width="8" fill="transparent" class="text-white/10" />
+                    <circle cx="64" cy="64" r="60" stroke="currentColor" stroke-width="8" fill="transparent" class="text-primary" stroke-dasharray="376.8" stroke-dashoffset="150" />
+                 </svg>
+                 <div class="absolute inset-0 flex items-center justify-center text-2xl font-black text-primary">62%</div>
+              </div>
+              <h3 class="text-4xl font-black mb-2 counter-number" data-target="12450">0</h3>
+              <p class="text-gray-400 text-xs uppercase tracking-widest font-bold">CO2 Reduced (Tons)</p>
+           </div>
+           
+           <!-- Card 3 -->
+           <div class="glass-card p-10 rounded-[3rem] text-center border-white/5" data-aos="zoom-in" data-aos-delay="200">
+              <div class="relative w-32 h-32 mx-auto mb-8">
+                 <svg class="w-full h-full transform -rotate-90">
+                    <circle cx="64" cy="64" r="60" stroke="currentColor" stroke-width="8" fill="transparent" class="text-white/10" />
+                    <circle cx="64" cy="64" r="60" stroke="currentColor" stroke-width="8" fill="transparent" class="text-accent" stroke-dasharray="376.8" stroke-dashoffset="80" />
+                 </svg>
+                 <div class="absolute inset-0 flex items-center justify-center text-2xl font-black text-accent">92%</div>
+              </div>
+              <h3 class="text-4xl font-black mb-2 counter-number" data-target="89200">0</h3>
+              <p class="text-gray-400 text-xs uppercase tracking-widest font-bold">Containers Reused</p>
+           </div>
+           
+           <!-- Card 4 -->
+           <div class="glass-card p-10 rounded-[3rem] text-center border-white/5" data-aos="zoom-in" data-aos-delay="300">
+              <div class="relative w-32 h-32 mx-auto mb-8">
+                 <svg class="w-full h-full transform -rotate-90">
+                    <circle cx="64" cy="64" r="60" stroke="currentColor" stroke-width="8" fill="transparent" class="text-white/10" />
+                    <circle cx="64" cy="64" r="60" stroke="currentColor" stroke-width="8" fill="transparent" class="text-primary" stroke-dasharray="376.8" stroke-dashoffset="120" />
+                 </svg>
+                 <div class="absolute inset-0 flex items-center justify-center text-2xl font-black text-primary">75%</div>
+              </div>
+              <h3 class="text-4xl font-black mb-2 counter-number" data-target="3250">0</h3>
+              <p class="text-gray-400 text-xs uppercase tracking-widest font-bold">Happy Customers</p>
+           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 5 — COMMUNITY SECTION ========== -->
+    <section class="py-24 bg-white dark:bg-[#081C15]">
+      <div class="container mx-auto px-5 md:px-8">
+        <div class="text-center mb-16" data-aos="fade-up">
+           <h2 class="text-4xl md:text-5xl font-bold heading-font text-primary">Our Community</h2>
+           <p class="text-gray-500 mt-3">Faces of the Zero-Waste Revolution.</p>
+        </div>
+        
+        <div class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6" data-aos="fade-up">
+           <div class="relative overflow-hidden rounded-3xl group">
+              <img src="./image/Love the fresh oils! No more plastic bottles.jpg" class="w-full h-auto object-cover group-hover:scale-110 transition duration-700" alt="Community">
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white font-bold p-6 text-center">
+                 "Love the fresh oils! No more plastic bottles." - Elena
+              </div>
+           </div>
+           <div class="relative overflow-hidden rounded-3xl group">
+              <img src="./image/Healthy meal prep starts here.jpg" class="w-full h-auto object-cover group-hover:scale-110 transition duration-700" alt="Community">
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white font-bold p-6 text-center">
+                 Healthy meal prep starts here.
+              </div>
+           </div>
+           <div class="relative overflow-hidden rounded-3xl group">
+              <img src="./image/Weekly refill stop in the heights.jpg" class="w-full h-auto object-cover group-hover:scale-110 transition duration-700" alt="Community">
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white font-bold p-6 text-center">
+                 Weekly refill stop in the heights.
+              </div>
+           </div>
+           <div class="relative overflow-hidden rounded-3xl group">
+              <img src="./image/Refill challenge winners!.jpg" class="w-full h-auto object-cover group-hover:scale-110 transition duration-700" alt="Community">
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white font-bold p-6 text-center">
+                 Refill challenge winners!
+              </div>
+           </div>
+           <div class="relative overflow-hidden rounded-3xl group">
+              <img src="./image/Clean sourcing, clean planet..jpg" class="w-full h-auto object-cover group-hover:scale-110 transition duration-700" alt="Community">
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white font-bold p-6 text-center">
+                 Clean sourcing, clean planet.
+              </div>
+           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 6 — MEMBERSHIP CTA ========== -->
+    <section class="py-24">
+       <div class="container mx-auto px-5 md:px-8">
+          <div class="bg-gradient-to-br from-primary to-secondary rounded-[4rem] p-12 md:p-24 text-white relative overflow-hidden shadow-2xl" data-aos="zoom-out">
+             <div class="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full -mr-32 -mt-32 blur-3xl"></div>
+             <div class="absolute bottom-0 left-0 w-96 h-96 bg-white/5 rounded-full -ml-32 -mb-32 blur-3xl"></div>
+             
+             <div class="flex flex-col md:flex-row items-center gap-16 relative z-10">
+                <div class="w-full md:w-1/2">
+                   <h2 class="text-5xl md:text-7xl font-black heading-font mb-8">Join the Zero-Waste <br><span class="text-accent">Movement.</span></h2>
+                   <div class="space-y-4 mb-10">
+                      <div class="flex items-center gap-4 font-bold text-xl"><i class="fas fa-check-circle text-accent"></i> 15% Flat Discount</div>
+                      <div class="flex items-center gap-4 font-bold text-xl"><i class="fas fa-check-circle text-accent"></i> Priority Refill Slots</div>
+                      <div class="flex items-center gap-4 font-bold text-xl"><i class="fas fa-check-circle text-accent"></i> Referral Rewards</div>
+                   </div>
+                   <div class="flex flex-wrap gap-4">
+                      <a href="Membership.html" class="bg-white text-primary px-10 py-5 rounded-full font-black uppercase tracking-widest hover:scale-105 transition shadow-2xl">Join Now</a>
+                      <a href="#" class="border border-white/30 px-10 py-5 rounded-full font-bold hover:bg-white/10 transition">Learn More</a>
+                   </div>
+                </div>
+                <div class="w-full md:w-1/2 flex justify-center">
+                   <div class="w-64 h-64 bg-accent/20 rounded-full flex items-center justify-center animate-pulse">
+                      <i class="fas fa-crown text-9xl text-accent"></i>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </section>
+
+    <!-- ========== TESTIMONIAL SECTION ========== -->
+    <section class="py-24 bg-white dark:bg-[#081C15]">
+       <div class="container mx-auto px-5 md:px-8">
+          <div class="text-center mb-16" data-aos="fade-up">
+             <h2 class="text-4xl md:text-5xl font-bold heading-font text-primary">Voices of EcoRefill</h2>
+          </div>
+          
+          <div class="grid md:grid-cols-3 gap-8">
+             <div class="glass-card p-10 rounded-[3rem] shadow-xl relative" data-aos="fade-up">
+                <div class="absolute -top-6 left-10 w-16 h-16 rounded-2xl bg-primary flex items-center justify-center text-white text-2xl shadow-lg"><i class="fas fa-quote-left"></i></div>
+                <p class="text-gray-600 dark:text-gray-400 italic mb-8 mt-4">"The mobile grocery concept is genius. I save so much time and my pantry looks beautiful with all the refillable jars!"</p>
+                <div class="flex items-center gap-4">
+                   <div class="w-12 h-12 rounded-full bg-gray-200 overflow-hidden"><img src="./image/home 2 profile 1.jpg" alt="User"></div>
+                   <div>
+                      <p class="font-bold">Julia Roberts</p>
+                      <div class="flex text-yellow-400 text-xs"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                   </div>
+                </div>
+             </div>
+
+             <div class="glass-card p-10 rounded-[3rem] shadow-xl relative" data-aos="fade-up" data-aos-delay="100">
+                <div class="absolute -top-6 left-10 w-16 h-16 rounded-2xl bg-secondary flex items-center justify-center text-white text-2xl shadow-lg"><i class="fas fa-quote-left"></i></div>
+                <p class="text-gray-600 dark:text-gray-400 italic mb-8 mt-4">"Super high quality organic spices. I love that I can track exactly where the truck is. Highly recommended!"</p>
+                <div class="flex items-center gap-4">
+                   <div class="w-12 h-12 rounded-full bg-gray-200 overflow-hidden"><img src="./image/home 2 profile 2.jpg" alt="User"></div>
+                   <div>
+                      <p class="font-bold">Marcus Chen</p>
+                      <div class="flex text-yellow-400 text-xs"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                   </div>
+                </div>
+             </div>
+
+             <div class="glass-card p-10 rounded-[3rem] shadow-xl relative" data-aos="fade-up" data-aos-delay="200">
+                <div class="absolute -top-6 left-10 w-16 h-16 rounded-2xl bg-accent flex items-center justify-center text-primary text-2xl shadow-lg"><i class="fas fa-quote-left"></i></div>
+                <p class="text-gray-600 dark:text-gray-400 italic mb-8 mt-4">"The rewards program is actually great. I've planted 5 trees just by buying my monthly grains. EcoRefill is a life changer."</p>
+                <div class="flex items-center gap-4">
+                   <div class="w-12 h-12 rounded-full bg-gray-200 overflow-hidden"><img src="./image/home 2 profile 3.jpg" alt="User"></div>
+                   <div>
+                      <p class="font-bold">Sarah Adams</p>
+                      <div class="flex text-yellow-400 text-xs"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </section>
+
+    <!-- ========== NEWSLETTER SECTION ========== -->
+    <section class="py-24 relative overflow-hidden">
+       <div class="leaf-animation w-12 h-12" style="left: 10%; animation-duration: 8s;"><i class="fas fa-leaf text-primary"></i></div>
+       <div class="leaf-animation w-8 h-8" style="left: 80%; animation-delay: 3s; animation-duration: 12s;"><i class="fas fa-leaf text-accent"></i></div>
+       
+       <div class="container mx-auto px-5 md:px-8">
+          <div class="max-w-4xl mx-auto glass-card p-12 md:p-20 rounded-[4rem] text-center border-primary/10 shadow-2xl relative z-10" data-aos="fade-up">
+             <h2 class="text-4xl md:text-5xl font-bold heading-font text-primary mb-6">Stay in the Green Loop</h2>
+             <p class="text-gray-600 dark:text-gray-400 mb-10 text-lg">Get the best zero-waste recipes, tips, and truck schedules delivered weekly.</p>
+             
+             <form class="flex flex-col md:flex-row gap-4 max-w-lg mx-auto">
+                <input type="email" placeholder="Your email address" class="flex-grow bg-[#D8F3DC]/30 dark:bg-white/5 border border-primary/10 rounded-full py-4 px-8 focus:outline-none focus:border-primary transition dark:text-white">
+                <button type="button" class="btn-primary px-10 py-4 rounded-full font-black uppercase tracking-tighter shadow-xl">Subscribe</button>
+             </form>
+             <p class="text-[10px] text-gray-400 mt-6 uppercase tracking-widest">No spam. Only organic news.</p>
+          </div>
+       </div>
+    </section>
+</main>
+
+<footer class="bg-[#F1FAEE] text-black mt-16 relative border-t border-gray-200">
+    <div class="container mx-auto px-6 pt-16 pb-10">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+            <div>
+                <a href="Index.html" class="flex items-center gap-2.5">
+                    <img src="favicon.png" alt="EcoRefill Logo" class="w-10 h-10 object-contain">
+                    <span class="text-xl font-bold heading-font text-[#1B4332] tracking-tight">EcoRefill</span>
+                </a>
+                                    <p class="mt-3 text-sm text-gray-600">Zero-waste groceries on wheels, delivering sustainability to your neighborhood.</p>
+                    <div class="flex gap-4 mt-5">
+                        <a href="#" class="w-9 h-9 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-[#2D6A4F] hover:text-white transition-all shadow-sm">
+                            <i class="fab fa-google"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-[#2D6A4F] hover:text-white transition-all shadow-sm">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-[#2D6A4F] hover:text-white transition-all shadow-sm">
+                            <i class="fab fa-apple"></i>
+                        </a>
+                    </div>
+            </div>
+            <div>
+                    <h4 class="font-bold text-lg mb-3 text-[#1B4332]">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="./Index.html" class="hover:text-[#2D6A4F] transition">Home</a></li>
+                        <li><a href="./About.html" class="hover:text-[#2D6A4F] transition">About Us</a></li>
+                        <li><a href="./Products.html" class="hover:text-[#2D6A4F] transition">Products</a></li>
+                        <li><a href="./Blog.html" class="hover:text-[#2D6A4F] transition">Blog</a></li>
+                        <li><a href="./Contact.html" class="hover:text-[#2D6A4F] transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-3 text-[#1B4332]">Services</h4>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><a href="./Locations.html" class="hover:text-[#2D6A4F] transition">Truck Locations</a></li>
+                        <li><a href="./Membership.html" class="hover:text-[#2D6A4F] transition">Membership</a></li>
+                        <li><a href="./Sustainability.html" class="hover:text-[#2D6A4F] transition">Sustainability</a></li>
+                    </ul>
+                </div>
+            <div>
+                <h4 class="font-bold text-lg mb-3 text-[#1B4332]">Contact Info</h4>
+                <ul class="space-y-2 text-gray-600">
+                    <li><i class="fas fa-phone mr-2 text-[#2D6A4F]"></i> +1 (800) 234-ECO</li>
+                    <li><i class="fas fa-envelope mr-2 text-[#2D6A4F]"></i> hello@ecorefill.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-gray-200 mt-10 pt-6 text-center text-sm text-gray-500">© 2025 EcoRefill — Zero Waste Revolution. All rights reserved.</div>
+    </div>
+</footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true, offset: 100 });
+
+        const mobileMenu = document.getElementById('mobileMenu'), overlay = document.getElementById('overlay');
+        document.getElementById('menuToggle').onclick = () => { mobileMenu.classList.remove('translate-x-full'); overlay.classList.remove('hidden'); document.body.style.overflow = 'hidden'; };
+        function closeMenuAll() { mobileMenu.classList.add('translate-x-full'); overlay.classList.add('hidden'); document.body.style.overflow = ''; }
+        document.getElementById('closeMenu').onclick = closeMenuAll; overlay.onclick = closeMenuAll;
+        window.addEventListener('resize', () => { if (window.innerWidth >= 1367) closeMenuAll(); });
+
+        let dark = false;
+        document.getElementById('darkModeToggle').addEventListener('click', () => { dark = !dark; document.documentElement.classList.toggle('dark'); document.getElementById('darkModeToggle').innerHTML = dark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>'; });
+        document.getElementById('mobileDarkToggle').addEventListener('click', () => { document.getElementById('darkModeToggle').click(); });
+
+        let rtl = false;
+        document.getElementById('rtlToggle').addEventListener('click', () => { rtl = !rtl; document.documentElement.dir = rtl ? 'rtl' : 'ltr'; });
+        document.getElementById('mobileRtlToggle').addEventListener('click', () => { document.getElementById('rtlToggle').click(); });
+
+        window.addEventListener('scroll', () => { const nav = document.getElementById('navbar'); if (window.scrollY > 50) nav.classList.add('glass-nav-scrolled'); else nav.classList.remove('glass-nav-scrolled'); });
+
+        const counters = document.querySelectorAll('.counter-number');
+        const counterObserver = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { const el = entry.target; const target = parseInt(el.getAttribute('data-target')); let current = 0, inc = target / 60; const timer = setInterval(() => { current += inc; if (current >= target) { el.innerText = target; clearInterval(timer); } else el.innerText = Math.floor(current); }, 25); counterObserver.unobserve(el); } }); }, { threshold: 0.3 });
+        counters.forEach(c => counterObserver.observe(c));
+
+        // Handle Active Nav Links
+        const currentPath = window.location.pathname.split('/').pop() || 'Index.html';
+        document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
+            const href = link.getAttribute('href');
+            if (href && (href.includes(currentPath) || (currentPath === 'Index.html' && href === './'))) {
+                link.classList.add('active-menu');
+            } else {
+                link.classList.remove('active-menu');
+            }
+        });
+    </script>
+</body>
+</html>

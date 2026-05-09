@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>EcoRefill – Zero-Waste Refill Truck | Mobile Grocery</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <!-- Tailwind CSS + Fonts + Font Awesome -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2D6A4F',
+                        secondary: '#40916C',
+                        accent: '#95D5B2',
+                        dark: '#081C15',
+                        background: '#F6FFF8',
+                    }
+                }
+            }
+        }
+    </script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        .heading-font {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            scrollbar-gutter: stable;
+        }
+
+        /* Fluid Typography & Layouts */
+        :root {
+            --fluid-spacing: clamp(1rem, 5vw, 2rem);
+        }
+
+        html, body {
+            max-width: 100vw;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #F1FAEE;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Responsive Headings */
+        h1 { font-size: clamp(2.25rem, 8vw, 4.5rem) !important; line-height: 1.1 !important; }
+        h2 { font-size: clamp(1.85rem, 5vw, 3rem) !important; line-height: 1.2 !important; }
+        h3 { font-size: clamp(1.25rem, 3vw, 1.75rem) !important; }
+
+        /* Flexible Container */
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: var(--fluid-spacing);
+            padding-right: var(--fluid-spacing);
+        }
+
+        /* Glassmorphism Navbar */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+            width: 100%;
+        }
+
+        .glass-nav-scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* Hover Underline */
+        .hover-underline::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #2D6A4F;
+            transition: width 0.3s ease;
+            margin-top: 2px;
+        }
+
+        .hover-underline:hover::after {
+            width: 100%;
+        }
+
+        /* Gradient Buttons */
+        .btn-gradient {
+            background: linear-gradient(135deg, #2D6A4F 0%, #40916C 100%);
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            box-shadow: 0 8px 20px rgba(45, 106, 79, 0.2);
+            white-space: nowrap;
+        }
+
+        .btn-gradient:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(45, 106, 79, 0.3);
+        }
+
+        .btn-outline-eco {
+            border: 2px solid #2D6A4F;
+            transition: all 0.3s;
+            background: transparent;
+        }
+
+        .btn-outline-eco:hover {
+            background: #2D6A4F;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Card Hover */
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Floating Animations */
+        .floating-leaf {
+            animation: floatLeaf 5s infinite ease-in-out;
+        }
+
+        @keyframes floatLeaf {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+
+        .truck-moving {
+            animation: truckDrive 20s infinite ease-in-out;
+        }
+
+        @keyframes truckDrive {
+            0%, 100% { transform: translateX(-15px); }
+            50% { transform: translateX(15px); }
+        }
+
+        /* Scroll Reveal */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Product Grid - Fully Responsive */
+        .product-grid-auto {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        @media (max-width: 640px) {
+            .product-grid-auto {
+                gap: 1.2rem;
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .product-grid-auto {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+        }
+
+        /* Stat Grid Responsive */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* Testimonial Grid */
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .testimonial-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .testimonial-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Category Pills */
+        .category-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-slide {
+            transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        /* Counter Animation */
+        .counter-number {
+            transition: all 0.2s;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #D8F3DC;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #2D6A4F;
+            border-radius: 10px;
+        }
+
+        /* Active Menu */
+        .active-menu {
+            color: #2D6A4F !important;
+            font-weight: 800 !important;
+        }
+        .active-menu.hover-underline::after {
+            width: 100% !important;
+        }
+
+        /* Standardized Global Styles & Dark Mode */
+        .dark body, .dark .page, .dark section.bg-white, .dark section.bg-\[\#F1FAEE\], .dark section.bg-\[\#D8F3DC\] { background-color: #081C15 !important; color: #e5e5e5 !important; }
+        .dark section.bg-\[\#1B4332\], .dark section.bg-\[\#2D6A4F\], .dark footer { background-color: #05140F !important; color: #e5e5e5 !important; }
+        .dark .bg-white { background-color: #0d1712 !important; color: #ffffff !important; }
+        .dark .bg-\[\#F1FAEE\] { background-color: #16241e !important; }
+        .dark .bg-\[\#D8F3DC\] { background-color: #1a2a24 !important; }
+
+        /* Border Visibility */
+        .border, .border-t, .border-b, .border-l, .border-r { border-color: rgba(45, 106, 79, 0.1) !important; }
+        .dark .border, .dark .border-t, .dark .border-b, .dark .border-l, .dark .border-r, .dark hr { border-color: rgba(149, 213, 178, 0.3) !important; }
+        .dark section { border-bottom: 1px solid rgba(149, 213, 178, 0.45) !important; }
+
+        /* Typography Visibility */
+        .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6, .dark p, .dark span:not(.text-transparent), .dark li, .dark a { color: #ffffff !important; }
+        .dark .text-\[\#1B4332\] { color: #ffffff !important; }
+        .dark .text-\[\#2D6A4F\] { color: #95D5B2 !important; }
+        .dark .text-black, .dark .text-gray-900, .dark .text-gray-800, .dark .text-gray-700, .dark .text-gray-600, .dark .text-gray-500 { color: #c4c4c4 !important; }
+
+        /* Hover & Shadows */
+        .card-hover { transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1); }
+        .card-hover:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 25px 40px -12px rgba(45, 106, 79, 0.2); border-color: #2D6A4F !important; }
+        .dark .card-hover:hover { box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.6); border-color: #95D5B2 !important; }
+        
+        .dark .bg-white\/60, .dark .bg-white\/30, .dark .bg-white\/20 {
+            background-color: rgba(26, 42, 36, 0.85) !important;
+            color: #ffffff !important;
+            border: 1px solid rgba(149, 213, 178, 0.3) !important;
+        }
+
+        .dark .text-\[\#1B4332\]\/80 {
+            color: rgba(255, 255, 255, 0.85) !important;
+        }
+
+        .dark .rounded-xl,
+        .dark .rounded-2xl,
+        .dark .rounded-3xl,
+        .dark .rounded-\[2rem\],
+        .dark .rounded-\[3rem\],
+        .dark .rounded-\[2\.5rem\] {
+            border: 1px solid rgba(149, 213, 178, 0.45) !important;
+        }
+
+        .dark .from-\[\#D8F3DC\],
+        .dark .to-\[\#F1FAEE\],
+        .dark .from-\[\#2D6A4F\],
+        .dark .to-\[\#40916C\] {
+            background-image: none !important;
+            background-color: #081C15 !important;
+        }
+
+        /* Inputs & Form Elements */
+        .dark input,
+        .dark textarea,
+        .dark select {
+            background-color: #0d1712 !important;
+            color: #ffffff !important;
+            border: 1px solid rgba(149, 213, 178, 0.4) !important;
+        }
+
+        .dark input::placeholder,
+        .dark textarea::placeholder {
+            color: #888888 !important;
+        }
+
+        /* Navbar & UI Overrides */
+        .dark .glass-nav {
+            background: rgba(8, 28, 21, 0.85) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+        }
+
+        .dark .glass-nav-scrolled {
+            background: rgba(8, 28, 21, 0.98) !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+        }
+
+        .dark #mobileMenu {
+            background: rgba(8, 28, 21, 0.98) !important;
+            border-left: 1px solid rgba(149, 213, 178, 0.3);
+        }
+
+        .dark #mobileMenu button,
+        .dark #mobileMenu a,
+        .dark #mobileMenu span,
+        .dark #mobileMenu p,
+        .dark #mobileMenu i {
+            color: #ffffff !important;
+        }
+
+        .dark .active-menu {
+            color: #95D5B2 !important;
+        }
+
+        .dark .text-\[\#1B4332\] {
+            color: #ffffff !important;
+        }
+
+        .dark .hover-underline::after {
+            background: #95D5B2 !important;
+        }
+        
+        /* TABLET & MOBILE (up to iPad Pro 12.9 Landscape/Nest Hub Max): hide desktop controls, show burger with bg-white */
+        @media (max-width: 1366px) {
+            .desktop-controls-group, .desktop-nav-links {
+                display: none !important;
+            }
+            .burger-button-white {
+                background-color: white !important;
+                border-radius: 9999px !important;
+                padding: 8px 12px !important;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.05) !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+            }
+            .dark .burger-button-white {
+                background-color: #1e2f28 !important;
+                color: white !important;
+            }
+        }
+        
+        @media (min-width: 1367px) {
+            .burger-button-white {
+                display: none !important;
+            }
+            .desktop-controls-group, .desktop-nav-links {
+                display: flex !important;
+            }
+        }
+        
+        /* always keep mobile menu background white (or dark variant) */
+        #mobileMenu {
+            background: white !important;
+        }
+        .dark #mobileMenu {
+            background: #0d1712 !important;
+        }
+    </style>
+
+
+
+
+
+</head>
+<body>
+<header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 glass-nav py-3 md:py-4">
+
+
+
+
+
+        <div class="container mx-auto px-5 md:px-8 flex justify-between items-center">
+            <a href="Index.html" class="flex items-center gap-2.5">
+                <img src="favicon.png" alt="EcoRefill Logo" class="w-10 h-10 object-contain">
+                <span class="text-xl font-bold heading-font text-[#1B4332] tracking-tight">EcoRefill</span>
+            </a>
+
+            <div class="desktop-nav-links items-center space-x-7 text-[#1B4332] font-medium flex-nowrap">
+                <div class="relative group py-2">
+                    <a href="./Index.html" class="nav-link active-menu hover-underline flex items-center gap-1">Home <i class="fas fa-chevron-down text-[10px]"></i></a>
+                    <div class="absolute top-full left-0 w-48 pt-2 hidden group-hover:block z-50">
+                        <div class="bg-white rounded-2xl shadow-2xl p-2 border border-gray-100">
+                            <a href="./Index.html" class="block px-4 py-2 hover:bg-[#D8F3DC] rounded-xl transition font-bold text-[#1B4332]">Home 1</a>
+                            <a href="./Home2.html" class="block px-4 py-2 hover:bg-[#D8F3DC] rounded-xl transition font-bold text-[#1B4332]">Home 2</a>
+                        </div>
+                    </div>
+                </div>
+                <a href="./About.html" class="nav-link hover-underline">About</a>
+                <a href="./Products.html" class="nav-link hover-underline">Products</a>
+                <a href="./Locations.html" class="nav-link hover-underline">Truck Locations</a>
+                <a href="./Membership.html" class="nav-link hover-underline">Membership</a>
+                <a href="./Sustainability.html" class="nav-link hover-underline">Sustainability</a>
+                <a href="./Blog.html" class="nav-link hover-underline">Blog</a>
+                <a href="./Contact.html" class="nav-link hover-underline">Contact</a>
+            </div>
+
+            <!-- Controls: Desktop group (visible only on large screens) + Burger with white bg on tablet/mobile -->
+            <div class="flex items-center gap-3">
+                <!-- desktop-only controls: LOGIN, RTL, DARK MODE (hidden on tablet/mobile) -->
+                <div class="desktop-controls-group items-center gap-3">
+                    <button id="darkModeToggle" class="text-[#1B4332] text-xl hover:scale-110 transition"><i class="fas fa-moon"></i></button>
+                    <button id="rtlToggle" class="text-[#1B4332] text-sm font-semibold border border-[#2D6A4F] px-3 py-1.5 rounded-full hover:bg-[#D8F3DC] transition">RTL</button>
+                    <a href="./Login.html" class="btn-gradient text-white px-6 py-2 rounded-full font-bold text-sm">Login</a>
+                </div>
+                
+                <!-- Hamburger menu button with white background for tablet/mobile views -->
+                <button id="menuToggle" class="burger-button-white text-2xl text-[#1B4332] ml-2 shadow-md transition">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    
+
+
+
+
+</header>
+
+  <!-- ========== MOBILE HAMBURGER MENU ========== -->
+  <div id="mobileMenu" class="fixed top-0 right-0 h-full w-80 bg-white/98 backdrop-blur-xl z-50 shadow-2xl transform translate-x-full transition-transform duration-400 p-6 flex flex-col gap-4 overflow-y-auto">
+    <div class="flex justify-between items-center border-b border-[#95D5B2] pb-3">
+      <div class="flex items-center gap-2">
+        <img src="favicon.png" alt="EcoRefill Logo" class="w-8 h-8 object-contain">
+        <span class="font-bold text-2xl heading-font text-[#1B4332]">EcoRefill</span>
+      </div>
+      <button id="closeMenu" class="text-2xl text-[#1B4332]"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="flex flex-col gap-3 text-lg font-medium">
+      <div>
+        <button class="w-full text-left py-2 hover:text-[#2D6A4F] transition flex items-center justify-between" onclick="document.getElementById('mobileHomeDrop').classList.toggle('hidden')">
+          <span class="flex items-center gap-2"><i class="fas fa-home w-6"></i> Home</span>
+          <i class="fas fa-chevron-down text-sm"></i>
+        </button>
+        <div id="mobileHomeDrop" class="hidden pl-8 flex flex-col gap-2 pt-2">
+          <a href="Index.html" class="mobile-nav-link hover:text-[#2D6A4F] transition">Home 1</a>
+          <a href="Index.html" class="mobile-nav-link hover:text-[#2D6A4F] transition">Home 2</a>
+        </div>
+      </div>
+      <a href="About.html" class="mobile-nav-link py-2 hover:text-[#2D6A4F] transition flex items-center gap-2"><i class="fas fa-info-circle w-6"></i> About</a>
+      <a href="Products.html" class="mobile-nav-link py-2 hover:text-[#2D6A4F] transition flex items-center gap-2"><i class="fas fa-box w-6"></i> Products</a>
+      <a href="Locations.html" class="mobile-nav-link py-2 hover:text-[#2D6A4F] transition flex items-center gap-2"><i class="fas fa-truck w-6"></i> Truck Locations</a>
+      <a href="Membership.html" class="mobile-nav-link py-2 hover:text-[#2D6A4F] transition flex items-center gap-2"><i class="fas fa-crown w-6"></i> Membership</a>
+      <a href="Sustainability.html" class="mobile-nav-link py-2 hover:text-[#2D6A4F] transition flex items-center gap-2"><i class="fas fa-leaf w-6"></i> Sustainability</a>
+      <a href="Blog.html" class="mobile-nav-link py-2 hover:text-[#2D6A4F] transition flex items-center gap-2"><i class="fas fa-blog w-6"></i> Blog</a>
+      <a href="Contact.html" class="mobile-nav-link py-2 hover:text-[#2D6A4F] transition flex items-center gap-2"><i class="fas fa-envelope w-6"></i> Contact</a>
+      <hr class="my-2 border-gray-200">
+      <button id="mobileDarkToggle" class="text-left py-2 flex items-center gap-2"><i class="fas fa-moon w-6"></i> Dark Mode</button>
+      <button id="mobileRtlToggle" class="text-left py-2 flex items-center gap-2"><i class="fas fa-exchange-alt w-6"></i> RTL/LTR</button>
+      <div class="border-t pt-3 mt-2"><p class="font-semibold mb-2">Account</p><a href="Login.html" class="mobile-nav-link py-2 flex items-center gap-2"><i class="fas fa-user w-6"></i> Login / Register</a></div>
+    </div>
+  </div>
+  <div id="overlay" class="fixed inset-0 bg-black/40 z-40 hidden backdrop-blur-sm"></div>
+<main id="pageContent">
+      <!-- Hero Section -->
+      <section class="pt-48 pb-20 bg-[#081C15] text-[#F1FAEE] text-center rounded-b-[4rem] relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+          <div class="absolute -top-24 -left-24 w-96 h-96 bg-[#2D6A4F] rounded-full blur-[100px]"></div>
+          <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-[#40916C] rounded-full blur-[100px]"></div>
+        </div>
+        <div class="container mx-auto px-5 relative z-10">
+          <h1 class="text-6xl md:text-7xl font-bold heading-font mb-6" data-aos="fade-up">The Green <span class="text-[#95D5B2]">Journal</span></h1>
+          <p class="text-xl text-[#95D5B2]/80 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">Deep dives into sustainable living, zero-waste recipes, and the future of circular commerce.</p>
+        </div>
+      </section>
+
+      <!-- Featured Pick of the Week -->
+      <section class="py-20 bg-white">
+        <div class="container mx-auto px-5">
+          <div class="relative rounded-[3.5rem] overflow-hidden shadow-2xl group">
+            <div class="absolute inset-0">
+              <img src="./image/blog hero.jpg" alt="Featured Post" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#081C15] via-[#081C15]/40 to-transparent"></div>
+            </div>
+            <div class="relative z-10 p-10 md:p-20 flex flex-col justify-end min-h-[600px] text-white max-w-3xl">
+              <span class="inline-block px-4 py-1 bg-[#2D6A4F] rounded-full text-xs font-bold uppercase tracking-widest mb-6">Pick of the Week</span>
+              <h2 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">10 Pantry Essentials You Should Never Buy Pre-Packaged</h2>
+              <p class="text-xl text-white/80 mb-8 leading-relaxed">From single-origin coffee to organic Himalayan salt, discover the staples that are cheaper and greener when bought in bulk.</p>
+              <div class="flex items-center gap-6">
+                <a href="#" class="btn-gradient px-10 py-4 rounded-full font-bold shadow-xl">Read Article</a>
+                <div class="flex items-center gap-3">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Myth vs Fact Section -->
+      <section class="py-24 bg-[#F1FAEE]">
+        <div class="container mx-auto px-5">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-[#1B4332] mb-4">Sustainability: <span class="text-[#2D6A4F]">Myths vs Facts</span></h2>
+            <p class="text-gray-500 max-w-xl mx-auto">Breaking down the most common misconceptions in the zero-waste world.</p>
+          </div>
+          
+          <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div class="order-2 lg:order-1 space-y-6">
+              <div class="bg-white p-8 rounded-3xl shadow-lg border-l-8 border-red-400 group hover:-translate-y-1 transition-all">
+                <div class="flex items-center gap-3 mb-3 text-red-500">
+                  <i class="fas fa-times-circle"></i>
+                  <span class="font-bold uppercase tracking-widest text-xs">Myth</span>
+                </div>
+                <h3 class="text-xl font-bold text-[#1B4332] mb-2">"Biodegradable" plastic is safe for the ocean.</h3>
+                <p class="text-gray-500 leading-relaxed">Most biodegradable plastics only break down in industrial composting facilities at high temperatures, not in marine environments.</p>
+              </div>
+              <div class="bg-white p-8 rounded-3xl shadow-lg border-l-8 border-[#2D6A4F] group hover:-translate-y-1 transition-all">
+                <div class="flex items-center gap-3 mb-3 text-[#2D6A4F]">
+                  <i class="fas fa-check-circle"></i>
+                  <span class="font-bold uppercase tracking-widest text-xs">Fact</span>
+                </div>
+                <h3 class="text-xl font-bold text-[#1B4332] mb-2">Refilling is 10x more efficient than recycling.</h3>
+                <p class="text-gray-500 leading-relaxed">The energy required to collect, sort, and process plastic for recycling far outweighs the impact of simply reusing a glass or metal container.</p>
+              </div>
+            </div>
+            <div class="order-1 lg:order-2" data-aos="fade-left">
+              <img src="./image/eco_myth_vs_fact.jpg" alt="Eco Myths vs Facts" class="rounded-[3rem] shadow-2xl w-full h-[400px] object-cover">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Blog Grid -->
+      <section class="py-24 bg-white">
+        <div class="container mx-auto px-5">
+          <div class="flex justify-between items-end mb-12">
+            <div>
+              <h2 class="text-3xl font-bold text-[#1B4332]">Latest Stories</h2>
+              <div class="w-20 h-1.5 bg-[#2D6A4F] mt-3 rounded-full"></div>
+            </div>
+          </div>
+          
+          <div class="grid md:grid-cols-3 gap-10">
+            <!-- Card 1 -->
+            <div class="group cursor-pointer">
+              <div class="h-64 rounded-3xl overflow-hidden mb-6 relative shadow-lg">
+                <div class="absolute inset-0 bg-[#D8F3DC]"></div>
+                <img src="./image/Purpose Cleaner.jpg" alt="DIY Cleaners" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-80">
+                <span class="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold text-[#1B4332] uppercase">Tutorial</span>
+              </div>
+              <h3 class="text-2xl font-bold text-[#1B4332] mb-3 group-hover:text-[#2D6A4F] transition">DIY All-Purpose Cleaner: The Citrus Method</h3>
+              <p class="text-gray-500 mb-6 line-clamp-2">Learn how to turn orange peels and white vinegar into a powerful, non-toxic cleaner for every room.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-sm font-bold text-[#2D6A4F]">Read More →</span>
+                <span class="text-xs text-gray-400">June 12, 2025</span>
+              </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="group cursor-pointer">
+              <div class="h-64 rounded-3xl overflow-hidden mb-6 relative shadow-lg">
+                <div class="absolute inset-0 bg-[#D8F3DC]"></div>
+                <img src="./image/EcoRefill Expands.jpg" alt="Fleet Expansion" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-80">
+                <span class="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold text-[#1B4332] uppercase">News</span>
+              </div>
+              <h3 class="text-2xl font-bold text-[#1B4332] mb-3 group-hover:text-[#2D6A4F] transition">EcoRefill Expands to Chicago's West Side</h3>
+              <p class="text-gray-500 mb-6 line-clamp-2">We're bringing zero-waste convenience to three new neighborhoods starting this July. Check the map!</p>
+              <div class="flex items-center justify-between">
+                <span class="text-sm font-bold text-[#2D6A4F]">Read More →</span>
+                <span class="text-xs text-gray-400">June 10, 2025</span>
+              </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="group cursor-pointer">
+              <div class="h-64 rounded-3xl overflow-hidden mb-6 relative shadow-lg">
+                <div class="absolute inset-0 bg-[#D8F3DC]"></div>
+                <img src="./image/Creative Ways to Upcycle Glass Jars.jpg" alt="Glass Jars" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-80">
+                <span class="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold text-[#1B4332] uppercase">Lifestyle</span>
+              </div>
+              <h3 class="text-2xl font-bold text-[#1B4332] mb-3 group-hover:text-[#2D6A4F] transition">5 Creative Ways to Upcycle Glass Jars</h3>
+              <p class="text-gray-500 mb-6 line-clamp-2">From terrariums to desk organizers, don't let those beautiful glass jars go to waste.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-sm font-bold text-[#2D6A4F]">Read More →</span>
+                <span class="text-xs text-gray-400">June 08, 2025</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Newsletter Section -->
+      <section class="py-24 bg-[#1B4332] relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
+          <i class="fas fa-leaf text-white text-[20rem] absolute -top-20 -left-20 rotate-12"></i>
+        </div>
+        <div class="container mx-auto px-5 relative z-10 text-center text-white">
+          <div class="max-w-3xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">Never Miss a Tip</h2>
+            <p class="text-xl text-white/70 mb-10">Join 15,000+ eco-warriors receiving our weekly guide to sustainable living and exclusive truck discounts.</p>
+            <div class="flex flex-col md:flex-row gap-4 max-w-lg mx-auto">
+              <input type="email" placeholder="Enter your email" class="flex-1 px-8 py-4 rounded-full text-black focus:outline-none focus:ring-4 focus:ring-[#95D5B2]/30">
+              <button class="bg-[#95D5B2] text-[#081C15] px-10 py-4 rounded-full font-bold hover:scale-105 transition shadow-xl">Subscribe</button>
+            </div>
+            <p class="text-[10px] text-white/40 mt-6 uppercase tracking-widest font-bold">No spam. Only green goodness. Unsubscribe anytime.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured Authors -->
+      <section class="py-24 bg-white">
+        <div class="container mx-auto px-5">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold text-[#1B4332]">Meet Our Contributors</h2>
+            <p class="text-gray-500 mt-2">Expert voices leading the zero-waste revolution.</p>
+          </div>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-12">
+            <div class="text-center group">
+              <div class="w-32 h-32 rounded-full mx-auto mb-6 overflow-hidden border-4 border-[#F1FAEE] group-hover:border-[#2D6A4F] transition-all duration-500 shadow-xl">
+                <img src="./image/blog profile pic 1.jpg" alt="Sarah Jenkins" class="w-full h-full object-cover">
+              </div>
+              <h4 class="font-bold text-lg text-[#1B4332]">Sarah Jenkins</h4>
+              <p class="text-sm text-gray-400 font-medium">Zero Waste Chef</p>
+            </div>
+            <div class="text-center group">
+              <div class="w-32 h-32 rounded-full mx-auto mb-6 overflow-hidden border-4 border-[#F1FAEE] group-hover:border-[#2D6A4F] transition-all duration-500 shadow-xl">
+                <img src="./image/home 2 profile 1.jpg" alt="David Chen" class="w-full h-full object-cover">
+              </div>
+              <h4 class="font-bold text-lg text-[#1B4332]">David Chen</h4>
+              <p class="text-sm text-gray-400 font-medium">Eco Scientist</p>
+            </div>
+            <div class="text-center group">
+              <div class="w-32 h-32 rounded-full mx-auto mb-6 overflow-hidden border-4 border-[#F1FAEE] group-hover:border-[#2D6A4F] transition-all duration-500 shadow-xl">
+                <img src="./image/home 2 profile 3.jpg" alt="Emily Rodriguez" class="w-full h-full object-cover">
+              </div>
+              <h4 class="font-bold text-lg text-[#1B4332]">Emily Rodriguez</h4>
+              <p class="text-sm text-gray-400 font-medium">Impact Director</p>
+            </div>
+            <div class="text-center group">
+              <div class="w-32 h-32 rounded-full mx-auto mb-6 overflow-hidden border-4 border-[#F1FAEE] group-hover:border-[#2D6A4F] transition-all duration-500 shadow-xl">
+                <img src="./image/blog profile pic 4.jpg" alt="Michael Brown" class="w-full h-full object-cover">
+              </div>
+              <h4 class="font-bold text-lg text-[#1B4332]">Michael Brown</h4>
+              <p class="text-sm text-gray-400 font-medium">Climate Advocate</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Write For Us CTA -->
+      <section class="py-24 bg-[#F1FAEE]">
+        <div class="container mx-auto px-5 text-center">
+          <div class="max-w-2xl mx-auto">
+            <div class="w-20 h-20 bg-[#D8F3DC] rounded-full flex items-center justify-center mx-auto mb-8 text-[#2D6A4F] text-3xl">
+              <i class="fas fa-pen-nib"></i>
+            </div>
+            <h2 class="text-3xl font-bold text-[#1B4332] mb-6">Have a Story to Share?</h2>
+            <p class="text-gray-600 mb-10 text-lg">We're always looking for guest contributors to share their zero-waste tips, eco-hacks, and sustainability journeys.</p>
+            <a href="Contact.html" class="btn-gradient text-white px-12 py-5 rounded-full font-bold shadow-2xl inline-block hover:scale-105 transition">Become a Contributor</a>
+          </div>
+        </div>
+      </section>
+
+</main>
+<footer class="bg-[#F1FAEE] text-black mt-16 relative border-t border-gray-200">
+
+
+        <div class="container mx-auto px-6 pt-16 pb-10">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+                <div>
+                    <a href="Index.html" class="flex items-center gap-2.5">
+                        <img src="favicon.png" alt="EcoRefill Logo" class="w-10 h-10 object-contain">
+                        <span class="text-xl font-bold heading-font text-[#1B4332] tracking-tight">EcoRefill</span>
+                    </a>
+                                        <p class="mt-3 text-sm text-gray-600">Zero-waste groceries on wheels, delivering sustainability to your neighborhood.</p>
+                    <div class="flex gap-4 mt-5">
+                        <a href="#" class="w-9 h-9 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-[#2D6A4F] hover:text-white transition-all shadow-sm">
+                            <i class="fab fa-google"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-[#2D6A4F] hover:text-white transition-all shadow-sm">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-[#2D6A4F] hover:text-white transition-all shadow-sm">
+                            <i class="fab fa-apple"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-3 text-[#1B4332]">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="./Index.html" class="hover:text-[#2D6A4F] transition">Home</a></li>
+                        <li><a href="./About.html" class="hover:text-[#2D6A4F] transition">About Us</a></li>
+                        <li><a href="./Products.html" class="hover:text-[#2D6A4F] transition">Products</a></li>
+                        <li><a href="./Blog.html" class="hover:text-[#2D6A4F] transition">Blog</a></li>
+                        <li><a href="./Contact.html" class="hover:text-[#2D6A4F] transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-3 text-[#1B4332]">Services</h4>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><a href="./Locations.html" class="hover:text-[#2D6A4F] transition">Truck Locations</a></li>
+                        <li><a href="./Membership.html" class="hover:text-[#2D6A4F] transition">Membership</a></li>
+                        <li><a href="./Sustainability.html" class="hover:text-[#2D6A4F] transition">Sustainability</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-3 text-[#1B4332]">Contact Info</h4>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><i class="fas fa-phone mr-2 text-[#2D6A4F]"></i> +1 (800) 234-ECO</li>
+                        <li><i class="fas fa-envelope mr-2 text-[#2D6A4F]"></i> hello@ecorefill.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-200 mt-10 pt-6 text-center text-sm text-gray-500">© 2025 EcoRefill — Zero Waste Revolution. All rights reserved.</div>
+        </div>
+
+
+</footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true, offset: 100 });
+    
+    const mobileMenu = document.getElementById('mobileMenu'), overlay = document.getElementById('overlay');
+    document.getElementById('menuToggle').onclick = () => { mobileMenu.classList.remove('translate-x-full'); overlay.classList.remove('hidden'); document.body.style.overflow = 'hidden'; };
+    function closeMenuAll() { mobileMenu.classList.add('translate-x-full'); overlay.classList.add('hidden'); document.body.style.overflow = ''; }
+    document.getElementById('closeMenu').onclick = closeMenuAll; overlay.onclick = closeMenuAll;
+    window.addEventListener('resize', () => { if (window.innerWidth >= 1024) closeMenuAll(); });
+    
+    
+    let dark = false;
+    document.getElementById('darkModeToggle').addEventListener('click', () => { dark = !dark; if (dark) { document.documentElement.classList.add('dark'); document.body.style.background = '#1a2a24'; document.body.style.color = '#e5e5e5'; } else { document.documentElement.classList.remove('dark'); document.body.style.background = '#F1FAEE'; document.body.style.color = '#1B4332'; } });
+    document.getElementById('mobileDarkToggle').addEventListener('click', () => { document.getElementById('darkModeToggle').click(); });
+    
+    let rtl = false;
+    document.getElementById('rtlToggle').addEventListener('click', () => { rtl = !rtl; document.documentElement.dir = rtl ? 'rtl' : 'ltr'; });
+    document.getElementById('mobileRtlToggle').addEventListener('click', () => { document.getElementById('rtlToggle').click(); });
+    
+    window.addEventListener('scroll', () => { const nav = document.getElementById('navbar'); if (window.scrollY > 50) nav.classList.add('glass-nav-scrolled'); else nav.classList.remove('glass-nav-scrolled'); });
+    
+    const counters = document.querySelectorAll('.counter-number');
+    const counterObserver = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { const el = entry.target; const target = parseInt(el.getAttribute('data-target')); let current = 0, inc = target / 60; const timer = setInterval(() => { current += inc; if (current >= target) { el.innerText = target; clearInterval(timer); } else el.innerText = Math.floor(current); }, 25); counterObserver.unobserve(el); } }); }, { threshold: 0.3 });
+    counters.forEach(c => counterObserver.observe(c));
+
+    // Handle Active Nav Links
+    const currentPath = window.location.pathname.split('/').pop() || 'Index.html';
+    document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
+        const href = link.getAttribute('href');
+        if (href && (href.includes(currentPath) || (currentPath === 'Index.html' && (href === './' || href === 'Index.html')))) {
+            link.classList.add('active-menu');
+        } else {
+            link.classList.remove('active-menu');
+        }
+    });
+  </script>
+
+</body>
+</html>

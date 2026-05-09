@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Register – EcoRefill</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <!-- Tailwind CSS + Fonts + Font Awesome -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, h4, .heading-font { font-family: 'Poppins', sans-serif; }
+    body { background: #F1FAEE; overflow: hidden; }
+    .btn-gradient { background: linear-gradient(135deg, #2D6A4F 0%, #40916C 100%); transition: all 0.3s; box-shadow: 0 8px 20px rgba(45,106,79,0.2); }
+    .btn-gradient:hover { transform: translateY(-2px); box-shadow: 0 12px 25px rgba(45,106,79,0.3); }
+    .input-focus:focus { border-color: #2D6A4F; box-shadow: 0 0 0 4px rgba(45, 106, 79, 0.1); outline: none; }
+
+    /* Dark Mode Overrides */
+    .dark body { background: #081C15 !important; color: #e5e5e5 !important; }
+    .dark .container { background: #0d1712 !important; border-color: rgba(149, 213, 178, 0.2) !important; }
+    .dark header { background: rgba(8, 28, 21, 0.95) !important; border-bottom-color: rgba(255, 255, 255, 0.1) !important; }
+    .dark header .text-\[\#1B4332\], .dark header a, .dark header button, .dark header span { color: #ffffff !important; }
+    .dark h1, .dark h2, .dark h3, .dark label, .dark .text-\[\#1B4332\] { color: #ffffff !important; }
+    .dark input { background: #1a2a24 !important; border-color: rgba(149, 213, 178, 0.3) !important; color: white !important; }
+    .dark .bg-white { background-color: #0d1712 !important; }
+    .dark .shadow-2xl { box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8) !important; }
+    
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+
+    <!-- ========== MINIMAL AUTH NAVBAR ========== -->
+    <header class="fixed top-0 left-0 w-full z-50 h-[60px] md:h-[70px] flex items-center bg-white/10 backdrop-blur-xl border-b border-white/20">
+        <div class="container mx-auto px-5 md:px-8 flex justify-between items-center text-[#1B4332]">
+          <a href="Index.html" class="flex items-center gap-2.5 group">
+          </a>
+          <div class="flex items-center gap-4 md:gap-6">
+            <button id="darkModeToggle" class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-[#2D6A4F]/10 transition text-lg"><i class="fas fa-moon"></i></button>
+            <button id="rtlToggle" class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-[#2D6A4F]/10 transition text-sm font-bold border border-[#2D6A4F]/20">↔️</button>
+          </div>
+        </div>
+    </header>
+
+    <div class="container max-w-6xl w-full h-[85vh] bg-white rounded-[3rem] shadow-2xl overflow-hidden flex flex-col md:flex-row relative z-10 mt-16">
+      <div class="hidden md:block w-1/2 relative h-full">
+        <img src="https://images.unsplash.com/photo-1540333563545-823cb2e5095c?w=800&h=1200&fit=crop" class="w-full h-full object-cover" alt="Register">
+        <div class="absolute inset-0 bg-gradient-to-t from-[#1B4332]/80 to-transparent flex items-end p-12">
+          <div class="text-white">
+            <h2 class="text-4xl font-bold mb-4">Start Your Journey</h2>
+            <p class="text-gray-200 opacity-90">Join the zero-waste community today.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-full md:w-1/2 h-full flex flex-col p-8 md:p-16 overflow-y-auto">
+        <a href="Index.html" class="flex items-center justify-center gap-2.5 group mb-8">
+            <img src="favicon.png" alt="EcoRefill Logo" class="w-10 h-10 object-contain group-hover:rotate-12 transition">
+            <span class="text-xl font-bold heading-font text-[#1B4332] tracking-tight">EcoRefill</span>
+          </a>
+        <h1 class="text-3xl font-bold text-[#1B4332] mb-2">Create Account</h1>
+        <p class="text-gray-500 mb-8">Register to track your impact and earn rewards.</p>
+        
+        <form class="space-y-4">
+          <div class="grid grid-cols-2 gap-4">
+            <div><label class="text-xs font-bold text-[#1B4332] uppercase">First Name</label><input type="text" placeholder="John" class="w-full bg-gray-50 border border-gray-200 rounded-2xl py-3 px-5 input-focus transition"></div>
+            <div><label class="text-xs font-bold text-[#1B4332] uppercase">Last Name</label><input type="text" placeholder="Doe" class="w-full bg-gray-50 border border-gray-200 rounded-2xl py-3 px-5 input-focus transition"></div>
+          </div>
+          <div><label class="text-xs font-bold text-[#1B4332] uppercase">Email</label><input type="email" placeholder="john@example.com" class="w-full bg-gray-50 border border-gray-200 rounded-2xl py-3 px-5 input-focus transition"></div>
+          <div><label class="text-xs font-bold text-[#1B4332] uppercase">Password</label>
+            <div class="relative">
+              <input type="password" id="password" placeholder="••••••••" class="w-full bg-gray-50 border border-gray-200 rounded-2xl py-3 px-5 pr-12 input-focus transition">
+              <button type="button" id="togglePassword" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#2D6A4F] transition">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+          </div>
+          <button type="button" class="w-full btn-gradient text-white py-4 rounded-2xl font-black uppercase tracking-widest shadow-xl mt-4">Register</button>
+        </form>
+
+        <div class="mt-8">
+          <div class="relative flex items-center justify-center mb-6">
+            <div class="border-t border-gray-100 dark:border-white/10 w-full absolute"></div>
+            <span class="bg-white dark:bg-[#0d1712] px-4 text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] relative z-10">Or Continue With</span>
+          </div>
+          <div class="flex justify-center gap-4">
+            <button class="w-14 h-14 flex items-center justify-center rounded-2xl bg-gray-50 dark:bg-[#1a2a24] border border-gray-100 dark:border-white/5 hover:border-[#2D6A4F] hover:bg-[#2D6A4F]/5 transition-all duration-300 group">
+              <i class="fab fa-google text-lg text-gray-500 group-hover:text-[#2D6A4F]"></i>
+            </button>
+            <button class="w-14 h-14 flex items-center justify-center rounded-2xl bg-gray-50 dark:bg-[#1a2a24] border border-gray-100 dark:border-white/5 hover:border-[#2D6A4F] hover:bg-[#2D6A4F]/5 transition-all duration-300 group">
+              <i class="fab fa-apple text-xl text-gray-500 group-hover:text-[#2D6A4F]"></i>
+            </button>
+            <button class="w-14 h-14 flex items-center justify-center rounded-2xl bg-gray-50 dark:bg-[#1a2a24] border border-gray-100 dark:border-white/5 hover:border-[#2D6A4F] hover:bg-[#2D6A4F]/5 transition-all duration-300 group">
+              <i class="fab fa-facebook-f text-lg text-gray-500 group-hover:text-[#2D6A4F]"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="mt-8 text-center border-t border-gray-100 dark:border-white/10 pt-8">
+          <p class="text-gray-400 text-sm">Already a member? <a href="Login.html" class="text-[#2D6A4F] font-bold hover:underline">Sign In</a></p>
+        </div>
+      </div>
+    </div>
+    <script>
+        let dark = false;
+        document.getElementById('darkModeToggle').addEventListener('click', () => { dark = !dark; document.documentElement.classList.toggle('dark'); document.getElementById('darkModeToggle').innerHTML = dark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>'; });
+        let rtl = false;
+        document.getElementById('rtlToggle').addEventListener('click', () => { rtl = !rtl; document.documentElement.dir = rtl ? 'rtl' : 'ltr'; });
+
+        // Password Toggle Logic
+        const togglePassword = document.getElementById('togglePassword');
+        const password = document.getElementById('password');
+
+        togglePassword.addEventListener('click', function() {
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            this.querySelector('i').classList.toggle('fa-eye');
+            this.querySelector('i').classList.toggle('fa-eye-slash');
+        });
+    </script>
+</body>
+</html>

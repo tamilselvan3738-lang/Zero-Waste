@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>EcoRefill – Zero-Waste Refill Truck | Mobile Grocery</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <!-- Tailwind CSS + Fonts + Font Awesome -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2D6A4F',
+                        secondary: '#40916C',
+                        accent: '#95D5B2',
+                        dark: '#081C15',
+                        background: '#F6FFF8',
+                    }
+                }
+            }
+        }
+    </script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        .heading-font {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            scrollbar-gutter: stable;
+        }
+
+        /* Fluid Typography & Layouts */
+        :root {
+            --fluid-spacing: clamp(1rem, 5vw, 2rem);
+        }
+
+        html, body {
+            max-width: 100vw;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #F1FAEE;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Responsive Headings */
+        h1 { font-size: clamp(2.25rem, 8vw, 4.5rem) !important; line-height: 1.1 !important; }
+        h2 { font-size: clamp(1.85rem, 5vw, 3rem) !important; line-height: 1.2 !important; }
+        h3 { font-size: clamp(1.25rem, 3vw, 1.75rem) !important; }
+
+        /* Flexible Container */
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: var(--fluid-spacing);
+            padding-right: var(--fluid-spacing);
+        }
+
+        /* Glassmorphism Navbar */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+            width: 100%;
+        }
+
+        .glass-nav-scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* Hover Underline */
+        .hover-underline::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #2D6A4F;
+            transition: width 0.3s ease;
+            margin-top: 2px;
+        }
+
+        .hover-underline:hover::after {
+            width: 100%;
+        }
+
+        /* Gradient Buttons */
+        .btn-gradient {
+            background: linear-gradient(135deg, #2D6A4F 0%, #40916C 100%);
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            box-shadow: 0 8px 20px rgba(45, 106, 79, 0.2);
+            white-space: nowrap;
+        }
+
+        .btn-gradient:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(45, 106, 79, 0.3);
+        }
+
+        .btn-outline-eco {
+            border: 2px solid #2D6A4F;
+            transition: all 0.3s;
+            background: transparent;
+        }
+
+        .btn-outline-eco:hover {
+            background: #2D6A4F;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Card Hover */
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Floating Animations */
+        .floating-leaf {
+            animation: floatLeaf 5s infinite ease-in-out;
+        }
+
+        @keyframes floatLeaf {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+
+        .truck-moving {
+            animation: truckDrive 20s infinite ease-in-out;
+        }
+
+        @keyframes truckDrive {
+            0%, 100% { transform: translateX(-15px); }
+            50% { transform: translateX(15px); }
+        }
+
+        /* Scroll Reveal */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Product Grid - Fully Responsive */
+        .product-grid-auto {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        @media (max-width: 640px) {
+            .product-grid-auto {
+                gap: 1.2rem;
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .product-grid-auto {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+        }
+
+        /* Stat Grid Responsive */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* Testimonial Grid */
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .testimonial-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .testimonial-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Category Pills */
+        .category-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-slide {
+            transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        /* Counter Animation */
+        .counter-number {
+            transition: all 0.2s;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #D8F3DC;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #2D6A4F;
+            border-radius: 10px;
+        }
+
+        /* Active Menu */
+        .active-menu {
+            color: #2D6A4F !important;
+            font-weight: 800 !important;
+        }
+        .active-menu.hover-underline::after {
+            width: 100% !important;
+        }
+
+        /* Standardized Global Styles & Dark Mode */
+        .dark body, .dark .page, .dark section.bg-white, .dark section.bg-\[\#F1FAEE\], .dark section.bg-\[\#D8F3DC\] { background-color: #081C15 !important; color: #e5e5e5 !important; }
+        .dark section.bg-\[\#1B4332\], .dark section.bg-\[\#2D6A4F\], .dark footer { background-color: #05140F !important; color: #e5e5e5 !important; }
+        .dark .bg-white { background-color: #0d1712 !important; color: #ffffff !important; }
+        .dark .bg-\[\#F1FAEE\] { background-color: #16241e !important; }
+        .dark .bg-\[\#D8F3DC\] { background-color: #1a2a24 !important; }
+
+        /* Border Visibility */
+        .border, .border-t, .border-b, .border-l, .border-r { border-color: rgba(45, 106, 79, 0.1) !important; }
+        .dark .border, .dark .border-t, .dark .border-b, .dark .border-l, .dark .border-r, .dark hr { border-color: rgba(149, 213, 178, 0.3) !important; }
+        .dark section { border-bottom: 1px solid rgba(149, 213, 178, 0.45) !important; }
+
+        /* Typography Visibility */
+        .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6, .dark p, .dark span:not(.text-transparent), .dark li, .dark a { color: #ffffff !important; }
+        .dark .text-\[\#1B4332\] { color: #ffffff !important; }
+        .dark .text-\[\#2D6A4F\] { color: #95D5B2 !important; }
+        .dark .text-black, .dark .text-gray-900, .dark .text-gray-800, .dark .text-gray-700, .dark .text-gray-600, .dark .text-gray-500 { color: #c4c4c4 !important; }
+
+        /* Hover & Shadows */
+        .card-hover { transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1); }
+        .card-hover:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 25px 40px -12px rgba(45, 106, 79, 0.2); border-color: #2D6A4F !important; }
+        .dark .card-hover:hover { box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.6); border-color: #95D5B2 !important; }
+        
+        .dark .bg-white\/60, .dark .bg-white\/30, .dark .bg-white\/20 {
+            background-color: rgba(26, 42, 36, 0.85) !important;
+            color: #ffffff !important;
+            border: 1px solid rgba(149, 213, 178, 0.3) !important;
+        }
+
+        .dark .text-\[\#1B4332\]\/80 {
+            color: rgba(255, 255, 255, 0.85) !important;
+        }
+
+        .dark .rounded-xl,
+        .dark .rounded-2xl,
+        .dark .rounded-3xl,
+        .dark .rounded-\[2rem\],
+        .dark .rounded-\[3rem\],
+        .dark .rounded-\[2\.5rem\] {
+            border: 1px solid rgba(149, 213, 178, 0.45) !important;
+        }
+
+        .dark .from-\[\#D8F3DC\],
+        .dark .to-\[\#F1FAEE\],
+        .dark .from-\[\#2D6A4F\],
+        .dark .to-\[\#40916C\] {
+            background-image: none !important;
+            background-color: #081C15 !important;
+        }
+
+        /* Inputs & Form Elements */
+        .dark input,
+        .dark textarea,
+        .dark select {
+            background-color: #0d1712 !important;
+            color: #ffffff !important;
+            border: 1px solid rgba(149, 213, 178, 0.4) !important;
+        }
+
+        .dark input::placeholder,
+        .dark textarea::placeholder {
+            color: #888888 !important;
+        }
+
+        /* Navbar & UI Overrides */
+        .dark .glass-nav {
+            background: rgba(8, 28, 21, 0.85) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+        }
+
+        .dark .glass-nav-scrolled {
+            background: rgba(8, 28, 21, 0.98) !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+        }
+
+        .dark #mobileMenu {
+            background: rgba(8, 28, 21, 0.98) !important;
+            border-left: 1px solid rgba(149, 213, 178, 0.3);
+        }
+
+        .dark #mobileMenu button,
+        .dark #mobileMenu a,
+        .dark #mobileMenu span,
+        .dark #mobileMenu p,
+        .dark #mobileMenu i {
+            color: #ffffff !important;
+        }
+
+        .dark .active-menu {
+            color: #95D5B2 !important;
+        }
+
+        .dark .text-\[\#1B4332\] {
+            color: #ffffff !important;
+        }
+
+        .dark .hover-underline::after {
+            background: #95D5B2 !important;
+        }
+        
+        /* TABLET & MOBILE (up to iPad Pro 12.9 Landscape/Nest Hub Max): hide desktop controls, show burger with bg-white */
+        @media (max-width: 1366px) {
+            .desktop-controls-group, .desktop-nav-links {
+                display: none !important;
+            }
+            .burger-button-white {
+                background-color: white !important;
+                border-radius: 9999px !important;
+                padding: 8px 12px !important;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.05) !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+            }
+            .dark .burger-button-white {
+                background-color: #1e2f28 !important;
+                color: white !important;
+            }
+        }
+        
+        @media (min-width: 1367px) {
+            .burger-button-white {
+                display: none !important;
+            }
+            .desktop-controls-group, .desktop-nav-links {
+                display: flex !important;
+            }
+        }
+        
+        /* always keep mobile menu background white (or dark variant) */
+        #mobileMenu {
+            background: white !important;
+        }
+        .dark #mobileMenu {
+            background: #0d1712 !important;
+        }
+    </style>
+
+
+
+
+
+</head>
+<body>
+<header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 glass-nav py-3 md:py-4">
+
+
+
+
+
+        <div class="container mx-auto px-5 md:px-8 flex justify-between items-center">
+            <a href="Index.html" class="flex items-center gap-2.5">
+                <img src="favicon.png" alt="EcoRefill Logo" class="w-10 h-10 object-contain">
+                <span class="text-xl font-bold heading-font text-[#1B4332] tracking-tight">EcoRefill</span>
+            </a>
+
+            <div class="desktop-nav-links items-center space-x-7 text-[#1B4332] font-medium flex-nowrap">
+                <div class="relative group py-2">
+                    <a href="./Index.html" class="nav-link active-menu hover-underline flex items-center gap-1">Home <i class="fas fa-chevron-down text-[10px]"></i></a>
+                    <div class="absolute top-full left-0 w-48 pt-2 hidden group-hover:block z-50">
+                        <div class="bg-white rounded-2xl shadow-2xl p-2 border border-gray-100">
+                            <a href="./Index.html" class="block px-4 py-2 hover:bg-[#D8F3DC] rounded-xl transition font-bold text-[#1B4332]">Home 1</a>
+                            <a href="./Home2.html" class="block px-4 py-2 hover:bg-[#D8F3DC] rounded-xl transition font-bold text-[#1B4332]">Home 2</a>
+                        </div>
+                    </div>
+                </div>
+                <a href="./About.html" class="nav-link hover-underline">About</a>
+                <a href="./Products.html" class="nav-link hover-underline">Products</a>
+                <a href="./Locations.html" class="nav-link hover-underline">Truck Locations</a>
+                <a href="./Membership.html" class="nav-link hover-underline">Membership</a>
+                <a href="./Sustainability.html" class="nav-link hover-underline">Sustainability</a>
+                <a href="./Blog.html" class="nav-link hover-underline">Blog</a>
+                <a href="./Contact.html" class="nav-link hover-underline">Contact</a>
+            </div>
+
+            <!-- Controls: Desktop group (visible only on large screens) + Burger with white bg on tablet/mobile -->
+            <div class="flex items-center gap-3">
+                <!-- desktop-only controls: LOGIN, RTL, DARK MODE (hidden on tablet/mobile) -->
+                <div class="desktop-controls-group items-center gap-3">
+                    <button id="darkModeToggle" class="text-[#1B4332] text-xl hover:scale-110 transition"><i class="fas fa-moon"></i></button>
+                    <button id="rtlToggle" class="text-[#1B4332] text-sm font-semibold border border-[#2D6A4F] px-3 py-1.5 rounded-full hover:bg-[#D8F3DC] transition">RTL</button>
+                    <a href="./Login.html" class="btn-gradient text-white px-6 py-2 rounded-full font-bold text-sm">Login</a>
+                </div>
+                
+                <!-- Hamburger menu button with white background for tablet/mobile views -->
+                <button id="menuToggle" class="burger-button-white text-2xl text-[#1B4332] ml-2 shadow-md transition">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    
+
+
+
+
+</header>
+
+  <!-- ========== MOBILE HAMBURGER MENU ========== -->
+  <div id="mobileMenu" class="fixed top-0 right-0 h-full w-80 bg-white/98 backdrop-blur-xl z-50 shadow-2xl transform translate-x-full transition-transform duration-400 p-6 flex flex-col gap-4 overflow-y-auto">
+    <div class="flex justify-between items-center border-b border-[#95D5B2] pb-3">
+      <div class="flex items-center gap-2">
+        <img src="favicon.png" alt="EcoRefill Logo" class="w-8 h-8 object-contain">
+        <span class="font-bold text-2xl heading-font text-[#1B4332]">EcoRefill</span>
+      </div>
+      <button id="closeMenu" class="text-2xl text-[#1B4332]"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="flex flex-col gap-3 text-lg font-medium">
+      <div>
+        <button class="w-full text-left py-2 hover:text-[#2D6A4F] transition flex items-center justify-between" onclick="document.getElementById('mobileHomeDrop').classList.toggle('hidden')">
+          <span class="flex items-center gap-2"><i class="fas fa-home w-6"></i> Home</span>
+          <i class="fas fa-chevron-down text-sm"></i>
+        </button>
+        <div id="mobileHomeDrop" class="hidden pl-8 flex flex-col gap-2 pt-2">
+          <a href="Index.html" class="mobile-nav-link hover:text-[#2D6A4F] transition">Home 1</a>
+          <a href="Index.html" class="mobile-nav-link hover:text-[#2D6A4F] transition">Home 2</a>
+        </div>
+      </div>
+      <a href="About.html" class="mobile-nav-link py-2 hover:text-[#2D6A4F] transition flex items-center gap-2"><i class="fas fa-info-circle w-6"></i> About</a>
+      <a href="Products.html" class="mobile-nav-link py-2 hover:text-[#2D6A4F] transition flex items-center gap-2"><i class="fas fa-box w-6"></i> Products</a>
+      <a href="Locations.html" class="mobile-nav-link py-2 hover:text-[#2D6A4F] transition flex items-center gap-2"><i class="fas fa-truck w-6"></i> Truck Locations</a>
+      <a href="Membership.html" class="mobile-nav-link py-2 hover:text-[#2D6A4F] transition flex items-center gap-2"><i class="fas fa-crown w-6"></i> Membership</a>
+      <a href="Sustainability.html" class="mobile-nav-link py-2 hover:text-[#2D6A4F] transition flex items-center gap-2"><i class="fas fa-leaf w-6"></i> Sustainability</a>
+      <a href="Blog.html" class="mobile-nav-link py-2 hover:text-[#2D6A4F] transition flex items-center gap-2"><i class="fas fa-blog w-6"></i> Blog</a>
+      <a href="Contact.html" class="mobile-nav-link py-2 hover:text-[#2D6A4F] transition flex items-center gap-2"><i class="fas fa-envelope w-6"></i> Contact</a>
+      <hr class="my-2 border-gray-200">
+      <button id="mobileDarkToggle" class="text-left py-2 flex items-center gap-2"><i class="fas fa-moon w-6"></i> Dark Mode</button>
+      <button id="mobileRtlToggle" class="text-left py-2 flex items-center gap-2"><i class="fas fa-exchange-alt w-6"></i> RTL/LTR</button>
+      <div class="border-t pt-3 mt-2"><p class="font-semibold mb-2">Account</p><a href="Login.html" class="mobile-nav-link py-2 flex items-center gap-2"><i class="fas fa-user w-6"></i> Login / Register</a></div>
+    </div>
+  </div>
+  <div id="overlay" class="fixed inset-0 bg-black/40 z-40 hidden backdrop-blur-sm"></div>
+
+<main id="pageContent">
+
+      <!-- 1. Hero Section -->
+      <section class="relative pt-32 md:pt-40 pb-20 overflow-hidden" style="background-image: url('./image/index\ page\ bg.jpg'); background-size: cover; background-position: center;">
+        <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent"></div>
+        <div class="container mx-auto px-5 md:px-8 relative z-10">
+          <div class="max-w-2xl" data-aos="fade-right"><span class="bg-[#95D5B2] text-[#1B4332] px-5 py-2 rounded-full text-sm font-semibold inline-block">Zero-Waste Grocery on Wheels</span><h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mt-5 heading-font text-white leading-tight">Refill. <span class="text-[#95D5B2]">Reduce.</span> Repeat.</h1><p class="text-lg text-gray-100 mt-4">Mobile refill truck brings bulk organic groceries to your neighborhood. Plastic-free, carbon-smart, and convenient.</p><div class="flex flex-wrap gap-4 mt-8"><a href="Locations.html" class="btn-gradient text-white px-8 py-3.5 rounded-full font-semibold shadow-2xl inline-block"><i class="fas fa-map-marker-alt mr-2"></i> Track Our Truck</a><a href="About.html" class="bg-white/20 backdrop-blur-sm border border-white text-white px-7 py-3.5 rounded-full font-semibold hover:bg-white/30 transition inline-block">Learn More</a></div></div>
+        </div>
+        <div class="absolute bottom-10 left-5 floating-leaf"><i class="fas fa-leaf text-5xl text-[#95D5B2] opacity-70"></i></div>
+      </section>
+
+      <section class="py-20 bg-white" data-aos="fade-up">
+        <div class="container mx-auto px-5 md:px-8">
+          <div class="text-center max-w-2xl mx-auto mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold heading-font text-[#1B4332]">Why Choose EcoRefill</h2>
+            <p class="text-gray-600 mt-3">Join thousands making sustainable choices every day</p>
+          </div>
+          <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-[#F1FAEE] p-8 rounded-3xl shadow-xl card-hover text-center flex flex-col items-center">
+              <i class="fas fa-leaf text-5xl text-[#2D6A4F] mb-4 block mx-auto"></i>
+              <h3 class="text-xl font-bold">100% Plastic-Free</h3>
+              <p class="mt-2">Return & refill jars, compostable packaging</p>
+            </div>
+            <div class="bg-[#F1FAEE] p-8 rounded-3xl shadow-xl card-hover text-center flex flex-col items-center">
+              <i class="fas fa-truck-fast text-5xl text-[#2D6A4F] mb-4 block mx-auto"></i>
+              <h3 class="text-xl font-bold">Live Truck Tracking</h3>
+              <p class="mt-2">Real-time location of our refill truck</p>
+            </div>
+            <div class="bg-[#F1FAEE] p-8 rounded-3xl shadow-xl card-hover text-center flex flex-col items-center">
+              <i class="fas fa-chart-line text-5xl text-[#2D6A4F] mb-4 block mx-auto"></i>
+              <h3 class="text-xl font-bold">Smart Savings</h3>
+              <p class="mt-2">Track plastic bottles saved & money earned</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. How It Works -->
+      <section class="py-24 bg-gradient-to-br from-[#D8F3DC] to-[#F1FAEE]">
+        <div class="container mx-auto px-5 md:px-8">
+          <div class="grid md:grid-cols-2 gap-16 items-center">
+            <div data-aos="fade-right">
+              <h2 class="text-4xl md:text-5xl font-bold heading-font text-[#1B4332] mb-4">How It Works</h2>
+              <p class="text-gray-700 text-lg mb-8">A seamless, eco-friendly refill process designed to eliminate single-use plastics from your grocery routine. Start making an impact in just a few steps.</p>
+              
+              <div class="space-y-8">
+                <div class="flex items-start gap-5">
+                  <div class="w-14 h-14 bg-[#2D6A4F] text-white rounded-2xl flex items-center justify-center font-bold text-2xl shadow-lg shrink-0">1</div>
+                  <div>
+                    <h4 class="text-xl font-bold text-[#1B4332] mb-1">Locate Our Truck</h4>
+                    <p class="text-gray-600">Use our live tracker to find the EcoRefill truck nearest to your neighborhood. We update our schedule weekly.</p>
+                  </div>
+                </div>
+                
+                <div class="flex items-start gap-5">
+                  <div class="w-14 h-14 bg-[#2D6A4F] text-white rounded-2xl flex items-center justify-center font-bold text-2xl shadow-lg shrink-0">2</div>
+                  <div>
+                    <h4 class="text-xl font-bold text-[#1B4332] mb-1">Bring Your Own Containers</h4>
+                    <p class="text-gray-600">Bring glass jars, tupperware, or cloth bags. Forgot yours? We offer sterilized, compostable eco-packs on-site.</p>
+                  </div>
+                </div>
+                
+                <div class="flex items-start gap-5">
+                  <div class="w-14 h-14 bg-[#2D6A4F] text-white rounded-2xl flex items-center justify-center font-bold text-2xl shadow-lg shrink-0">3</div>
+                  <div>
+                    <h4 class="text-xl font-bold text-[#1B4332] mb-1">Weigh, Refill & Pay</h4>
+                    <p class="text-gray-600">Our smart scales deduct the weight of your container (tare). Dispense exactly what you need, and pay only for the product weight.</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="mt-10 p-5 bg-white/60 rounded-2xl border border-white/80 shadow-sm backdrop-blur-sm">
+                <p class="text-[#1B4332] font-semibold"><i class="fas fa-lightbulb text-yellow-500 mr-2"></i> Pro Tip: Join our Membership for 15% off all refills and free monthly doorstep delivery!</p>
+              </div>
+            </div>
+            
+            <div class="relative" data-aos="fade-left">
+              <div class="bg-white rounded-[3rem] p-8 shadow-2xl relative z-10 border border-gray-100">
+                 <img src="./image/index 1.jpg" class="w-full rounded-[2rem] object-cover h-[500px]" alt="How it works">
+                 <div class="absolute -bottom-10 -left-10 bg-[#95D5B2] p-6 rounded-3xl shadow-xl w-64 floating-leaf">
+                    <p class="font-bold text-[#1B4332] text-lg mb-2">Zero Waste Guarantee</p>
+                    <p class="text-sm text-[#1B4332]/80">100% of our products are sourced from sustainable, plastic-free farms.</p>
+                 </div>
+              </div>
+              <div class="absolute top-1/2 -right-10 transform -translate-y-1/2 truck-moving opacity-20 -z-10">
+                <i class="fas fa-truck text-[15rem] text-[#2D6A4F]"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Featured Refill Products -->
+      <section class="py-20 bg-white">
+        <div class="container mx-auto px-5 md:px-8">
+          <div class="text-center mb-12" data-aos="fade-up"><h2 class="text-3xl md:text-4xl font-bold heading-font text-[#1B4332]">🌿 Featured Refill Products</h2><p class="text-gray-600 mt-2">Best selling zero-waste essentials from our truck</p></div>
+          <div class="product-grid-auto">
+            <div class="bg-[#F1FAEE] rounded-3xl p-6 shadow-xl card-hover">
+              <div class="bg-gradient-to-br from-[#95D5B2] to-[#D8F3DC] rounded-2xl p-4 flex justify-center items-center h-40">
+                <i class="fas fa-leaf text-5xl text-[#2D6A4F]"></i>
+              </div>
+              <div class="flex justify-between mt-4"><span class="font-bold text-lg">Organic Basmati</span><span class="text-[#2D6A4F] font-bold">$4.2/lb</span></div>
+              <p class="text-sm text-gray-500">Premium Quality,direct from farms</p>
+              <button class="mt-3 bg-[#40916C] text-white px-4 py-2 rounded-full w-full hover:bg-[#2D6A4F] transition">Add to Cart</button>
+            </div>
+            <div class="bg-[#F1FAEE] rounded-3xl p-6 shadow-xl card-hover">
+              <div class="bg-gradient-to-br from-[#95D5B2] to-[#D8F3DC] rounded-2xl p-4 flex justify-center items-center h-40">
+                <i class="fas fa-mortar-pestle text-6xl text-[#2D6A4F]"></i>
+              </div>
+              <div class="flex justify-between mt-4"><span class="font-bold text-lg">Organic Spices Set</span><span class="text-[#2D6A4F] font-bold">$1.8/oz</span></div>
+              <p class="text-sm text-gray-500">Cumin, coriander, turmeric blend</p>
+              <button class="mt-3 bg-[#40916C] text-white px-4 py-2 rounded-full w-full hover:bg-[#2D6A4F] transition">Add to Cart</button>
+            </div>
+            <div class="bg-[#F1FAEE] rounded-3xl p-6 shadow-xl card-hover">
+              <div class="bg-gradient-to-br from-[#95D5B2] to-[#D8F3DC] rounded-2xl p-4 flex justify-center items-center h-40">
+                <i class="fas fa-pump-soap text-6xl text-[#2D6A4F]"></i>
+              </div>
+              <div class="flex justify-between mt-4"><span class="font-bold text-lg">Eco Cleaning</span><span class="text-[#2D6A4F] font-bold">$7.5/refill</span></div>
+              <p class="text-sm text-gray-500">Plant-based, biodegradable</p>
+              <button class="mt-3 bg-[#2D6A4F] text-white px-4 py-2 rounded-full w-full hover:bg-[#40916C] transition">Add to Cart</button>
+            </div>
+            <div class="bg-[#F1FAEE] rounded-3xl p-6 shadow-xl card-hover">
+              <div class="bg-gradient-to-br from-[#95D5B2] to-[#D8F3DC] rounded-2xl p-4 flex justify-center items-center h-40">
+                <i class="fas fa-bread-slice text-6xl text-[#2D6A4F]"></i>
+              </div>
+              <div class="flex justify-between mt-4"><span class="font-bold text-lg">Organic Grains</span><span class="text-[#2D6A4F] font-bold">$3.5/lb</span></div>
+              <p class="text-sm text-gray-500">Quinoa, oats, millet mix</p>
+              <button class="mt-3 bg-[#2D6A4F] text-white px-4 py-2 rounded-full w-full">Add to Cart</button>
+            </div>
+          </div>
+          <div class="text-center mt-10"><a href="Products.html" class="btn-outline-eco text-[#2D6A4F] px-8 py-3 rounded-full font-semibold inline-block">View All Products →</a></div>
+        </div>
+      </section>
+
+      <!-- 5. Live Truck Tracking + Stats -->
+      <section class="py-20 bg-gradient-to-r from-[#2D6A4F] to-[#40916C] text-white"><div class="container mx-auto px-5 md:px-8"><div class="grid md:grid-cols-2 gap-12 items-center"><div data-aos="fade-right"><h2 class="text-3xl md:text-4xl font-bold"> Live Truck Tracking</h2><p class="mt-3 opacity-95">Our truck is currently at <span class="font-bold bg-white/20 px-3 py-1 rounded-full">Downtown Farmers Market</span> until 2PM. Next stop: Westside Community Center.</p><div class="mt-5 w-full bg-white/30 rounded-full h-3 overflow-hidden"><div class="w-2/3 h-3 bg-[#95D5B2] rounded-full"></div></div><div class="flex gap-4 mt-6"><a href="Locations.html" class="border-2 border-white px-6 py-2 rounded-full hover:bg-white hover:text-[#2D6A4F] transition">View Full Route →</a><button class="bg-white/20 backdrop-blur px-6 py-2 rounded-full">Notify Me</button></div></div><div class="stats-grid text-center" data-aos="fade-left"><div><div class="text-4xl font-bold counter-number" data-target="28540">0</div><p class="text-sm">Plastic Bottles Saved</p></div><div><div class="text-4xl font-bold counter-number" data-target="12450">0</div><p class="text-sm">KG CO₂ Reduced</p></div><div><div class="text-4xl font-bold counter-number" data-target="1890">0</div><p class="text-sm">Trees Equivalent</p></div><div><div class="text-4xl font-bold counter-number" data-target="4230">0</div><p class="text-sm">Happy Members</p></div></div></div></div></section>
+
+      <!-- 6. Testimonials -->
+      <section class="py-20 bg-white"><div class="container mx-auto px-5 md:px-8"><h2 class="text-3xl md:text-4xl font-bold text-center text-[#1B4332] mb-12"> What Our Customers Say</h2><div class="testimonial-grid"><div class="bg-[#F1FAEE] p-6 rounded-3xl shadow-lg card-hover"><i class="fas fa-star text-yellow-400 mb-3"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><p class="mt-2">"EcoRefill changed how I shop — zero waste has never been easier!"</p><h4 class="font-bold mt-4 text-[#2D6A4F]">— Sarah J.</h4></div><div class="bg-[#F1FAEE] p-6 rounded-3xl shadow-lg card-hover"><i class="fas fa-star text-yellow-400 mb-3"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><p class="mt-2">"Love tracking the truck live, organic products are amazing quality."</p><h4 class="font-bold mt-4 text-[#2D6A4F]">— Michael T.</h4></div><div class="bg-[#F1FAEE] p-6 rounded-3xl shadow-lg card-hover"><i class="fas fa-star text-yellow-400 mb-3"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><p class="mt-2">"Finally a sustainable grocery solution that's convenient and affordable."</p><h4 class="font-bold mt-4 text-[#2D6A4F]">— Elena R.</h4></div></div></div></section>
+  
+</main>
+<footer class="bg-[#F1FAEE] text-black mt-16 relative border-t border-gray-200">
+
+
+        <div class="container mx-auto px-6 pt-16 pb-10">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+                <div>
+                    <a href="Index.html" class="flex items-center gap-2.5">
+                        <img src="favicon.png" alt="EcoRefill Logo" class="w-10 h-10 object-contain">
+                        <span class="text-xl font-bold heading-font text-[#1B4332] tracking-tight">EcoRefill</span>
+                    </a>
+                                        <p class="mt-3 text-sm text-gray-600">Zero-waste groceries on wheels, delivering sustainability to your neighborhood.</p>
+                    <div class="flex gap-4 mt-5">
+                        <a href="#" class="w-9 h-9 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-[#2D6A4F] hover:text-white transition-all shadow-sm">
+                            <i class="fab fa-google"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-[#2D6A4F] hover:text-white transition-all shadow-sm">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-[#2D6A4F] hover:text-white transition-all shadow-sm">
+                            <i class="fab fa-apple"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-3 text-[#1B4332]">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="./Index.html" class="hover:text-[#2D6A4F] transition">Home</a></li>
+                        <li><a href="./About.html" class="hover:text-[#2D6A4F] transition">About Us</a></li>
+                        <li><a href="./Products.html" class="hover:text-[#2D6A4F] transition">Products</a></li>
+                        <li><a href="./Blog.html" class="hover:text-[#2D6A4F] transition">Blog</a></li>
+                        <li><a href="./Contact.html" class="hover:text-[#2D6A4F] transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-3 text-[#1B4332]">Services</h4>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><a href="./Locations.html" class="hover:text-[#2D6A4F] transition">Truck Locations</a></li>
+                        <li><a href="./Membership.html" class="hover:text-[#2D6A4F] transition">Membership</a></li>
+                        <li><a href="./Sustainability.html" class="hover:text-[#2D6A4F] transition">Sustainability</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-3 text-[#1B4332]">Contact Info</h4>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><i class="fas fa-phone mr-2 text-[#2D6A4F]"></i> +1 (800) 234-ECO</li>
+                        <li><i class="fas fa-envelope mr-2 text-[#2D6A4F]"></i> hello@ecorefill.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-200 mt-10 pt-6 text-center text-sm text-gray-500">© 2025 EcoRefill — Zero Waste Revolution. All rights reserved.</div>
+        </div>
+
+
+</footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true, offset: 100 });
+    
+    const mobileMenu = document.getElementById('mobileMenu'), overlay = document.getElementById('overlay');
+    document.getElementById('menuToggle').onclick = () => { mobileMenu.classList.remove('translate-x-full'); overlay.classList.remove('hidden'); document.body.style.overflow = 'hidden'; };
+    function closeMenuAll() { mobileMenu.classList.add('translate-x-full'); overlay.classList.add('hidden'); document.body.style.overflow = ''; }
+    document.getElementById('closeMenu').onclick = closeMenuAll; overlay.onclick = closeMenuAll;
+    window.addEventListener('resize', () => { if (window.innerWidth >= 1024) closeMenuAll(); });
+    
+    
+    let dark = false;
+    document.getElementById('darkModeToggle').addEventListener('click', () => { dark = !dark; if (dark) { document.documentElement.classList.add('dark'); document.body.style.background = '#1a2a24'; document.body.style.color = '#e5e5e5'; } else { document.documentElement.classList.remove('dark'); document.body.style.background = '#F1FAEE'; document.body.style.color = '#1B4332'; } });
+    document.getElementById('mobileDarkToggle').addEventListener('click', () => { document.getElementById('darkModeToggle').click(); });
+    
+    let rtl = false;
+    document.getElementById('rtlToggle').addEventListener('click', () => { rtl = !rtl; document.documentElement.dir = rtl ? 'rtl' : 'ltr'; });
+    document.getElementById('mobileRtlToggle').addEventListener('click', () => { document.getElementById('rtlToggle').click(); });
+    
+    window.addEventListener('scroll', () => { const nav = document.getElementById('navbar'); if (window.scrollY > 50) nav.classList.add('glass-nav-scrolled'); else nav.classList.remove('glass-nav-scrolled'); });
+    
+    const counters = document.querySelectorAll('.counter-number');
+    const counterObserver = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { const el = entry.target; const target = parseInt(el.getAttribute('data-target')); let current = 0, inc = target / 60; const timer = setInterval(() => { current += inc; if (current >= target) { el.innerText = target; clearInterval(timer); } else el.innerText = Math.floor(current); }, 25); counterObserver.unobserve(el); } }); }, { threshold: 0.3 });
+    counters.forEach(c => counterObserver.observe(c));
+
+    // Handle Active Nav Links
+    const currentPath = window.location.pathname.split('/').pop() || 'Index.html';
+    document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
+        const href = link.getAttribute('href');
+        if (href && (href.includes(currentPath) || (currentPath === 'Index.html' && (href === './' || href === 'Index.html')))) {
+            link.classList.add('active-menu');
+        } else {
+            link.classList.remove('active-menu');
+        }
+    });
+  </script>
+
+</body>
+</html>
