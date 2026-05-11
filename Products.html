@@ -352,7 +352,7 @@
         .dark #mobileMenu span,
         .dark #mobileMenu p,
         .dark #mobileMenu i {
-            color: #ffffff !important;
+            color: #1B4332 !important;
         }
 
         .dark .active-menu {
@@ -382,8 +382,8 @@
                 justify-content: center !important;
             }
             .dark .burger-button-white {
-                background-color: #1e2f28 !important;
-                color: white !important;
+                background-color: white !important;
+                color: #1B4332 !important;
             }
         }
         
@@ -396,12 +396,9 @@
             }
         }
         
-        /* always keep mobile menu background white (or dark variant) */
+        /* always keep mobile menu background white */
         #mobileMenu {
             background: white !important;
-        }
-        .dark #mobileMenu {
-            background: #0d1712 !important;
         }
     </style>
 
@@ -425,7 +422,7 @@
                     <div class="absolute top-full left-0 w-48 pt-2 hidden group-hover:block z-50">
                         <div class="bg-white rounded-2xl shadow-2xl p-2 border border-gray-100">
                             <a href="./Index.html" class="block px-4 py-2 hover:bg-[#D8F3DC] rounded-xl transition font-bold text-[#1B4332]">Home 1</a>
-                            <a href="./Home2.html" class="block px-4 py-2 hover:bg-[#D8F3DC] rounded-xl transition font-bold text-[#1B4332]">Home 2</a>
+                            <a href="./home 2.html" class="block px-4 py-2 hover:bg-[#D8F3DC] rounded-xl transition font-bold text-[#1B4332]">Home 2</a>
                         </div>
                     </div>
                 </div>
@@ -461,7 +458,7 @@
 </header>
 
   <!-- ========== MOBILE HAMBURGER MENU ========== -->
-  <div id="mobileMenu" class="fixed top-0 right-0 h-full w-80 bg-white/98 backdrop-blur-xl z-50 shadow-2xl transform translate-x-full transition-transform duration-400 p-6 flex flex-col gap-4 overflow-y-auto">
+  <div id="mobileMenu" class="fixed top-0 right-0 h-full w-80 bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-400 p-6 flex flex-col gap-4 overflow-y-auto">
     <div class="flex justify-between items-center border-b border-[#95D5B2] pb-3">
       <div class="flex items-center gap-2">
         <img src="favicon.png" alt="EcoRefill Logo" class="w-8 h-8 object-contain">
@@ -477,7 +474,7 @@
         </button>
         <div id="mobileHomeDrop" class="hidden pl-8 flex flex-col gap-2 pt-2">
           <a href="Index.html" class="mobile-nav-link hover:text-[#2D6A4F] transition">Home 1</a>
-          <a href="Index.html" class="mobile-nav-link hover:text-[#2D6A4F] transition">Home 2</a>
+          <a href="home 2.html" class="mobile-nav-link hover:text-[#2D6A4F] transition">Home 2</a>
         </div>
       </div>
       <a href="About.html" class="mobile-nav-link py-2 hover:text-[#2D6A4F] transition flex items-center gap-2"><i class="fas fa-info-circle w-6"></i> About</a>
@@ -723,25 +720,25 @@
                   <div class="space-y-6">
                      <div>
                         <label class="block text-[#1B4332] font-bold mb-2">Select Container Size</label>
-                        <select class="w-full bg-[#F1FAEE] border border-gray-200 rounded-xl p-4 text-lg focus:outline-none focus:border-[#2D6A4F]">
-                           <option>Standard Mason Jar (16oz / Pint)</option>
-                           <option>Large Mason Jar (32oz / Quart)</option>
-                           <option>Small Spice Jar (4oz)</option>
-                           <option>Standard Soap Bottle (12oz)</option>
+                        <select id="containerSize" class="w-full bg-[#F1FAEE] border border-gray-200 rounded-xl p-4 text-lg focus:outline-none focus:border-[#2D6A4F]">
+                           <option value="16">Standard Mason Jar (16oz / Pint)</option>
+                           <option value="32">Large Mason Jar (32oz / Quart)</option>
+                           <option value="4">Small Spice Jar (4oz)</option>
+                           <option value="12">Standard Soap Bottle (12oz)</option>
                         </select>
                      </div>
                      <div>
                         <label class="block text-[#1B4332] font-bold mb-2">Select Product Type</label>
-                        <select class="w-full bg-[#F1FAEE] border border-gray-200 rounded-xl p-4 text-lg focus:outline-none focus:border-[#2D6A4F]">
-                           <option>Dense Grains (Rice, Quinoa)</option>
-                           <option>Light Flakes (Oats, Cereals)</option>
-                           <option>Liquids (Soap, Oil)</option>
-                           <option>Powders (Flour, Spices)</option>
+                        <select id="productType" class="w-full bg-[#F1FAEE] border border-gray-200 rounded-xl p-4 text-lg focus:outline-none focus:border-[#2D6A4F]">
+                           <option value="1">Dense Grains (Rice, Quinoa)</option>
+                           <option value="0.5">Light Flakes (Oats, Cereals)</option>
+                           <option value="1.04">Liquids (Soap, Oil)</option>
+                           <option value="0.7">Powders (Flour, Spices)</option>
                         </select>
                      </div>
-                     <div class="bg-[#D8F3DC] rounded-2xl p-6 text-center border border-[#95D5B2]">
+                     <div class="bg-[#D8F3DC] rounded-2xl p-6 text-center border border-[#95D5B2] min-h-[120px] flex flex-col justify-center">
                         <p class="text-gray-600 mb-2">Estimated Quantity to Order:</p>
-                        <h3 class="text-4xl font-bold text-[#1B4332]">1.2 lbs</h3>
+                        <h3 id="estimatedValue" class="text-4xl font-bold text-[#1B4332] transition-all duration-300">1.2 lbs</h3>
                      </div>
                   </div>
                </div>
@@ -897,6 +894,39 @@
             });
         };
     });
+
+    // REFILL CALCULATOR LOGIC
+    const containerSize = document.getElementById('containerSize');
+    const productType = document.getElementById('productType');
+    const estimatedValue = document.getElementById('estimatedValue');
+
+    function updateRefill() {
+        const size = parseFloat(containerSize.value);
+        const density = parseFloat(productType.value);
+        const result = (size * density / 16).toFixed(2);
+        const unit = productType.options[productType.selectedIndex].text.includes('Liquids') ? 'fl oz' : 'lbs';
+        const finalValue = productType.options[productType.selectedIndex].text.includes('Liquids') ? (size * density).toFixed(1) : result;
+        
+        estimatedValue.innerText = `${finalValue} ${unit}`;
+        
+        // Auto-scale font size
+        const length = estimatedValue.innerText.length;
+        if (length > 12) {
+            estimatedValue.style.fontSize = '1.5rem';
+        } else if (length > 8) {
+            estimatedValue.style.fontSize = '2.25rem';
+        } else if (length > 5) {
+            estimatedValue.style.fontSize = '3rem';
+        } else {
+            estimatedValue.style.fontSize = '3.75rem';
+        }
+    }
+
+    if (containerSize && productType) {
+        containerSize.onchange = updateRefill;
+        productType.onchange = updateRefill;
+        updateRefill(); // Initial call
+    }
   </script>
 
 </body>
