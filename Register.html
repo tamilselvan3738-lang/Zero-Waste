@@ -18,7 +18,7 @@
     .input-focus:focus { border-color: #2D6A4F; box-shadow: 0 0 0 4px rgba(45, 106, 79, 0.1); outline: none; }
 
     /* Dark Mode Overrides */
-    .dark body { background: #081C15 !important; color: #e5e5e5 !important; }
+    .dark body { background: #000000 !important; color: #e5e5e5 !important; }
     .dark .container { background: #0d1712 !important; border-color: rgba(149, 213, 178, 0.2) !important; }
     .dark header { background: rgba(8, 28, 21, 0.95) !important; border-bottom-color: rgba(255, 255, 255, 0.1) !important; }
     .dark header .text-\[\#1B4332\], .dark header a, .dark header button, .dark header span { color: #ffffff !important; }
@@ -45,7 +45,7 @@
 
     <div class="container max-w-6xl w-full h-[85vh] bg-white rounded-[3rem] shadow-2xl overflow-hidden flex flex-col md:flex-row relative z-10 mt-16">
       <div class="hidden md:block w-1/2 relative h-full">
-        <img src="https://images.unsplash.com/photo-1540333563545-823cb2e5095c?w=800&h=1200&fit=crop" class="w-full h-full object-cover" alt="Register">
+        <img src="./image/register.jpg" class="w-full h-full object-cover" alt="Register">
         <div class="absolute inset-0 bg-gradient-to-t from-[#1B4332]/80 to-transparent flex items-end p-12">
           <div class="text-white">
             <h2 class="text-4xl font-bold mb-4">Start Your Journey</h2>
@@ -103,8 +103,27 @@
       </div>
     </div>
     <script>
-        let dark = false;
-        document.getElementById('darkModeToggle').addEventListener('click', () => { dark = !dark; document.documentElement.classList.toggle('dark'); document.getElementById('darkModeToggle').innerHTML = dark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>'; });
+        function updateTheme(isDark) {
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+                document.body.style.background = '#000000';
+                document.getElementById('darkModeToggle').innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                document.documentElement.classList.remove('dark');
+                document.body.style.background = '#F1FAEE';
+                document.getElementById('darkModeToggle').innerHTML = '<i class="fas fa-moon"></i>';
+            }
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        let dark = localStorage.getItem('theme') === 'dark';
+        updateTheme(dark);
+
+        document.getElementById('darkModeToggle').addEventListener('click', () => {
+            dark = !dark;
+            updateTheme(dark);
+        });
+
         let rtl = false;
         document.getElementById('rtlToggle').addEventListener('click', () => { rtl = !rtl; document.documentElement.dir = rtl ? 'rtl' : 'ltr'; });
 
@@ -112,12 +131,14 @@
         const togglePassword = document.getElementById('togglePassword');
         const password = document.getElementById('password');
 
-        togglePassword.addEventListener('click', function() {
-            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-            password.setAttribute('type', type);
-            this.querySelector('i').classList.toggle('fa-eye');
-            this.querySelector('i').classList.toggle('fa-eye-slash');
-        });
+        if (togglePassword && password) {
+            togglePassword.addEventListener('click', function() {
+                const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                password.setAttribute('type', type);
+                this.querySelector('i').classList.toggle('fa-eye');
+                this.querySelector('i').classList.toggle('fa-eye-slash');
+            });
+        }
     </script>
 </body>
 </html>

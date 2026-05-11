@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-
-
-
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>EcoRefill – Zero-Waste Refill Truck | Mobile Grocery</title>
@@ -275,11 +270,12 @@
         }
 
         /* Standardized Global Styles & Dark Mode */
-        .dark body, .dark .page, .dark section.bg-white, .dark section.bg-\[\#F1FAEE\], .dark section.bg-\[\#D8F3DC\] { background-color: #081C15 !important; color: #e5e5e5 !important; }
-        .dark section.bg-\[\#1B4332\], .dark section.bg-\[\#2D6A4F\], .dark footer { background-color: #05140F !important; color: #e5e5e5 !important; }
-        .dark .bg-white { background-color: #0d1712 !important; color: #ffffff !important; }
-        .dark .bg-\[\#F1FAEE\] { background-color: #16241e !important; }
-        .dark .bg-\[\#D8F3DC\] { background-color: #1a2a24 !important; }
+        .dark body, .dark .page, .dark section.bg-white, .dark section.bg-\[\#F1FAEE\], .dark section.bg-\[\#D8F3DC\], .dark section.bg-\[\#95D5B2\] { background-color: #000000 !important; color: #e5e5e5 !important; }
+        .dark section.bg-\[\#1B4332\], .dark section.bg-\[\#2D6A4F\], .dark footer { background-color: #000000 !important; color: #e5e5e5 !important; }
+        .dark .bg-white, .dark .bg-\[\#F1FAEE\], .dark .bg-\[\#D8F3DC\], .dark .bg-\[\#95D5B2\] { background-color: #000000 !important; color: #ffffff !important; }
+        
+        /* Hero Section Visibility Fix for About */
+        .dark section.bg-\[\#081C15\] { background-color: #000000 !important; border-bottom: 1px solid rgba(149, 213, 178, 0.2) !important; }
 
         /* Border Visibility */
         .border, .border-t, .border-b, .border-l, .border-r { border-color: rgba(45, 106, 79, 0.1) !important; }
@@ -316,12 +312,18 @@
             border: 1px solid rgba(149, 213, 178, 0.45) !important;
         }
 
-        .dark .from-\[\#D8F3DC\],
-        .dark .to-\[\#F1FAEE\],
-        .dark .from-\[\#2D6A4F\],
-        .dark .to-\[\#40916C\] {
+        .dark .from-\[\#D8F3DC\]:not(.bg-clip-text),
+        .dark .to-\[\#F1FAEE\]:not(.bg-clip-text),
+        .dark .from-\[\#2D6A4F\]:not(.bg-clip-text),
+        .dark .to-\[\#40916C\]:not(.bg-clip-text),
+        .dark .from-\[\#95D5B2\]:not(.bg-clip-text) {
             background-image: none !important;
-            background-color: #081C15 !important;
+            background-color: #000000 !important;
+            border: 1px solid rgba(149, 213, 178, 0.2) !important;
+        }
+
+        .dark i.text-\[\#2D6A4F\], .dark i.text-\[\#1B4332\] {
+            color: #95D5B2 !important;
         }
 
         /* Inputs & Form Elements */
@@ -349,19 +351,6 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
         }
 
-        .dark #mobileMenu {
-            background: rgba(8, 28, 21, 0.98) !important;
-            border-left: 1px solid rgba(149, 213, 178, 0.3);
-        }
-
-        .dark #mobileMenu button,
-        .dark #mobileMenu a,
-        .dark #mobileMenu span,
-        .dark #mobileMenu p,
-        .dark #mobileMenu i {
-            color: #ffffff !important;
-        }
-
         .dark .active-menu {
             color: #95D5B2 !important;
         }
@@ -372,6 +361,20 @@
 
         .dark .hover-underline::after {
             background: #95D5B2 !important;
+        }
+        
+        /* Mobile Menu Dark Mode Fixes */
+        .dark #mobileMenu {
+            background: #000000 !important;
+            border-left: 1px solid rgba(149, 213, 178, 0.3);
+        }
+
+        .dark #mobileMenu button,
+        .dark #mobileMenu a,
+        .dark #mobileMenu span,
+        .dark #mobileMenu p,
+        .dark #mobileMenu i {
+            color: #ffffff !important;
         }
         
         /* TABLET & MOBILE (up to iPad Pro 12.9 Landscape/Nest Hub Max): hide desktop controls, show burger with bg-white */
@@ -389,8 +392,8 @@
                 justify-content: center !important;
             }
             .dark .burger-button-white {
-                background-color: #1e2f28 !important;
-                color: white !important;
+                background-color: white !important;
+                color: #1B4332 !important;
             }
         }
         
@@ -403,12 +406,9 @@
             }
         }
         
-        /* always keep mobile menu background white (or dark variant) */
+        /* always keep mobile menu background white in light mode */
         #mobileMenu {
-            background: white !important;
-        }
-        .dark #mobileMenu {
-            background: #0d1712 !important;
+            background: white;
         }
     </style>
 
@@ -436,7 +436,7 @@
                     <div class="absolute top-full left-0 w-48 pt-2 hidden group-hover:block z-50">
                         <div class="bg-white rounded-2xl shadow-2xl p-2 border border-gray-100">
                             <a href="./Index.html" class="block px-4 py-2 hover:bg-[#D8F3DC] rounded-xl transition font-bold text-[#1B4332]">Home 1</a>
-                            <a href="./Home2.html" class="block px-4 py-2 hover:bg-[#D8F3DC] rounded-xl transition font-bold text-[#1B4332]">Home 2</a>
+                            <a href="./home 2.html" class="block px-4 py-2 hover:bg-[#D8F3DC] rounded-xl transition font-bold text-[#1B4332]">Home 2</a>
                         </div>
                     </div>
                 </div>
@@ -469,7 +469,7 @@
 </header>
 
   <!-- ========== MOBILE HAMBURGER MENU ========== -->
-  <div id="mobileMenu" class="fixed top-0 right-0 h-full w-80 bg-white/98 backdrop-blur-xl z-50 shadow-2xl transform translate-x-full transition-transform duration-400 p-6 flex flex-col gap-4 overflow-y-auto">
+  <div id="mobileMenu" class="fixed top-0 right-0 h-full w-80 bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-400 p-6 flex flex-col gap-4 overflow-y-auto">
     <div class="flex justify-between items-center border-b border-[#95D5B2] pb-3">
       <div class="flex items-center gap-2">
         <img src="favicon.png" alt="EcoRefill Logo" class="w-8 h-8 object-contain">
@@ -485,7 +485,7 @@
         </button>
         <div id="mobileHomeDrop" class="hidden pl-8 flex flex-col gap-2 pt-2">
           <a href="Index.html" class="mobile-nav-link hover:text-[#2D6A4F] transition">Home 1</a>
-          <a href="Index.html" class="mobile-nav-link hover:text-[#2D6A4F] transition">Home 2</a>
+          <a href="home 2.html" class="mobile-nav-link hover:text-[#2D6A4F] transition">Home 2</a>
         </div>
       </div>
       <a href="About.html" class="mobile-nav-link py-2 hover:text-[#2D6A4F] transition flex items-center gap-2"><i class="fas fa-info-circle w-6"></i> About</a>
@@ -590,12 +590,12 @@
             <div class="bg-white p-8 rounded-3xl shadow-lg border-t-4 border-[#95D5B2] flex flex-col h-full" data-aos="fade-up" data-aos-delay="200">
               <h3 class="text-4xl font-bold text-[#95D5B2] mb-2">1M</h3>
               <p class="font-bold text-[#1B4332] mb-2">Trees Planted</p>
-              <p class="text-sm text-gray-500 mt-2">Through our 1% for the Planet pledge, we fund reforestation projects in critically endangered areas.</p>
+              <p class="text-sm text-gray-500 mt-2">Through our 1% for the Planet pledge, we fund reforestation projects in critically.</p>
             </div>
             <div class="bg-white p-8 rounded-3xl shadow-lg border-t-4 border-[#1B4332] flex flex-col h-full" data-aos="fade-up" data-aos-delay="300">
               <h3 class="text-4xl font-bold text-[#1B4332] mb-2">100%</h3>
               <p class="font-bold text-[#1B4332] mb-2">Local Sourcing</p>
-              <p class="text-sm text-gray-500 mt-2">All perishable and bulk products are sourced from certified organic farms within 50 miles of your neighborhood.</p>
+              <p class="text-sm text-gray-500 mt-2">All perishable and bulk products are sourced from certified organic farms within 50 miles.</p>
             </div>
           </div>
         </div>
@@ -701,9 +701,39 @@
     window.addEventListener('resize', () => { if (window.innerWidth >= 1024) closeMenuAll(); });
     
     
-    let dark = false;
-    document.getElementById('darkModeToggle').addEventListener('click', () => { dark = !dark; if (dark) { document.documentElement.classList.add('dark'); document.body.style.background = '#1a2a24'; document.body.style.color = '#e5e5e5'; } else { document.documentElement.classList.remove('dark'); document.body.style.background = '#F1FAEE'; document.body.style.color = '#1B4332'; } });
-    document.getElementById('mobileDarkToggle').addEventListener('click', () => { document.getElementById('darkModeToggle').click(); });
+    function updateTheme(isDark) {
+        if (isDark) {
+            document.documentElement.classList.add('dark');
+            document.body.style.background = '#000000';
+            document.body.style.color = '#e5e5e5';
+            document.querySelectorAll('#darkModeToggle i, #mobileDarkToggle i').forEach(i => {
+                i.classList.remove('fa-moon');
+                i.classList.add('fa-sun');
+            });
+        } else {
+            document.documentElement.classList.remove('dark');
+            document.body.style.background = '#F1FAEE';
+            document.body.style.color = '#1B4332';
+            document.querySelectorAll('#darkModeToggle i, #mobileDarkToggle i').forEach(i => {
+                i.classList.remove('fa-sun');
+                i.classList.add('fa-moon');
+            });
+        }
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    }
+
+    let dark = localStorage.getItem('theme') === 'dark';
+    updateTheme(dark);
+
+    document.getElementById('darkModeToggle').addEventListener('click', () => {
+        dark = !dark;
+        updateTheme(dark);
+    });
+
+    document.getElementById('mobileDarkToggle').addEventListener('click', () => {
+        dark = !dark;
+        updateTheme(dark);
+    });
     
     let rtl = false;
     document.getElementById('rtlToggle').addEventListener('click', () => { rtl = !rtl; document.documentElement.dir = rtl ? 'rtl' : 'ltr'; });
