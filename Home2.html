@@ -144,11 +144,12 @@
     /* Navbar & UI Overrides */
     .dark .glass-nav { background: rgba(8, 28, 21, 0.85) !important; border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important; }
     .dark .glass-nav-scrolled { background: rgba(8, 28, 21, 0.98) !important; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important; }
-    .dark #mobileMenu { background: rgba(8, 28, 21, 0.98) !important; border-left: 1px solid rgba(149, 213, 178, 0.3); }
-    .dark #mobileMenu button, .dark #mobileMenu a, .dark #mobileMenu span, .dark #mobileMenu p, .dark #mobileMenu i { color: #ffffff !important; }
-    .dark .active-menu { color: #95D5B2 !important; }
-    .dark .text-\[\#1B4332\] { color: #ffffff !important; }
-    .dark .hover-underline::after { background: #95D5B2 !important; }
+    #mobileMenu { background: white !important; }
+    .dark #mobileMenu { background: white !important; border-left: 1px solid rgba(149, 213, 178, 0.3); }
+    .dark #mobileMenu button, .dark #mobileMenu a, .dark #mobileMenu span, .dark #mobileMenu p, .dark #mobileMenu i { color: #1B4332 !important; }
+    .dark .active-menu { color: #2D6A4F !important; }
+    .dark .text-\[\#1B4332\] { color: #1B4332 !important; }
+    .dark .hover-underline::after { background: #2D6A4F !important; }
 
     /* TABLET & MOBILE (up to iPad Pro 12.9 Landscape/Nest Hub Max): hide desktop controls, show burger */
     @media (max-width: 1366px) {
@@ -203,7 +204,7 @@
                             <a href="Index.html"
                                 class="block px-4 py-2 hover:bg-[#D8F3DC] rounded-xl transition font-bold text-[#1B4332]">Home
                                 1</a>
-                            <a href="Home2.html"
+                            <a href="home 2.html"
                                 class="block px-4 py-2 hover:bg-[#D8F3DC] rounded-xl transition font-bold text-primary active-menu">Home
                                 2</a>
                         </div>
@@ -237,7 +238,7 @@
 
     <!-- ========== MOBILE HAMBURGER MENU ========== -->
     <div id="mobileMenu"
-        class="fixed top-0 right-0 h-full w-80 bg-white/98 backdrop-blur-xl z-50 shadow-2xl transform translate-x-full transition-transform duration-400 p-6 flex flex-col gap-4 overflow-y-auto">
+        class="fixed top-0 right-0 h-full w-80 bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-400 p-6 flex flex-col gap-4 overflow-y-auto">
         <div class="flex justify-between items-center border-b border-[#95D5B2] pb-3">
             <span class="font-bold text-2xl heading-font text-[#1B4332]">EcoRefill</span>
             <button id="closeMenu" class="text-2xl text-[#1B4332]"><i class="fas fa-times"></i></button>
@@ -251,7 +252,7 @@
                 </button>
                 <div id="mobileHomeDrop" class="hidden pl-8 flex flex-col gap-2 pt-2">
                     <a href="Index.html" class="mobile-nav-link hover:text-[#2D6A4F] transition">Home 1</a>
-                    <a href="Home2.html" class="mobile-nav-link active-menu hover:text-[#2D6A4F] transition">Home 2</a>
+                    <a href="home 2.html" class="mobile-nav-link active-menu hover:text-[#2D6A4F] transition">Home 2</a>
                 </div>
             </div>
             <a href="About.html" class="mobile-nav-link py-2 hover:text-[#2D6A4F] transition flex items-center gap-2"><i
@@ -415,7 +416,7 @@
                  <span class="absolute top-4 left-4 bg-accent text-primary text-[10px] font-black uppercase px-3 py-1 rounded-full">Top Rated</span>
                  <button class="absolute top-4 right-4 w-10 h-10 bg-white/80 backdrop-blur-md rounded-full flex items-center justify-center text-gray-400 hover:text-red-500 transition"><i class="far fa-heart"></i></button>
               </div>
-              <h4 class="text-xl font-bold mb-1">Organic Basmati Rice</h4>
+              <h4 class="text-xl font-bold mb-1">Organic Rice</h4>
               <p class="text-xs text-gray-500 mb-6">Long-grain, aromatic, triple-cleaned.</p>
               <div class="flex justify-between items-center">
                  <div>
@@ -459,7 +460,7 @@
                  <img src="./image/Natural Spice Mix.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Spice">
                  <span class="absolute top-4 left-4 bg-accent text-primary text-[10px] font-black uppercase px-3 py-1 rounded-full">Eco Home</span>
               </div>
-              <h4 class="text-xl font-bold mb-1">Natural Spice Mix</h4>
+              <h4 class="text-xl font-bold mb-1">Natural Spice</h4>
               <p class="text-xs text-gray-500 mb-6">Custom blend, no preservatives.</p>
               <div class="flex justify-between items-center">
                  <p class="text-2xl font-black text-primary">$5.50<span class="text-xs font-normal text-gray-400">/100g</span></p>
