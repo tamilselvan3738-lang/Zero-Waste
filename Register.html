@@ -11,7 +11,24 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     * { font-family: 'Inter', sans-serif; }
-    h1, h2, h3, h4, .heading-font { font-family: 'Poppins', sans-serif; }
+    h1, h2, h3, h4, h5, h6, .heading-font {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500 !important;
+    }
+
+    /* Enforce paragraph / subheading / list / link weights between 400 and 550 */
+    p, span, li, a, label, select, input, textarea {
+      font-weight: 400;
+    }
+    
+    .font-bold, .font-semibold, .font-medium,
+    p.font-bold, p.font-semibold,
+    span.font-bold, span.font-semibold,
+    li.font-bold, li.font-semibold,
+    a.font-bold, a.font-semibold,
+    button.font-bold, button.font-semibold {
+      font-weight: 500 !important;
+    }
     body { background: #F1FAEE; overflow: hidden; }
     .btn-gradient { background: linear-gradient(135deg, #2D6A4F 0%, #40916C 100%); transition: all 0.3s; box-shadow: 0 8px 20px rgba(45,106,79,0.2); }
     .btn-gradient:hover { transform: translateY(-2px); box-shadow: 0 12px 25px rgba(45,106,79,0.3); }

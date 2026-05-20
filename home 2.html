@@ -44,7 +44,24 @@
     }
 
     * { font-family: 'Inter', sans-serif; }
-    h1, h2, h3, h4, .heading-font { font-family: 'Poppins', sans-serif; }
+    h1, h2, h3, h4, h5, h6, .heading-font {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500 !important;
+    }
+
+    /* Enforce paragraph / subheading / list / link weights between 400 and 550 */
+    p, span, li, a, label, select, input, textarea {
+      font-weight: 400;
+    }
+    
+    .font-bold, .font-semibold, .font-medium,
+    p.font-bold, p.font-semibold,
+    span.font-bold, span.font-semibold,
+    li.font-bold, li.font-semibold,
+    a.font-bold, a.font-semibold,
+    button.font-bold, button.font-semibold {
+      font-weight: 500 !important;
+    }
     
     /* Responsive Headings */
     h1 { font-size: clamp(2.25rem, 8vw, 4.5rem) !important; line-height: 1.1 !important; }
@@ -142,9 +159,34 @@
     @keyframes truckMove { 0% { transform: translateX(-100%); } 100% { transform: translateX(200vw); } }
 
     /* Navbar & UI Overrides */
-    .dark .glass-nav { background: rgba(8, 28, 21, 0.85) !important; border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important; }
-    .dark .glass-nav-scrolled { background: rgba(8, 28, 21, 0.98) !important; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important; }
-<<<<<<< HEAD:home 2.html
+    .dark .glass-nav { 
+        background: #0a1510 !important; 
+        border-bottom: 1px solid rgba(149, 213, 178, 0.2) !important; 
+    }
+    .dark .glass-nav-scrolled { 
+        background: #081C15 !important; 
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6) !important; 
+    }
+    .dark #navbar a, .dark #navbar span, .dark #navbar button {
+        color: #ffffff !important;
+    }
+    .dark #navbar a.active-menu {
+        color: var(--accent) !important;
+    }
+    
+    /* Dark Mode Button & Interactive Hover Overrides */
+    .dark button.bg-\[\#95D5B2\], .dark a.bg-\[\#95D5B2\], .dark button.btn-accent, .dark a.btn-accent {
+        background-color: #95D5B2 !important;
+        color: #081C15 !important;
+    }
+    .dark button.bg-\[\#95D5B2\]:hover, .dark a.bg-\[\#95D5B2\]:hover, .dark button.hover\:bg-white:hover, .dark a.hover\:bg-white:hover {
+        background-color: #ffffff !important;
+        color: #081C15 !important;
+    }
+    .dark button.hover\:bg-\[\#95D5B2\]:hover, .dark a.hover\:bg-\[\#95D5B2\]:hover {
+        background-color: #95D5B2 !important;
+        color: #081C15 !important;
+    }
     
     /* Mobile Menu Dark Mode Fixes */
     #mobileMenu { background: white; }
@@ -155,13 +197,6 @@
         color: #95D5B2 !important;
     }
     .dark .text-\[\#1B4332\] { color: #ffffff !important; }
-=======
-    #mobileMenu { background: white !important; }
-    .dark #mobileMenu { background: white !important; border-left: 1px solid rgba(149, 213, 178, 0.3); }
-    .dark #mobileMenu button, .dark #mobileMenu a, .dark #mobileMenu span, .dark #mobileMenu p, .dark #mobileMenu i { color: #1B4332 !important; }
-    .dark .active-menu { color: #2D6A4F !important; }
-    .dark .text-\[\#1B4332\] { color: #1B4332 !important; }
->>>>>>> 9816bca621f5846411f42335ee42728a4eb5bdd7:Home2.html
     .dark .hover-underline::after { background: #2D6A4F !important; }
 
     /* TABLET & MOBILE (up to iPad Pro 12.9 Landscape/Nest Hub Max): hide desktop controls, show burger */
@@ -317,20 +352,20 @@
            <!-- Floating Cards -->
            <div class="absolute -top-10 -left-10 md:-left-20 floating-card">
               <div class="glass-card px-6 py-4 rounded-2xl shadow-xl flex items-center gap-3">
-                 <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-primary"><i class="fas fa-recycle"></i></div>
+                 <div class="w-10 h-10 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center text-primary"><i class="fas fa-recycle"></i></div>
                  <div class="text-left">
                     <p class="text-xs font-black text-primary uppercase">Impact</p>
-                    <p class="text-sm font-bold text-gray-800">50K+ Bottles Saved</p>
+                    <p class="text-sm font-bold text-gray-800 dark:text-white">50K+ Bottles Saved</p>
                  </div>
               </div>
            </div>
            
            <div class="absolute -bottom-10 -right-10 md:-right-20 floating-card" style="animation-delay: -2s;">
               <div class="glass-card px-6 py-4 rounded-2xl shadow-xl flex items-center gap-3">
-                 <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600"><i class="fas fa-map-marker-alt"></i></div>
+                 <div class="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-400"><i class="fas fa-map-marker-alt"></i></div>
                  <div class="text-left">
                     <p class="text-xs font-black text-blue-600 uppercase">Status</p>
-                    <p class="text-sm font-bold text-gray-800">Live Truck Near You</p>
+                    <p class="text-sm font-bold text-gray-800 dark:text-white">Live Truck Near You</p>
                  </div>
               </div>
            </div>
@@ -426,7 +461,7 @@
            <div class="bg-white dark:bg-[#081C15] p-6 rounded-[2.5rem] shadow-xl group hover:scale-[1.02] transition-transform duration-500" data-aos="fade-right">
               <div class="relative h-56 rounded-[2rem] overflow-hidden mb-6">
                  <img src="./image/Organic Basmati Rice.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Rice">
-                 <span class="absolute top-4 left-4 bg-accent text-primary text-[10px] font-black uppercase px-3 py-1 rounded-full">Top Rated</span>
+                 <span class="absolute top-4 left-4 bg-accent text-[#081C15] text-[10px] font-black uppercase px-3 py-1 rounded-full">Top Rated</span>
                  <button class="absolute top-4 right-4 w-10 h-10 bg-white/80 backdrop-blur-md rounded-full flex items-center justify-center text-gray-400 hover:text-red-500 transition"><i class="far fa-heart"></i></button>
               </div>
               <h4 class="text-xl font-bold mb-1">Organic Rice</h4>
@@ -443,7 +478,7 @@
            <div class="bg-white dark:bg-[#081C15] p-6 rounded-[2.5rem] shadow-xl group hover:scale-[1.02] transition-transform duration-500" data-aos="fade-right" data-aos-delay="100">
               <div class="relative h-56 rounded-[2rem] overflow-hidden mb-6">
                  <img src="./image/Red Split Lentils.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Lentils">
-                 <span class="absolute top-4 left-4 bg-accent text-primary text-[10px] font-black uppercase px-3 py-1 rounded-full">Organic</span>
+                 <span class="absolute top-4 left-4 bg-accent text-[#081C15] text-[10px] font-black uppercase px-3 py-1 rounded-full">Organic</span>
               </div>
               <h4 class="text-xl font-bold mb-1">Red Split Lentils</h4>
               <p class="text-xs text-gray-500 mb-6">Quick-cooking, high protein.</p>
@@ -457,7 +492,7 @@
            <div class="bg-white dark:bg-[#081C15] p-6 rounded-[2.5rem] shadow-xl group hover:scale-[1.02] transition-transform duration-500" data-aos="fade-right" data-aos-delay="200">
               <div class="relative h-56 rounded-[2rem] overflow-hidden mb-6">
                  <img src="./image/Virgin Olive Oil.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Oil">
-                 <span class="absolute top-4 left-4 bg-accent text-primary text-[10px] font-black uppercase px-3 py-1 rounded-full">Cold Pressed</span>
+                 <span class="absolute top-4 left-4 bg-accent text-[#081C15] text-[10px] font-black uppercase px-3 py-1 rounded-full">Cold Pressed</span>
               </div>
               <h4 class="text-xl font-bold mb-1">Virgin Olive Oil</h4>
               <p class="text-xs text-gray-500 mb-6">Premium extraction, first-press.</p>
@@ -471,7 +506,7 @@
            <div class="bg-white dark:bg-[#081C15] p-6 rounded-[2.5rem] shadow-xl group hover:scale-[1.02] transition-transform duration-500" data-aos="fade-right" data-aos-delay="300">
               <div class="relative h-56 rounded-[2rem] overflow-hidden mb-6">
                  <img src="./image/Natural Spice Mix.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Spice">
-                 <span class="absolute top-4 left-4 bg-accent text-primary text-[10px] font-black uppercase px-3 py-1 rounded-full">Eco Home</span>
+                 <span class="absolute top-4 left-4 bg-accent text-[#081C15] text-[10px] font-black uppercase px-3 py-1 rounded-full">Eco Home</span>
               </div>
               <h4 class="text-xl font-bold mb-1">Natural Spice</h4>
               <p class="text-xs text-gray-500 mb-6">Custom blend, no preservatives.</p>
@@ -655,6 +690,12 @@
                  Clean sourcing, clean planet.
               </div>
            </div>
+           <div class="relative overflow-hidden rounded-3xl group">
+              <img src="./image/zero_waste_community.png" class="w-full h-auto object-cover group-hover:scale-110 transition duration-700" alt="Community">
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white font-bold p-6 text-center">
+                 Zero-waste community refilling together.
+              </div>
+           </div>
         </div>
       </div>
     </section>
@@ -722,7 +763,7 @@
              </div>
 
              <div class="glass-card p-10 rounded-[3rem] shadow-xl relative" data-aos="fade-up" data-aos-delay="200">
-                <div class="absolute -top-6 left-10 w-16 h-16 rounded-2xl bg-accent flex items-center justify-center text-primary text-2xl shadow-lg"><i class="fas fa-quote-left"></i></div>
+                <div class="absolute -top-6 left-10 w-16 h-16 rounded-2xl bg-accent flex items-center justify-center text-[#081C15] text-2xl shadow-lg"><i class="fas fa-quote-left"></i></div>
                 <p class="text-gray-600 dark:text-gray-400 italic mb-8 mt-4">"The rewards program is actually great. I've planted 5 trees just by buying my monthly grains. EcoRefill is a life changer."</p>
                 <div class="flex items-center gap-4">
                    <div class="w-12 h-12 rounded-full bg-gray-200 overflow-hidden"><img src="./image/home 2 profile 3.jpg" alt="User"></div>

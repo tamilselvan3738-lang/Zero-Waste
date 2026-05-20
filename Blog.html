@@ -36,8 +36,25 @@
         h2,
         h3,
         h4,
+        h5,
+        h6,
         .heading-font {
             font-family: 'Poppins', sans-serif;
+            font-weight: 500 !important;
+        }
+
+        /* Enforce paragraph / subheading / list / link weights between 400 and 550 */
+        p, span, li, a, label, select, input, textarea {
+            font-weight: 400;
+        }
+        
+        .font-bold, .font-semibold, .font-medium,
+        p.font-bold, p.font-semibold,
+        span.font-bold, span.font-semibold,
+        li.font-bold, li.font-semibold,
+        a.font-bold, a.font-semibold,
+        button.font-bold, button.font-semibold {
+            font-weight: 500 !important;
         }
 
         html {
@@ -273,6 +290,20 @@
         .dark body, .dark .page, .dark section.bg-white, .dark section.bg-\[\#F1FAEE\], .dark section.bg-\[\#D8F3DC\], .dark section.bg-\[\#95D5B2\] { background-color: #000000 !important; color: #e5e5e5 !important; }
         .dark section.bg-\[\#1B4332\], .dark section.bg-\[\#2D6A4F\], .dark footer { background-color: #000000 !important; color: #e5e5e5 !important; }
         .dark .bg-white, .dark .bg-\[\#F1FAEE\], .dark .bg-\[\#D8F3DC\], .dark .bg-\[\#95D5B2\] { background-color: #000000 !important; color: #ffffff !important; }
+
+        /* Dark Mode Button & Interactive Hover Overrides */
+        .dark button.bg-\[\#95D5B2\], .dark a.bg-\[\#95D5B2\] {
+            background-color: #95D5B2 !important;
+            color: #081C15 !important;
+        }
+        .dark button.bg-\[\#95D5B2\]:hover, .dark a.bg-\[\#95D5B2\]:hover, .dark button.hover\:bg-white:hover, .dark a.hover\:bg-white:hover {
+            background-color: #ffffff !important;
+            color: #081C15 !important;
+        }
+        .dark button.hover\:bg-\[\#95D5B2\]:hover, .dark a.hover\:bg-\[\#95D5B2\]:hover {
+            background-color: #95D5B2 !important;
+            color: #081C15 !important;
+        }
         
         /* Hero Section Visibility Fix for Blog */
         .dark section.bg-\[\#081C15\] { background-color: #000000 !important; border-bottom: 1px solid rgba(149, 213, 178, 0.2) !important; }
@@ -351,22 +382,6 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
         }
 
-<<<<<<< HEAD
-=======
-        .dark #mobileMenu {
-            background: rgba(8, 28, 21, 0.98) !important;
-            border-left: 1px solid rgba(149, 213, 178, 0.3);
-        }
-
-        .dark #mobileMenu button,
-        .dark #mobileMenu a,
-        .dark #mobileMenu span,
-        .dark #mobileMenu p,
-        .dark #mobileMenu i {
-            color: #1B4332 !important;
-        }
-
->>>>>>> 9816bca621f5846411f42335ee42728a4eb5bdd7
         .dark .active-menu {
             color: #95D5B2 !important;
         }
@@ -422,15 +437,9 @@
             }
         }
         
-<<<<<<< HEAD
         /* always keep mobile menu background white in light mode */
         #mobileMenu {
-            background: white;
-=======
-        /* always keep mobile menu background white */
-        #mobileMenu {
             background: white !important;
->>>>>>> 9816bca621f5846411f42335ee42728a4eb5bdd7
         }
     </style>
 
@@ -535,6 +544,7 @@
           <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-[#40916C] rounded-full blur-[100px]"></div>
         </div>
         <div class="container mx-auto px-5 relative z-10">
+          <span class="inline-block px-4 py-1.5 bg-[#2D6A4F]/30 border border-[#2D6A4F] rounded-full text-[#95D5B2] text-sm font-bold mb-6 tracking-widest uppercase font-semibold" data-aos="fade-up">Our Blog</span>
           <h1 class="text-6xl md:text-7xl font-bold heading-font mb-6" data-aos="fade-up">The Green <span class="text-[#95D5B2]">Journal</span></h1>
           <p class="text-xl text-[#95D5B2]/80 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">Deep dives into sustainable living, zero-waste recipes, and the future of circular commerce.</p>
         </div>

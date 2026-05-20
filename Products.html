@@ -36,8 +36,25 @@
         h2,
         h3,
         h4,
+        h5,
+        h6,
         .heading-font {
             font-family: 'Poppins', sans-serif;
+            font-weight: 500 !important;
+        }
+
+        /* Enforce paragraph / subheading / list / link weights between 400 and 550 */
+        p, span, li, a, label, select, input, textarea {
+            font-weight: 400;
+        }
+        
+        .font-bold, .font-semibold, .font-medium,
+        p.font-bold, p.font-semibold,
+        span.font-bold, span.font-semibold,
+        li.font-bold, li.font-semibold,
+        a.font-bold, a.font-semibold,
+        button.font-bold, button.font-semibold {
+            font-weight: 500 !important;
         }
 
         html {
@@ -267,6 +284,20 @@
         .dark section.bg-\[\#1B4332\], .dark section.bg-\[\#2D6A4F\], .dark footer { background-color: #000000 !important; color: #e5e5e5 !important; }
         .dark .bg-white, .dark .bg-\[\#F1FAEE\], .dark .bg-\[\#D8F3DC\], .dark .bg-\[\#95D5B2\] { background-color: #000000 !important; color: #ffffff !important; }
 
+        /* Dark Mode Button & Interactive Hover Overrides */
+        .dark button.bg-\[\#95D5B2\], .dark a.bg-\[\#95D5B2\] {
+            background-color: #95D5B2 !important;
+            color: #081C15 !important;
+        }
+        .dark button.bg-\[\#95D5B2\]:hover, .dark a.bg-\[\#95D5B2\]:hover, .dark button.hover\:bg-white:hover, .dark a.hover\:bg-white:hover {
+            background-color: #ffffff !important;
+            color: #081C15 !important;
+        }
+        .dark button.hover\:bg-\[\#95D5B2\]:hover, .dark a.hover\:bg-\[\#95D5B2\]:hover {
+            background-color: #95D5B2 !important;
+            color: #081C15 !important;
+        }
+
         /* Border Visibility */
         .border, .border-t, .border-b, .border-l, .border-r { border-color: rgba(45, 106, 79, 0.1) !important; }
         .dark .border, .dark .border-t, .dark .border-b, .dark .border-l, .dark .border-r, .dark hr { border-color: rgba(149, 213, 178, 0.3) !important; }
@@ -341,22 +372,6 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
         }
 
-<<<<<<< HEAD
-=======
-        .dark #mobileMenu {
-            background: rgba(8, 28, 21, 0.98) !important;
-            border-left: 1px solid rgba(149, 213, 178, 0.3);
-        }
-
-        .dark #mobileMenu button,
-        .dark #mobileMenu a,
-        .dark #mobileMenu span,
-        .dark #mobileMenu p,
-        .dark #mobileMenu i {
-            color: #1B4332 !important;
-        }
-
->>>>>>> 9816bca621f5846411f42335ee42728a4eb5bdd7
         .dark .active-menu {
             color: #95D5B2 !important;
         }
@@ -412,15 +427,9 @@
             }
         }
         
-<<<<<<< HEAD
         /* always keep mobile menu background white in light mode */
         #mobileMenu {
-            background: white;
-=======
-        /* always keep mobile menu background white */
-        #mobileMenu {
             background: white !important;
->>>>>>> 9816bca621f5846411f42335ee42728a4eb5bdd7
         }
     </style>
 
@@ -657,25 +666,25 @@
              <p class="text-gray-600 mt-4 text-lg">The absolute favorites from our community</p>
           </div>
           <div class="grid md:grid-cols-2 gap-12">
-            <div class="bg-[#081C15] rounded-[3rem] p-10 flex flex-col md:flex-row items-center gap-8 shadow-2xl relative overflow-hidden" data-aos="fade-right">
-              <div class="w-48 h-48 bg-gradient-to-br from-[#2D6A4F] to-[#95D5B2] rounded-full flex items-center justify-center shrink-0 border-4 border-[#40916C]"><i class="fas fa-spa text-7xl text-white"></i></div>
+            <div class="bg-[#081C15] rounded-[3rem] p-6 sm:p-8 xl:p-10 flex flex-col lg:flex-row items-center gap-6 xl:gap-8 shadow-2xl relative overflow-hidden" data-aos="fade-right">
+              <div class="w-36 h-36 xl:w-48 xl:h-48 bg-gradient-to-br from-[#2D6A4F] to-[#95D5B2] rounded-full flex items-center justify-center shrink-0 border-4 border-[#40916C]"><i class="fas fa-spa text-5xl xl:text-7xl text-white"></i></div>
               <div class="text-white">
                  <span class="bg-[#95D5B2] text-[#1B4332] px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">#1 Best Seller</span>
-                 <h3 class="text-3xl font-bold mt-4 mb-2 heading-font text-[#F1FAEE]">Lavender Body Wash</h3>
+                 <h3 class="text-2xl xl:text-3xl font-bold mt-4 mb-2 heading-font text-[#F1FAEE]">Lavender Body Wash</h3>
                  <p class="text-gray-300 mb-6">Our signature organic body wash made with essential oils. Bring your own bottle and save 30% compared to retail.</p>
                  <div class="flex items-center gap-4">
-                    <span class="text-3xl font-bold text-[#95D5B2]">$0.80<span class="text-sm text-gray-400">/fl oz</span></span>
+                    <span class="text-2xl xl:text-3xl font-bold text-[#95D5B2]">$0.80<span class="text-sm text-gray-400 font-normal">/fl oz</span></span>
                  </div>
               </div>
             </div>
-            <div class="bg-[#D8F3DC] rounded-[3rem] p-10 flex flex-col md:flex-row items-center gap-8 shadow-2xl relative overflow-hidden" data-aos="fade-left">
-              <div class="w-48 h-48 bg-white rounded-full flex items-center justify-center shrink-0 border-4 border-[#95D5B2]"><i class="fas fa-cookie text-7xl text-[#2D6A4F]"></i></div>
+            <div class="bg-[#D8F3DC] rounded-[3rem] p-6 sm:p-8 xl:p-10 flex flex-col lg:flex-row items-center gap-6 xl:gap-8 shadow-2xl relative overflow-hidden" data-aos="fade-left">
+              <div class="w-36 h-36 xl:w-48 xl:h-48 bg-white rounded-full flex items-center justify-center shrink-0 border-4 border-[#95D5B2]"><i class="fas fa-cookie text-5xl xl:text-7xl text-[#2D6A4F]"></i></div>
               <div>
                  <span class="bg-[#1B4332] text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">Customer Favorite</span>
-                 <h3 class="text-3xl font-bold mt-4 mb-2 heading-font text-[#1B4332]">Organic Trail Mix</h3>
+                 <h3 class="text-2xl xl:text-3xl font-bold mt-4 mb-2 heading-font text-[#1B4332]">Organic Trail Mix</h3>
                  <p class="text-gray-600 mb-6">A perfect blend of organic almonds, cashews, dried cranberries, and dark chocolate chunks. Perfect zero-waste snack.</p>
                  <div class="flex items-center gap-4">
-                    <span class="text-3xl font-bold text-[#2D6A4F]">$8.50<span class="text-sm text-gray-500">/lb</span></span>
+                    <span class="text-2xl xl:text-3xl font-bold text-[#2D6A4F]">$8.50<span class="text-sm text-gray-500 font-normal">/lb</span></span>
                  </div>
               </div>
             </div>

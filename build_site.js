@@ -495,27 +495,27 @@ const pagesContent = {
              <p class="text-gray-600 mt-4 text-lg">The absolute favorites from our community</p>
           </div>
           <div class="grid md:grid-cols-2 gap-12">
-            <div class="bg-[#081C15] rounded-[3rem] p-10 flex flex-col md:flex-row items-center gap-8 shadow-2xl relative overflow-hidden" data-aos="fade-right">
-              <div class="w-48 h-48 bg-gradient-to-br from-[#2D6A4F] to-[#95D5B2] rounded-full flex items-center justify-center shrink-0 border-4 border-[#40916C]"><i class="fas fa-spa text-7xl text-white"></i></div>
+            <div class="bg-[#081C15] rounded-[3rem] p-6 sm:p-8 xl:p-10 flex flex-col lg:flex-row items-center gap-6 xl:gap-8 shadow-2xl relative overflow-hidden" data-aos="fade-right">
+              <div class="w-36 h-36 xl:w-48 xl:h-48 bg-gradient-to-br from-[#2D6A4F] to-[#95D5B2] rounded-full flex items-center justify-center shrink-0 border-4 border-[#40916C]"><i class="fas fa-spa text-5xl xl:text-7xl text-white"></i></div>
               <div class="text-white">
                  <span class="bg-[#95D5B2] text-[#1B4332] px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">#1 Best Seller</span>
-                 <h3 class="text-3xl font-bold mt-4 mb-2 heading-font text-[#F1FAEE]">Lavender Body Wash</h3>
+                 <h3 class="text-2xl xl:text-3xl font-bold mt-4 mb-2 heading-font text-[#F1FAEE]">Lavender Body Wash</h3>
                  <p class="text-gray-300 mb-6">Our signature organic body wash made with essential oils. Bring your own bottle and save 30% compared to retail.</p>
-                 <div class="flex items-center gap-4">
-                    <span class="text-3xl font-bold text-[#95D5B2]">$0.80<span class="text-sm text-gray-400">/fl oz</span></span>
-                    <button class="bg-[#95D5B2] text-[#1B4332] px-6 py-2 rounded-full font-bold hover:bg-white transition"><i class="fas fa-cart-plus mr-2"></i> Add to Order</button>
+                 <div class="flex flex-wrap items-center gap-4">
+                    <span class="text-2xl xl:text-3xl font-bold text-[#95D5B2]">$0.80<span class="text-sm text-gray-400 font-normal">/fl oz</span></span>
+                    <button class="bg-[#95D5B2] text-[#1B4332] px-4 py-2 xl:px-6 xl:py-2 rounded-full font-bold hover:bg-white transition text-sm xl:text-base"><i class="fas fa-cart-plus mr-2"></i> Add to Order</button>
                  </div>
               </div>
             </div>
-            <div class="bg-[#D8F3DC] rounded-[3rem] p-10 flex flex-col md:flex-row items-center gap-8 shadow-2xl relative overflow-hidden" data-aos="fade-left">
-              <div class="w-48 h-48 bg-white rounded-full flex items-center justify-center shrink-0 border-4 border-[#95D5B2]"><i class="fas fa-cookie text-7xl text-[#2D6A4F]"></i></div>
+            <div class="bg-[#D8F3DC] rounded-[3rem] p-6 sm:p-8 xl:p-10 flex flex-col lg:flex-row items-center gap-6 xl:gap-8 shadow-2xl relative overflow-hidden" data-aos="fade-left">
+              <div class="w-36 h-36 xl:w-48 xl:h-48 bg-white rounded-full flex items-center justify-center shrink-0 border-4 border-[#95D5B2]"><i class="fas fa-cookie text-5xl xl:text-7xl text-[#2D6A4F]"></i></div>
               <div>
                  <span class="bg-[#1B4332] text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">Customer Favorite</span>
-                 <h3 class="text-3xl font-bold mt-4 mb-2 heading-font text-[#1B4332]">Organic Trail Mix</h3>
+                 <h3 class="text-2xl xl:text-3xl font-bold mt-4 mb-2 heading-font text-[#1B4332]">Organic Trail Mix</h3>
                  <p class="text-gray-600 mb-6">A perfect blend of organic almonds, cashews, dried cranberries, and dark chocolate chunks. Perfect zero-waste snack.</p>
-                 <div class="flex items-center gap-4">
-                    <span class="text-3xl font-bold text-[#2D6A4F]">$8.50<span class="text-sm text-gray-500">/lb</span></span>
-                    <button class="bg-[#1B4332] text-white px-6 py-2 rounded-full font-bold hover:bg-[#2D6A4F] transition"><i class="fas fa-cart-plus mr-2"></i> Add to Order</button>
+                 <div class="flex flex-wrap items-center gap-4">
+                    <span class="text-2xl xl:text-3xl font-bold text-[#2D6A4F]">$8.50<span class="text-sm text-gray-500 font-normal">/lb</span></span>
+                    <button class="bg-[#1B4332] text-white px-4 py-2 xl:px-6 xl:py-2 rounded-full font-bold hover:bg-[#2D6A4F] transition text-sm xl:text-base"><i class="fas fa-cart-plus mr-2"></i> Add to Order</button>
                  </div>
               </div>
             </div>

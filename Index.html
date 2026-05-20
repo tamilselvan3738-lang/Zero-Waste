@@ -36,8 +36,25 @@
         h2,
         h3,
         h4,
+        h5,
+        h6,
         .heading-font {
             font-family: 'Poppins', sans-serif;
+            font-weight: 500 !important;
+        }
+
+        /* Enforce paragraph / subheading / list / link weights between 400 and 550 */
+        p, span, li, a, label, select, input, textarea {
+            font-weight: 400;
+        }
+        
+        .font-bold, .font-semibold, .font-medium,
+        p.font-bold, p.font-semibold,
+        span.font-bold, span.font-semibold,
+        li.font-bold, li.font-semibold,
+        a.font-bold, a.font-semibold,
+        button.font-bold, button.font-semibold {
+            font-weight: 500 !important;
         }
 
         html {
@@ -274,6 +291,20 @@
         .dark section.bg-\[\#1B4332\], .dark section.bg-\[\#2D6A4F\], .dark footer { background-color: #000000 !important; color: #e5e5e5 !important; }
         .dark .bg-white, .dark .bg-\[\#F1FAEE\], .dark .bg-\[\#D8F3DC\], .dark .bg-\[\#95D5B2\] { background-color: #000000 !important; color: #ffffff !important; }
 
+        /* Dark Mode Button & Interactive Hover Overrides */
+        .dark button.bg-\[\#95D5B2\], .dark a.bg-\[\#95D5B2\] {
+            background-color: #95D5B2 !important;
+            color: #081C15 !important;
+        }
+        .dark button.bg-\[\#95D5B2\]:hover, .dark a.bg-\[\#95D5B2\]:hover, .dark button.hover\:bg-white:hover, .dark a.hover\:bg-white:hover {
+            background-color: #ffffff !important;
+            color: #081C15 !important;
+        }
+        .dark button.hover\:bg-\[\#95D5B2\]:hover, .dark a.hover\:bg-\[\#95D5B2\]:hover {
+            background-color: #95D5B2 !important;
+            color: #081C15 !important;
+        }
+
         /* Border Visibility */
         .border, .border-t, .border-b, .border-l, .border-r { border-color: rgba(45, 106, 79, 0.1) !important; }
         .dark .border, .dark .border-t, .dark .border-b, .dark .border-l, .dark .border-r, .dark hr { border-color: rgba(149, 213, 178, 0.3) !important; }
@@ -348,22 +379,6 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
         }
 
-<<<<<<< HEAD
-=======
-        .dark #mobileMenu {
-            background: rgba(8, 28, 21, 0.98) !important;
-            border-left: 1px solid rgba(149, 213, 178, 0.3);
-        }
-
-        .dark #mobileMenu button,
-        .dark #mobileMenu a,
-        .dark #mobileMenu span,
-        .dark #mobileMenu p,
-        .dark #mobileMenu i {
-            color: #1B4332 !important;
-        }
-
->>>>>>> 9816bca621f5846411f42335ee42728a4eb5bdd7
         .dark .active-menu {
             color: #95D5B2 !important;
         }
@@ -419,15 +434,9 @@
             }
         }
         
-<<<<<<< HEAD
         /* always keep mobile menu background white in light mode */
         #mobileMenu {
-            background: white;
-=======
-        /* always keep mobile menu background white */
-        #mobileMenu {
             background: white !important;
->>>>>>> 9816bca621f5846411f42335ee42728a4eb5bdd7
         }
     </style>
 
@@ -657,7 +666,7 @@
       </section>
 
       <!-- 5. Live Truck Tracking + Stats -->
-      <section class="py-20 bg-gradient-to-r from-[#2D6A4F] to-[#40916C] text-white"><div class="container mx-auto px-5 md:px-8"><div class="grid md:grid-cols-2 gap-12 items-center"><div data-aos="fade-right"><h2 class="text-3xl md:text-4xl font-bold"> Live Truck Tracking</h2><p class="mt-3 opacity-95">Our truck is currently at Downtown Farmers Market until 2PM. Next stop: Westside Community Center.</p><div class="mt-5 w-full bg-white/30 rounded-full h-3 overflow-hidden"><div class="w-2/3 h-3 bg-[#95D5B2] rounded-full"></div></div><div class="flex gap-4 mt-6"><a href="Locations.html" class="border-2 border-white px-6 py-2 rounded-full hover:bg-white hover:text-[#2D6A4F] transition">View Full Route →</a><button class="bg-white/20 backdrop-blur px-6 py-2 rounded-full">Notify Me</button></div></div><div class="stats-grid text-center" data-aos="fade-left"><div><div class="text-4xl font-bold counter-number" data-target="28540">0</div><p class="text-sm">Plastic Bottles Saved</p></div><div><div class="text-4xl font-bold counter-number" data-target="12450">0</div><p class="text-sm">KG CO₂ Reduced</p></div><div><div class="text-4xl font-bold counter-number" data-target="1890">0</div><p class="text-sm">Trees Equivalent</p></div><div><div class="text-4xl font-bold counter-number" data-target="4230">0</div><p class="text-sm">Happy Members</p></div></div></div></div></section>
+      <section class="py-20 bg-gradient-to-r from-[#2D6A4F] to-[#40916C] text-white"><div class="container mx-auto px-5 md:px-8"><div class="grid md:grid-cols-2 gap-12 items-center"><div data-aos="fade-right"><h2 class="text-3xl md:text-4xl font-bold"> Live Truck Tracking</h2><p class="mt-3 opacity-95">Our truck is currently at Downtown Farmers Market until 2PM. Next stop: Westside Community Center.</p><div class="mt-5 w-full bg-white/30 rounded-full h-3 overflow-hidden"><div class="w-2/3 h-3 bg-[#95D5B2] rounded-full"></div></div><div class="flex gap-4 mt-6"><a href="Locations.html" class="border-2 border-white px-6 py-2 rounded-full hover:bg-white hover:text-[#2D6A4F] transition">View Full</a><button class="bg-white/20 backdrop-blur px-6 py-2 rounded-full">Notify</button></div></div><div class="stats-grid text-center" data-aos="fade-left"><div><div class="text-4xl font-bold counter-number" data-target="28540">0</div><p class="text-sm">Plastic Bottles Saved</p></div><div><div class="text-4xl font-bold counter-number" data-target="12450">0</div><p class="text-sm">KG CO₂ Reduced</p></div><div><div class="text-4xl font-bold counter-number" data-target="1890">0</div><p class="text-sm">Trees Equivalent</p></div><div><div class="text-4xl font-bold counter-number" data-target="4230">0</div><p class="text-sm">Happy Members</p></div></div></div></div></section>
 
       <!-- 6. Testimonials -->
       <section class="py-20 bg-white"><div class="container mx-auto px-5 md:px-8"><h2 class="text-3xl md:text-4xl font-bold text-center text-[#1B4332] mb-12"> What Our Customers Say</h2><div class="testimonial-grid"><div class="bg-[#F1FAEE] p-6 rounded-3xl shadow-lg card-hover"><i class="fas fa-star text-yellow-400 mb-3"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><p class="mt-2">"EcoRefill changed how I shop — zero waste has never been easier!"</p><h4 class="font-bold mt-4 text-[#2D6A4F]">— Sarah J.</h4></div><div class="bg-[#F1FAEE] p-6 rounded-3xl shadow-lg card-hover"><i class="fas fa-star text-yellow-400 mb-3"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><p class="mt-2">"Love tracking the truck live, organic products are amazing quality."</p><h4 class="font-bold mt-4 text-[#2D6A4F]">— Michael T.</h4></div><div class="bg-[#F1FAEE] p-6 rounded-3xl shadow-lg card-hover"><i class="fas fa-star text-yellow-400 mb-3"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><p class="mt-2">"Finally a sustainable grocery solution that's convenient and affordable."</p><h4 class="font-bold mt-4 text-[#2D6A4F]">— Elena R.</h4></div></div></div></section>

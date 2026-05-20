@@ -36,8 +36,25 @@
         h2,
         h3,
         h4,
+        h5,
+        h6,
         .heading-font {
             font-family: 'Poppins', sans-serif;
+            font-weight: 500 !important;
+        }
+
+        /* Enforce paragraph / subheading / list / link weights between 400 and 550 */
+        p, span, li, a, label, select, input, textarea {
+            font-weight: 400;
+        }
+        
+        .font-bold, .font-semibold, .font-medium,
+        p.font-bold, p.font-semibold,
+        span.font-bold, span.font-semibold,
+        li.font-bold, li.font-semibold,
+        a.font-bold, a.font-semibold,
+        button.font-bold, button.font-semibold {
+            font-weight: 500 !important;
         }
 
         html {
@@ -273,6 +290,20 @@
         .dark body, .dark .page, .dark section.bg-white, .dark section.bg-\[\#F1FAEE\], .dark section.bg-\[\#D8F3DC\], .dark section.bg-\[\#95D5B2\] { background-color: #000000 !important; color: #e5e5e5 !important; }
         .dark section.bg-\[\#1B4332\], .dark section.bg-\[\#2D6A4F\], .dark footer { background-color: #000000 !important; color: #e5e5e5 !important; }
         .dark .bg-white, .dark .bg-\[\#F1FAEE\], .dark .bg-\[\#D8F3DC\], .dark .bg-\[\#95D5B2\] { background-color: #000000 !important; color: #ffffff !important; }
+
+        /* Dark Mode Button & Interactive Hover Overrides */
+        .dark button.bg-\[\#95D5B2\], .dark a.bg-\[\#95D5B2\] {
+            background-color: #95D5B2 !important;
+            color: #081C15 !important;
+        }
+        .dark button.bg-\[\#95D5B2\]:hover, .dark a.bg-\[\#95D5B2\]:hover, .dark button.hover\:bg-white:hover, .dark a.hover\:bg-white:hover {
+            background-color: #ffffff !important;
+            color: #081C15 !important;
+        }
+        .dark button.hover\:bg-\[\#95D5B2\]:hover, .dark a.hover\:bg-\[\#95D5B2\]:hover {
+            background-color: #95D5B2 !important;
+            color: #081C15 !important;
+        }
         
         /* Hero Section Visibility Fix for Contact */
         .dark section.bg-\[\#081C15\] { background-color: #000000 !important; border-bottom: 1px solid rgba(149, 213, 178, 0.2) !important; }
@@ -351,22 +382,6 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
         }
 
-<<<<<<< HEAD
-=======
-        .dark #mobileMenu {
-            background: rgba(8, 28, 21, 0.98) !important;
-            border-left: 1px solid rgba(149, 213, 178, 0.3);
-        }
-
-        .dark #mobileMenu button,
-        .dark #mobileMenu a,
-        .dark #mobileMenu span,
-        .dark #mobileMenu p,
-        .dark #mobileMenu i {
-            color: #1B4332 !important;
-        }
-
->>>>>>> 9816bca621f5846411f42335ee42728a4eb5bdd7
         .dark .active-menu {
             color: #95D5B2 !important;
         }
@@ -422,15 +437,9 @@
             }
         }
         
-<<<<<<< HEAD
         /* always keep mobile menu background white in light mode */
         #mobileMenu {
-            background: white;
-=======
-        /* always keep mobile menu background white */
-        #mobileMenu {
             background: white !important;
->>>>>>> 9816bca621f5846411f42335ee42728a4eb5bdd7
         }
     </style>
 
@@ -583,9 +592,9 @@
                        </div>
                     </div>
                     <div class="flex items-start gap-4">
-                       <div class="w-12 h-12 bg-[#D8F3DC] rounded-xl flex items-center justify-center shrink-0"><i class="fas fa-phone-alt text-[#2D6A4F] text-xl"></i></div>
-                       <div>
-                          <h4 class="font-bold text-[#1B4332] text-lg">Call Us</h4>
+                        <div class="w-12 h-12 bg-[#D8F3DC] rounded-xl flex items-center justify-center shrink-0"><i class="fas fa-phone text-[#2D6A4F] text-xl"></i></div>
+                        <div>
+                           <h4 class="font-bold text-[#1B4332] text-lg">Call Us</h4>
                           <p class="text-gray-600 mt-1">1-800-ECO-FILL<br>(Mon-Fri, 9am-5pm CST)</p>
                        </div>
                     </div>
@@ -667,24 +676,30 @@
               <p class="text-[#95D5B2] mt-4 text-lg">We offer multiple channels to ensure you get help fast.</p>
            </div>
            
-           <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              <div class="bg-white/5 border border-white/20 p-10 rounded-[3rem] text-center hover:bg-white/10 transition backdrop-blur-md">
-                 <div class="w-20 h-20 bg-[#2D6A4F] rounded-full mx-auto flex items-center justify-center mb-6 shadow-lg border-4 border-[#081C15]"><i class="fas fa-comments text-3xl text-white"></i></div>
-                 <h3 class="text-2xl font-bold mb-3">Live Chat</h3>
-                 <p class="text-gray-400 mb-6">Available 24/7 via our mobile app or website widget.</p>
-                 <button class="bg-[#95D5B2] text-[#081C15] px-8 py-3 rounded-full font-bold hover:bg-white transition">Start Chat</button>
+           <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto items-stretch">
+              <div class="bg-white/5 border border-white/20 p-10 rounded-[3rem] text-center hover:bg-white/10 transition backdrop-blur-md flex flex-col justify-between items-center h-full">
+                 <div class="flex flex-col items-center">
+                    <div class="w-20 h-20 bg-[#2D6A4F] rounded-full mx-auto flex items-center justify-center mb-6 shadow-lg border-4 border-[#081C15]"><i class="fas fa-comments text-3xl text-white"></i></div>
+                    <h3 class="text-2xl font-bold mb-3">Live Chat</h3>
+                    <p class="text-gray-400 mb-6">Available 24/7 via our mobile app or website widget.</p>
+                 </div>
+                 <button class="bg-[#95D5B2] text-[#081C15] px-8 py-3 rounded-full font-bold hover:bg-white transition mt-auto">Start Chat</button>
               </div>
-              <div class="bg-white/5 border border-[#95D5B2] p-10 rounded-[3rem] text-center transform md:-translate-y-4 shadow-[0_0_30px_rgba(149,213,178,0.2)] backdrop-blur-md">
-                 <div class="w-20 h-20 bg-[#95D5B2] rounded-full mx-auto flex items-center justify-center mb-6 shadow-lg border-4 border-[#081C15]"><i class="fas fa-phone text-3xl text-[#081C15]"></i></div>
-                 <h3 class="text-2xl font-bold mb-3">Phone Line</h3>
-                 <p class="text-gray-300 mb-6">Call our dedicated support team during business hours.</p>
-                 <a href="tel:18003263455" class="bg-white text-[#1B4332] px-8 py-3 rounded-full font-bold hover:bg-[#D8F3DC] transition inline-block">1-800-ECO-FILL</a>
+              <div class="bg-white/5 border border-[#95D5B2] p-10 rounded-[3rem] text-center transform md:-translate-y-4 shadow-[0_0_30px_rgba(149,213,178,0.2)] backdrop-blur-md flex flex-col justify-between items-center h-full">
+                 <div class="flex flex-col items-center">
+                    <div class="w-20 h-20 bg-[#95D5B2] rounded-full mx-auto flex items-center justify-center mb-6 shadow-lg border-4 border-[#081C15]"><i class="fas fa-phone text-3xl text-[#081C15]"></i></div>
+                    <h3 class="text-2xl font-bold mb-3">Phone Line</h3>
+                    <p class="text-gray-300 mb-6">Call our dedicated support team during business hours.</p>
+                 </div>
+                 <a href="tel:18003263455" class="bg-white text-[#1B4332] px-8 py-3 rounded-full font-bold hover:bg-[#D8F3DC] transition inline-block mt-auto">1-800-ECO-FILL</a>
               </div>
-              <div class="bg-white/5 border border-white/20 p-10 rounded-[3rem] text-center hover:bg-white/10 transition backdrop-blur-md">
-                 <div class="w-20 h-20 bg-[#2D6A4F] rounded-full mx-auto flex items-center justify-center mb-6 shadow-lg border-4 border-[#081C15]"><i class="fab fa-twitter text-3xl text-white"></i></div>
-                 <h3 class="text-2xl font-bold mb-3">Social Media</h3>
-                 <p class="text-gray-400 mb-6">DM us on Twitter or Instagram. We usually reply in 2 hours.</p>
-                 <button class="bg-[#95D5B2] text-[#081C15] px-8 py-3 rounded-full font-bold hover:bg-white transition">@EcoRefillHQ</button>
+              <div class="bg-white/5 border border-white/20 p-10 rounded-[3rem] text-center hover:bg-white/10 transition backdrop-blur-md flex flex-col justify-between items-center h-full">
+                 <div class="flex flex-col items-center">
+                    <div class="w-20 h-20 bg-[#2D6A4F] rounded-full mx-auto flex items-center justify-center mb-6 shadow-lg border-4 border-[#081C15]"><i class="fab fa-twitter text-3xl text-white"></i></div>
+                    <h3 class="text-2xl font-bold mb-3">Social Media</h3>
+                    <p class="text-gray-400 mb-6">DM us on Twitter or Instagram. We usually reply in 2 hours.</p>
+                 </div>
+                 <button class="bg-[#95D5B2] text-[#081C15] px-8 py-3 rounded-full font-bold hover:bg-white transition mt-auto">@EcoRefillHQ</button>
               </div>
            </div>
         </div>
