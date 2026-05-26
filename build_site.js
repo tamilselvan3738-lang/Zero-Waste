@@ -1163,24 +1163,30 @@ pagesContent['Contact.html'] = `
               <p class="text-[#95D5B2] mt-4 text-lg">We offer multiple channels to ensure you get help fast.</p>
            </div>
            
-           <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              <div class="bg-white/5 border border-white/20 p-10 rounded-[3rem] text-center hover:bg-white/10 transition backdrop-blur-md">
-                 <div class="w-20 h-20 bg-[#2D6A4F] rounded-full mx-auto flex items-center justify-center mb-6 shadow-lg border-4 border-[#081C15]"><i class="fas fa-comments text-3xl text-white"></i></div>
-                 <h3 class="text-2xl font-bold mb-3">Live Chat</h3>
-                 <p class="text-gray-400 mb-6">Available 24/7 via our mobile app or website widget.</p>
-                 <button class="bg-[#95D5B2] text-[#081C15] px-8 py-3 rounded-full font-bold hover:bg-white transition">Start Chat</button>
+           <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto items-stretch">
+              <div class="bg-white/5 border border-white/20 p-10 rounded-[3rem] text-center hover:bg-white/10 transition backdrop-blur-md flex flex-col justify-between items-center h-full">
+                 <div class="flex flex-col items-center">
+                    <div class="w-20 h-20 bg-[#2D6A4F] rounded-full mx-auto flex items-center justify-center mb-6 shadow-lg border-4 border-[#081C15]"><i class="fas fa-comments text-3xl text-white"></i></div>
+                    <h3 class="text-2xl font-bold mb-3">Live Chat</h3>
+                    <p class="text-gray-400 mb-6">Available 24/7 via our mobile app or website widget.</p>
+                 </div>
+                 <button class="bg-[#95D5B2] text-[#081C15] px-8 py-3 rounded-full font-bold hover:bg-white transition mt-auto">Start Chat</button>
               </div>
-              <div class="bg-white/5 border border-[#95D5B2] p-10 rounded-[3rem] text-center transform md:-translate-y-4 shadow-[0_0_30px_rgba(149,213,178,0.2)] backdrop-blur-md">
-                 <div class="w-20 h-20 bg-[#95D5B2] rounded-full mx-auto flex items-center justify-center mb-6 shadow-lg border-4 border-[#081C15]"><i class="fas fa-phone text-3xl text-[#081C15]"></i></div>
-                 <h3 class="text-2xl font-bold mb-3">Phone Line</h3>
-                 <p class="text-gray-300 mb-6">Call our dedicated support team during business hours.</p>
-                 <a href="tel:18003263455" class="bg-white text-[#1B4332] px-8 py-3 rounded-full font-bold hover:bg-[#D8F3DC] transition inline-block">1-800-ECO-FILL</a>
+              <div class="bg-white/5 border border-[#95D5B2] p-10 rounded-[3rem] text-center transform md:-translate-y-4 shadow-[0_0_30px_rgba(149,213,178,0.2)] backdrop-blur-md flex flex-col justify-between items-center h-full">
+                 <div class="flex flex-col items-center">
+                    <div class="w-20 h-20 bg-accent rounded-full mx-auto flex items-center justify-center mb-6 shadow-lg border-4 border-[#081C15]"><i class="fas fa-phone text-3xl text-[#081C15]"></i></div>
+                    <h3 class="text-2xl font-bold mb-3">Phone Line</h3>
+                    <p class="text-gray-300 mb-6">Call our dedicated support team during business hours.</p>
+                 </div>
+                 <a href="tel:18003263455" class="bg-white text-[#1B4332] px-8 py-3 rounded-full font-bold hover:bg-[#D8F3DC] transition inline-block mt-auto">1-800-ECO-FILL</a>
               </div>
-              <div class="bg-white/5 border border-white/20 p-10 rounded-[3rem] text-center hover:bg-white/10 transition backdrop-blur-md">
-                 <div class="w-20 h-20 bg-[#2D6A4F] rounded-full mx-auto flex items-center justify-center mb-6 shadow-lg border-4 border-[#081C15]"><i class="fab fa-twitter text-3xl text-white"></i></div>
-                 <h3 class="text-2xl font-bold mb-3">Social Media</h3>
-                 <p class="text-gray-400 mb-6">DM us on Twitter or Instagram. We usually reply in 2 hours.</p>
-                 <button class="bg-[#95D5B2] text-[#081C15] px-8 py-3 rounded-full font-bold hover:bg-white transition">@EcoRefillHQ</button>
+              <div class="bg-white/5 border border-white/20 p-10 rounded-[3rem] text-center hover:bg-white/10 transition backdrop-blur-md flex flex-col justify-between items-center h-full">
+                 <div class="flex flex-col items-center">
+                    <div class="w-20 h-20 bg-[#2D6A4F] rounded-full mx-auto flex items-center justify-center mb-6 shadow-lg border-4 border-[#081C15]"><i class="fab fa-twitter text-3xl text-white"></i></div>
+                    <h3 class="text-2xl font-bold mb-3">Social Media</h3>
+                    <p class="text-gray-400 mb-6">DM us on Twitter or Instagram. We usually reply in 2 hours.</p>
+                 </div>
+                 <button class="bg-[#95D5B2] text-[#081C15] px-8 py-3 rounded-full font-bold hover:bg-white transition mt-auto">@EcoRefillHQ</button>
               </div>
            </div>
         </div>

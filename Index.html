@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>EcoRefill – Zero-Waste Refill Truck | Mobile Grocery</title>
@@ -304,6 +305,10 @@
             background-color: #95D5B2 !important;
             color: #081C15 !important;
         }
+        .dark button.hover\:bg-\[\#D8F3DC\]:hover, .dark a.hover\:bg-\[\#D8F3DC\]:hover {
+            background-color: #D8F3DC !important;
+            color: #1B4332 !important;
+        }
 
         /* Border Visibility */
         .border, .border-t, .border-b, .border-l, .border-r { border-color: rgba(45, 106, 79, 0.1) !important; }
@@ -444,9 +449,11 @@
 
 
 
+
 </head>
 <body>
 <header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 glass-nav py-3 md:py-4">
+
 
 
 
@@ -497,10 +504,11 @@
 
 
 
+
 </header>
 
   <!-- ========== MOBILE HAMBURGER MENU ========== -->
-  <div id="mobileMenu" class="fixed top-0 right-0 h-full w-80 bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-400 p-6 flex flex-col gap-4 overflow-y-auto">
+  <div id="mobileMenu" class="fixed top-0 right-0 h-full w-80 bg-white/98 backdrop-blur-xl z-50 shadow-2xl transform translate-x-full transition-transform duration-400 p-6 flex flex-col gap-4 overflow-y-auto">
     <div class="flex justify-between items-center border-b border-[#95D5B2] pb-3">
       <div class="flex items-center gap-2">
         <img src="favicon.png" alt="EcoRefill Logo" class="w-8 h-8 object-contain">
@@ -516,7 +524,7 @@
         </button>
         <div id="mobileHomeDrop" class="hidden pl-8 flex flex-col gap-2 pt-2">
           <a href="Index.html" class="mobile-nav-link hover:text-[#2D6A4F] transition">Home 1</a>
-          <a href="./home 2.html" class="mobile-nav-link hover:text-[#2D6A4F] transition">Home 2</a>
+          <a href="Index.html" class="mobile-nav-link hover:text-[#2D6A4F] transition">Home 2</a>
         </div>
       </div>
       <a href="About.html" class="mobile-nav-link py-2 hover:text-[#2D6A4F] transition flex items-center gap-2"><i class="fas fa-info-circle w-6"></i> About</a>
@@ -537,7 +545,7 @@
 <main id="pageContent">
 
       <!-- 1. Hero Section -->
-      <section class="relative pt-32 md:pt-40 pb-20 overflow-hidden" style="background-image: url('./image/index\ page\ bg.jpg'); background-size: cover; background-position: center;">
+      <section class="relative pt-32 md:pt-40 pb-20 overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=1600&h=800&fit=crop'); background-size: cover; background-position: center;">
         <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent"></div>
         <div class="container mx-auto px-5 md:px-8 relative z-10">
           <div class="max-w-2xl" data-aos="fade-right"><span class="bg-[#95D5B2] text-[#1B4332] px-5 py-2 rounded-full text-sm font-semibold inline-block">Zero-Waste Grocery on Wheels</span><h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mt-5 heading-font text-white leading-tight">Refill. <span class="text-[#95D5B2]">Reduce.</span> Repeat.</h1><p class="text-lg text-gray-100 mt-4">Mobile refill truck brings bulk organic groceries to your neighborhood. Plastic-free, carbon-smart, and convenient.</p><div class="flex flex-wrap gap-4 mt-8"><a href="Locations.html" class="btn-gradient text-white px-8 py-3.5 rounded-full font-semibold shadow-2xl inline-block"><i class="fas fa-map-marker-alt mr-2"></i> Track Our Truck</a><a href="About.html" class="bg-white/20 backdrop-blur-sm border border-white text-white px-7 py-3.5 rounded-full font-semibold hover:bg-white/30 transition inline-block">Learn More</a></div></div>
@@ -545,36 +553,13 @@
         <div class="absolute bottom-10 left-5 floating-leaf"><i class="fas fa-leaf text-5xl text-[#95D5B2] opacity-70"></i></div>
       </section>
 
-      <section class="py-20 bg-white" data-aos="fade-up">
-        <div class="container mx-auto px-5 md:px-8">
-          <div class="text-center max-w-2xl mx-auto mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold heading-font text-[#1B4332]">Why Choose EcoRefill</h2>
-            <p class="text-gray-600 mt-3">Join thousands making sustainable choices every day</p>
-          </div>
-          <div class="grid md:grid-cols-3 gap-8">
-            <div class="bg-[#F1FAEE] p-8 rounded-3xl shadow-xl card-hover text-center flex flex-col items-center">
-              <i class="fas fa-leaf text-5xl text-[#2D6A4F] mb-4 block mx-auto"></i>
-              <h3 class="text-xl font-bold">100% Plastic-Free</h3>
-              <p class="mt-2">Return & refill jars, compostable packaging</p>
-            </div>
-            <div class="bg-[#F1FAEE] p-8 rounded-3xl shadow-xl card-hover text-center flex flex-col items-center">
-              <i class="fas fa-truck-fast text-5xl text-[#2D6A4F] mb-4 block mx-auto"></i>
-              <h3 class="text-xl font-bold">Live Truck Tracking</h3>
-              <p class="mt-2">Real-time location of our refill truck</p>
-            </div>
-            <div class="bg-[#F1FAEE] p-8 rounded-3xl shadow-xl card-hover text-center flex flex-col items-center">
-              <i class="fas fa-chart-line text-5xl text-[#2D6A4F] mb-4 block mx-auto"></i>
-              <h3 class="text-xl font-bold">Smart Savings</h3>
-              <p class="mt-2">Track plastic bottles saved & money earned</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <!-- 2. Why Choose Us -->
+      <section class="py-20 bg-white" data-aos="fade-up"><div class="container mx-auto px-5 md:px-8"><div class="text-center max-w-2xl mx-auto mb-12"><h2 class="text-3xl md:text-4xl font-bold heading-font text-[#1B4332]">Why Choose EcoRefill</h2><p class="text-gray-600 mt-3">Join thousands making sustainable choices every day</p></div><div class="grid md:grid-cols-3 gap-8"><div class="bg-[#F1FAEE] p-8 rounded-3xl shadow-xl card-hover text-center"><i class="fas fa-leaf text-5xl text-[#2D6A4F] mb-4"></i><h3 class="text-xl font-bold">100% Plastic-Free</h3><p class="mt-2">Return & refill jars, compostable packaging</p></div><div class="bg-[#F1FAEE] p-8 rounded-3xl shadow-xl card-hover text-center"><i class="fas fa-truck-fast text-5xl text-[#2D6A4F] mb-4"></i><h3 class="text-xl font-bold">Live Truck Tracking</h3><p class="mt-2">Real-time location of our refill truck</p></div><div class="bg-[#F1FAEE] p-8 rounded-3xl shadow-xl card-hover text-center"><i class="fas fa-chart-line text-5xl text-[#2D6A4F] mb-4"></i><h3 class="text-xl font-bold">Smart Savings</h3><p class="mt-2">Track plastic bottles saved & money earned</p></div></div></div></section>
 
       <!-- 3. How It Works -->
       <section class="py-24 bg-gradient-to-br from-[#D8F3DC] to-[#F1FAEE]">
         <div class="container mx-auto px-5 md:px-8">
-          <div class="grid md:grid-cols-2 gap-16">
+          <div class="grid md:grid-cols-2 gap-16 items-center">
             <div data-aos="fade-right">
               <h2 class="text-4xl md:text-5xl font-bold heading-font text-[#1B4332] mb-4">How It Works</h2>
               <p class="text-gray-700 text-lg mb-8">A seamless, eco-friendly refill process designed to eliminate single-use plastics from your grocery routine. Start making an impact in just a few steps.</p>
@@ -604,16 +589,19 @@
                   </div>
                 </div>
               </div>
+              
+              <div class="mt-10 p-5 bg-white/60 rounded-2xl border border-white/80 shadow-sm backdrop-blur-sm">
+                <p class="text-[#1B4332] font-semibold"><i class="fas fa-lightbulb text-yellow-500 mr-2"></i> Pro Tip: Join our Membership for 15% off all refills and free monthly doorstep delivery!</p>
+              </div>
             </div>
             
-
-            <div class="relative flex flex-col" data-aos="fade-left">
-              <div class="bg-white rounded-[3rem] p-8 shadow-2xl relative z-10 border border-gray-100 md:h-[480px] flex flex-col">
-
-            <div class="relative flex flex-col h-full" data-aos="fade-left">
-              <div class="bg-white rounded-[3rem] p-8 shadow-2xl relative z-10 border border-gray-100 h-full flex flex-col">
-
-                 <img src="./image/index 1.jpg" class="w-full h-full rounded-[2rem] object-cover" alt="How it works">
+            <div class="relative" data-aos="fade-left">
+              <div class="bg-white rounded-[3rem] p-8 shadow-2xl relative z-10 border border-gray-100">
+                 <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=600&h=800&fit=crop" class="w-full rounded-[2rem] object-cover h-[500px]" alt="How it works">
+                 <div class="absolute -bottom-10 -left-10 bg-[#95D5B2] p-6 rounded-3xl shadow-xl w-64 floating-leaf">
+                    <p class="font-bold text-[#1B4332] text-lg mb-2">Zero Waste Guarantee</p>
+                    <p class="text-sm text-[#1B4332]/80">100% of our products are sourced from sustainable, plastic-free farms.</p>
+                 </div>
               </div>
               <div class="absolute top-1/2 -right-10 transform -translate-y-1/2 truck-moving opacity-20 -z-10">
                 <i class="fas fa-truck text-[15rem] text-[#2D6A4F]"></i>
@@ -628,51 +616,24 @@
         <div class="container mx-auto px-5 md:px-8">
           <div class="text-center mb-12" data-aos="fade-up"><h2 class="text-3xl md:text-4xl font-bold heading-font text-[#1B4332]">🌿 Featured Refill Products</h2><p class="text-gray-600 mt-2">Best selling zero-waste essentials from our truck</p></div>
           <div class="product-grid-auto">
-            <div class="bg-[#F1FAEE] rounded-3xl p-6 shadow-xl card-hover">
-              <div class="bg-gradient-to-br from-[#95D5B2] to-[#D8F3DC] rounded-2xl p-4 flex justify-center items-center h-40">
-                <i class="fas fa-leaf text-5xl text-[#2D6A4F]"></i>
-              </div>
-              <div class="flex justify-between mt-4"><span class="font-bold text-lg">Organic Basmati</span><span class="text-[#2D6A4F] font-bold">$4.2/lb</span></div>
-              <p class="text-sm text-gray-500">Premium Quality,direct from farms</p>
-              <button class="mt-3 bg-[#40916C] text-white px-4 py-2 rounded-full w-full hover:bg-[#2D6A4F] transition">Add to Cart</button>
-            </div>
-            <div class="bg-[#F1FAEE] rounded-3xl p-6 shadow-xl card-hover">
-              <div class="bg-gradient-to-br from-[#95D5B2] to-[#D8F3DC] rounded-2xl p-4 flex justify-center items-center h-40">
-                <i class="fas fa-mortar-pestle text-6xl text-[#2D6A4F]"></i>
-              </div>
-              <div class="flex justify-between mt-4"><span class="font-bold text-lg">Organic Spices Set</span><span class="text-[#2D6A4F] font-bold">$1.8/oz</span></div>
-              <p class="text-sm text-gray-500">Cumin, coriander, turmeric blend</p>
-              <button class="mt-3 bg-[#40916C] text-white px-4 py-2 rounded-full w-full hover:bg-[#2D6A4F] transition">Add to Cart</button>
-            </div>
-            <div class="bg-[#F1FAEE] rounded-3xl p-6 shadow-xl card-hover">
-              <div class="bg-gradient-to-br from-[#95D5B2] to-[#D8F3DC] rounded-2xl p-4 flex justify-center items-center h-40">
-                <i class="fas fa-pump-soap text-6xl text-[#2D6A4F]"></i>
-              </div>
-              <div class="flex justify-between mt-4"><span class="font-bold text-lg">Eco Cleaning</span><span class="text-[#2D6A4F] font-bold">$7.5/refill</span></div>
-              <p class="text-sm text-gray-500">Plant-based, biodegradable</p>
-              <button class="mt-3 bg-[#2D6A4F] text-white px-4 py-2 rounded-full w-full hover:bg-[#40916C] transition">Add to Cart</button>
-            </div>
-            <div class="bg-[#F1FAEE] rounded-3xl p-6 shadow-xl card-hover">
-              <div class="bg-gradient-to-br from-[#95D5B2] to-[#D8F3DC] rounded-2xl p-4 flex justify-center items-center h-40">
-                <i class="fas fa-bread-slice text-6xl text-[#2D6A4F]"></i>
-              </div>
-              <div class="flex justify-between mt-4"><span class="font-bold text-lg">Organic Grains</span><span class="text-[#2D6A4F] font-bold">$3.5/lb</span></div>
-              <p class="text-sm text-gray-500">Quinoa, oats, millet mix</p>
-              <button class="mt-3 bg-[#2D6A4F] text-white px-4 py-2 rounded-full w-full">Add to Cart</button>
-            </div>
+            <div class="bg-[#F1FAEE] rounded-3xl p-6 shadow-xl card-hover transition-all"><div class="bg-gradient-to-br from-[#95D5B2] to-[#D8F3DC] rounded-2xl p-4 flex justify-center h-40"><i class="fas fa-seedling text-6xl text-[#2D6A4F]"></i></div><div class="flex justify-between mt-4"><span class="font-bold text-lg">Organic Basmati Rice</span><span class="text-[#2D6A4F] font-bold">$4.2/lb</span></div><p class="text-sm text-gray-500">Premium quality, direct from farms</p><div class="flex mt-3 gap-3"><input type="number" value="1" class="w-20 border rounded-xl p-2 text-center border-gray-300"><button class="bg-[#2D6A4F] text-white px-5 py-2 rounded-full text-sm hover:bg-[#40916C] transition">Add</button></div><div class="mt-2"><span class="text-xs bg-[#95D5B2] px-2 py-1 rounded-full">Eco Badge ✓</span></div></div>
+            <div class="bg-[#F1FAEE] rounded-3xl p-6 shadow-xl card-hover"><div class="bg-gradient-to-br from-[#95D5B2] to-[#D8F3DC] rounded-2xl p-4 flex justify-center h-40"><i class="fas fa-mortar-pestle text-6xl text-[#2D6A4F]"></i></div><div class="flex justify-between mt-4"><span class="font-bold text-lg">Organic Spices Set</span><span class="text-[#2D6A4F] font-bold">$1.8/oz</span></div><p class="text-sm text-gray-500">Cumin, coriander, turmeric blend</p><button class="mt-3 bg-[#40916C] text-white px-4 py-2 rounded-full w-full hover:bg-[#2D6A4F] transition">Refill Now</button></div>
+            <div class="bg-[#F1FAEE] rounded-3xl p-6 shadow-xl card-hover"><div class="bg-gradient-to-br from-[#95D5B2] to-[#D8F3DC] rounded-2xl p-4 flex justify-center h-40"><i class="fas fa-pump-soap text-6xl text-[#2D6A4F]"></i></div><div class="flex justify-between mt-4"><span class="font-bold text-lg">Eco Cleaning Liquid</span><span class="text-[#2D6A4F] font-bold">$7.5/refill</span></div><p class="text-sm text-gray-500">Plant-based, biodegradable</p><button class="mt-3 bg-[#2D6A4F] text-white px-4 py-2 rounded-full w-full hover:bg-[#40916C] transition">Add to Cart</button></div>
+            <div class="bg-[#F1FAEE] rounded-3xl p-6 shadow-xl card-hover"><div class="bg-gradient-to-br from-[#95D5B2] to-[#D8F3DC] rounded-2xl p-4 flex justify-center h-40"><i class="fas fa-bread-slice text-6xl text-[#2D6A4F]"></i></div><div class="flex justify-between mt-4"><span class="font-bold text-lg">Organic Grains</span><span class="text-[#2D6A4F] font-bold">$3.5/lb</span></div><p class="text-sm text-gray-500">Quinoa, oats, millet mix</p><button class="mt-3 bg-[#2D6A4F] text-white px-4 py-2 rounded-full w-full">Refill</button></div>
           </div>
           <div class="text-center mt-10"><a href="Products.html" class="btn-outline-eco text-[#2D6A4F] px-8 py-3 rounded-full font-semibold inline-block">View All Products →</a></div>
         </div>
       </section>
 
       <!-- 5. Live Truck Tracking + Stats -->
-      <section class="py-20 bg-gradient-to-r from-[#2D6A4F] to-[#40916C] text-white"><div class="container mx-auto px-5 md:px-8"><div class="grid md:grid-cols-2 gap-12 items-center"><div data-aos="fade-right"><h2 class="text-3xl md:text-4xl font-bold"> Live Truck Tracking</h2><p class="mt-3 opacity-95">Our truck is currently at Downtown Farmers Market until 2PM. Next stop: Westside Community Center.</p><div class="mt-5 w-full bg-white/30 rounded-full h-3 overflow-hidden"><div class="w-2/3 h-3 bg-[#95D5B2] rounded-full"></div></div><div class="flex gap-4 mt-6"><a href="Locations.html" class="border-2 border-white px-6 py-2 rounded-full hover:bg-white hover:text-[#2D6A4F] transition">View Full</a><button class="bg-white/20 backdrop-blur px-6 py-2 rounded-full">Notify</button></div></div><div class="stats-grid text-center" data-aos="fade-left"><div><div class="text-4xl font-bold counter-number" data-target="28540">0</div><p class="text-sm">Plastic Bottles Saved</p></div><div><div class="text-4xl font-bold counter-number" data-target="12450">0</div><p class="text-sm">KG CO₂ Reduced</p></div><div><div class="text-4xl font-bold counter-number" data-target="1890">0</div><p class="text-sm">Trees Equivalent</p></div><div><div class="text-4xl font-bold counter-number" data-target="4230">0</div><p class="text-sm">Happy Members</p></div></div></div></div></section>
+      <section class="py-20 bg-gradient-to-r from-[#2D6A4F] to-[#40916C] text-white"><div class="container mx-auto px-5 md:px-8"><div class="grid md:grid-cols-2 gap-12 items-center"><div data-aos="fade-right"><h2 class="text-3xl md:text-4xl font-bold">🚛 Live Truck Tracking</h2><p class="mt-3 opacity-95">Our truck is currently at <span class="font-bold bg-white/20 px-3 py-1 rounded-full">Downtown Farmers Market</span> until 2PM. Next stop: Westside Community Center.</p><div class="mt-5 w-full bg-white/30 rounded-full h-3 overflow-hidden"><div class="w-2/3 h-3 bg-[#95D5B2] rounded-full"></div></div><div class="flex gap-4 mt-6"><a href="Locations.html" class="border-2 border-white px-6 py-2 rounded-full hover:bg-white hover:text-[#2D6A4F] transition">View Full Route →</a><button class="bg-white/20 backdrop-blur px-6 py-2 rounded-full">Notify Me</button></div></div><div class="stats-grid text-center" data-aos="fade-left"><div><div class="text-4xl font-bold counter-number" data-target="28540">0</div><p class="text-sm">Plastic Bottles Saved</p></div><div><div class="text-4xl font-bold counter-number" data-target="12450">0</div><p class="text-sm">KG CO₂ Reduced</p></div><div><div class="text-4xl font-bold counter-number" data-target="1890">0</div><p class="text-sm">Trees Equivalent</p></div><div><div class="text-4xl font-bold counter-number" data-target="4230">0</div><p class="text-sm">Happy Members</p></div></div></div></div></section>
 
       <!-- 6. Testimonials -->
-      <section class="py-20 bg-white"><div class="container mx-auto px-5 md:px-8"><h2 class="text-3xl md:text-4xl font-bold text-center text-[#1B4332] mb-12"> What Our Customers Say</h2><div class="testimonial-grid"><div class="bg-[#F1FAEE] p-6 rounded-3xl shadow-lg card-hover"><i class="fas fa-star text-yellow-400 mb-3"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><p class="mt-2">"EcoRefill changed how I shop — zero waste has never been easier!"</p><h4 class="font-bold mt-4 text-[#2D6A4F]">— Sarah J.</h4></div><div class="bg-[#F1FAEE] p-6 rounded-3xl shadow-lg card-hover"><i class="fas fa-star text-yellow-400 mb-3"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><p class="mt-2">"Love tracking the truck live, organic products are amazing quality."</p><h4 class="font-bold mt-4 text-[#2D6A4F]">— Michael T.</h4></div><div class="bg-[#F1FAEE] p-6 rounded-3xl shadow-lg card-hover"><i class="fas fa-star text-yellow-400 mb-3"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><p class="mt-2">"Finally a sustainable grocery solution that's convenient and affordable."</p><h4 class="font-bold mt-4 text-[#2D6A4F]">— Elena R.</h4></div></div></div></section>
+      <section class="py-20 bg-white"><div class="container mx-auto px-5 md:px-8"><h2 class="text-3xl md:text-4xl font-bold text-center text-[#1B4332] mb-12">❤️ What Our Customers Say</h2><div class="testimonial-grid"><div class="bg-[#F1FAEE] p-6 rounded-3xl shadow-lg card-hover"><i class="fas fa-star text-yellow-400 mb-3"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><p class="mt-2">"EcoRefill changed how I shop — zero waste has never been easier!"</p><h4 class="font-bold mt-4 text-[#2D6A4F]">— Sarah J.</h4></div><div class="bg-[#F1FAEE] p-6 rounded-3xl shadow-lg card-hover"><i class="fas fa-star text-yellow-400 mb-3"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><p class="mt-2">"Love tracking the truck live, organic products are amazing quality."</p><h4 class="font-bold mt-4 text-[#2D6A4F]">— Michael T.</h4></div><div class="bg-[#F1FAEE] p-6 rounded-3xl shadow-lg card-hover"><i class="fas fa-star text-yellow-400 mb-3"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i><p class="mt-2">"Finally a sustainable grocery solution that's convenient and affordable."</p><h4 class="font-bold mt-4 text-[#2D6A4F]">— Elena R.</h4></div></div></div></section>
   
 </main>
 <footer class="bg-[#F1FAEE] text-black mt-16 relative border-t border-gray-200">
+
 
 
         <div class="container mx-auto px-6 pt-16 pb-10">
@@ -725,6 +686,7 @@
         </div>
 
 
+
 </footer>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -738,57 +700,13 @@
     window.addEventListener('resize', () => { if (window.innerWidth >= 1024) closeMenuAll(); });
     
     
-    function updateTheme(isDark) {
-        if (isDark) {
-            document.documentElement.classList.add('dark');
-            document.body.style.background = '#000000';
-            document.body.style.color = '#e5e5e5';
-            document.querySelectorAll('#darkModeToggle i, #mobileDarkToggle i').forEach(i => {
-                i.classList.remove('fa-moon');
-                i.classList.add('fa-sun');
-            });
-        } else {
-            document.documentElement.classList.remove('dark');
-            document.body.style.background = '#F1FAEE';
-            document.body.style.color = '#1B4332';
-            document.querySelectorAll('#darkModeToggle i, #mobileDarkToggle i').forEach(i => {
-                i.classList.remove('fa-sun');
-                i.classList.add('fa-moon');
-            });
-        }
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    }
-
-    let dark = localStorage.getItem('theme') === 'dark';
-    updateTheme(dark);
-
-    document.getElementById('darkModeToggle').addEventListener('click', () => {
-        dark = !dark;
-        updateTheme(dark);
-    });
-
-    document.getElementById('mobileDarkToggle').addEventListener('click', () => {
-        dark = !dark;
-        updateTheme(dark);
-    });
+    let dark = false;
+    document.getElementById('darkModeToggle').addEventListener('click', () => { dark = !dark; if (dark) { document.documentElement.classList.add('dark'); document.body.style.background = '#1a2a24'; document.body.style.color = '#e5e5e5'; } else { document.documentElement.classList.remove('dark'); document.body.style.background = '#F1FAEE'; document.body.style.color = '#1B4332'; } });
+    document.getElementById('mobileDarkToggle').addEventListener('click', () => { document.getElementById('darkModeToggle').click(); });
     
-    function updateRtl(isRtl) {
-        document.documentElement.dir = isRtl ? 'rtl' : 'ltr';
-        localStorage.setItem('rtl', isRtl ? 'true' : 'false');
-    }
-
-    let rtl = localStorage.getItem('rtl') === 'true';
-    updateRtl(rtl);
-
-    document.getElementById('rtlToggle').addEventListener('click', () => {
-        rtl = !rtl;
-        updateRtl(rtl);
-    });
-
-    document.getElementById('mobileRtlToggle').addEventListener('click', () => {
-        rtl = !rtl;
-        updateRtl(rtl);
-    });
+    let rtl = false;
+    document.getElementById('rtlToggle').addEventListener('click', () => { rtl = !rtl; document.documentElement.dir = rtl ? 'rtl' : 'ltr'; });
+    document.getElementById('mobileRtlToggle').addEventListener('click', () => { document.getElementById('rtlToggle').click(); });
     
     window.addEventListener('scroll', () => { const nav = document.getElementById('navbar'); if (window.scrollY > 50) nav.classList.add('glass-nav-scrolled'); else nav.classList.remove('glass-nav-scrolled'); });
     
